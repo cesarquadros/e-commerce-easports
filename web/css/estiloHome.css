@@ -35,6 +35,10 @@ font-size: 25px;
 font-size: 25px;
 }
 
+    #formLoginFunc{
+    padding: 10px;
+}
+
 @media screen and (min-width: 480px) {
     #buscarDoBanner{
         margin-top: 60px;
@@ -44,4 +48,6 @@ font-size: 25px;
         font-size: 25px;
         margin-top: 60px;
     }
+    
+
 }
