@@ -27,6 +27,14 @@
     margin-top: 10px;
 }
 
+#iconeEnvio{
+font-size: 25px;
+}
+
+#iconeCartao{
+font-size: 25px;
+}
+
 @media screen and (min-width: 480px) {
     #buscarDoBanner{
         margin-top: 60px;
