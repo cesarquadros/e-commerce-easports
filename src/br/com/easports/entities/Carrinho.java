@@ -6,7 +6,6 @@ public class Carrinho {
 	private Integer quantidade;
 	private Cliente cliente;
 	private Produto produto;
-	private Compra compra;
 	private Boolean finalizado;
 
 	public Carrinho() {
@@ -20,14 +19,13 @@ public class Carrinho {
 		this.finalizado = finalizado;
 	}
 
-	public Carrinho(Integer idCarrinho, Integer quantidade, Cliente cliente, Produto produto, Compra compra,
+	public Carrinho(Integer idCarrinho, Integer quantidade, Cliente cliente, Produto produto,
 			Boolean finalizado) {
 		super();
 		this.idCarrinho = idCarrinho;
 		this.quantidade = quantidade;
 		this.cliente = cliente;
 		this.produto = produto;
-		this.compra = compra;
 		this.finalizado = finalizado;
 	}
 
@@ -61,14 +59,6 @@ public class Carrinho {
 
 	public void setProduto(Produto produto) {
 		this.produto = produto;
-	}
-
-	public Compra getCompra() {
-		return compra;
-	}
-
-	public void setCompra(Compra compra) {
-		this.compra = compra;
 	}
 
 	public Boolean getFinalizado() {

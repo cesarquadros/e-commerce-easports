@@ -8,6 +8,7 @@ public class Compra {
 	private Cliente cliente;
 	private Date dataCompra;
 	private Integer parcelas;
+	private Cartao cartao;
 	
 	public Compra() {
 		// TODO Auto-generated constructor stub
@@ -19,6 +20,15 @@ public class Compra {
 		this.cliente = cliente;
 		this.dataCompra = dataCompra;
 		this.parcelas = parcelas;
+	}
+	
+	public Compra(Integer idCompra, Cliente cliente, Date dataCompra, Integer parcelas, Cartao cartao) {
+		super();
+		this.idCompra = idCompra;
+		this.cliente = cliente;
+		this.dataCompra = dataCompra;
+		this.parcelas = parcelas;
+		this.cartao = cartao;
 	}
 
 	public Integer getIdCompra() {
@@ -51,6 +61,14 @@ public class Compra {
 
 	public void setParcelas(Integer parcelas) {
 		this.parcelas = parcelas;
+	}
+
+	public Cartao getCartao() {
+		return cartao;
+	}
+
+	public void setCartao(Cartao cartao) {
+		this.cartao = cartao;
 	}
 	
 }

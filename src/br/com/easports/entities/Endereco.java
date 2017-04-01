@@ -15,14 +15,13 @@ public class Endereco {
 		// TODO Auto-generated constructor stub
 	}
 
-	public Endereco(Integer idEndereco, String logradouro, String cep, Integer numero, String complemento,
+	public Endereco(Integer idEndereco, String logradouro, String cep, Integer numero,
 			String bairro, String cidade, String estado) {
 		super();
 		this.idEndereco = idEndereco;
 		this.logradouro = logradouro;
 		this.cep = cep;
 		this.numero = numero;
-		this.complemento = complemento;
 		this.bairro = bairro;
 		this.cidade = cidade;
 		this.estado = estado;
