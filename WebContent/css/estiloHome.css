@@ -1,0 +1,53 @@
+#carrossel{
+    padding-bottom: 10px;
+}
+
+#logo{
+    padding: 10px;
+}
+
+#iconeUsuario{
+    font-size: 25px;
+    margin-top: 10px;
+}
+
+#iconeCarrinho{
+    font-size: 25px;
+    margin-top: 10px;
+    margin-right: 0px;
+    padding-right: 0px;
+}
+
+#iconeBuscar{
+    font-size: 25px;
+    margin-top: 10px;
+}
+
+#buscarDoBanner{
+    margin-top: 10px;
+}
+
+#iconeEnvio{
+font-size: 25px;
+}
+
+#iconeCartao{
+font-size: 25px;
+}
+
+    #formLoginFunc{
+    padding: 10px;
+}
+
+@media screen and (min-width: 480px) {
+    #buscarDoBanner{
+        margin-top: 60px;
+    }
+
+    #iconeBuscar{
+        font-size: 25px;
+        margin-top: 60px;
+    }
+    
+
+}
