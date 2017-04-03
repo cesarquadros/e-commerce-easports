@@ -9,6 +9,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 
+<link rel="stylesheet" href="./css/imagens.css" />
 <link rel="stylesheet" href="./css/normalize.min.css" />
 <link rel="stylesheet" href="./css/font-awesome.css" />
 <link rel="stylesheet" href="./css/font-awesome.min.css" />

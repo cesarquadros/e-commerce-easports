@@ -53,7 +53,7 @@
 		<div class="row">
 			<div class="col-xs-12 col-sm-6 col-md-3">
 				<div class="thumbnail">
-					<img
+					<img 
 						src="http://static5.netshoes.net/Produtos/relogio-esportivo-adidas--adp32108ci/60/D13-7540-460/D13-7540-460_detalhe1.jpg"
 						class="img-responsive" />
 					
