@@ -9,7 +9,7 @@
                 </div>
 
                 <div class="col-xs-12 col-sm-12 col-md-6">
-                    <div class="jumbotron">
+                    <div class="jumbotron center">
                         <h2>Relógio Adidas</h2>
                         <h1>R$145,00</h1>                        
                         <h4>Em 10X de R$14,50</h4>

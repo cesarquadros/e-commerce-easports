@@ -47,7 +47,14 @@ font-size: 25px;
     #iconeBuscar{
         font-size: 25px;
         margin-top: 60px;
-    }
-    
+    } 
+}
 
+#divMenu {
+	text-align:center;
+}
+
+
+.center {
+	text-align: center;
 }

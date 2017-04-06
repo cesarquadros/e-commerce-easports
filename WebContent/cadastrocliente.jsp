@@ -9,7 +9,7 @@
                 <div class="col-xs-12 col-sm-12 col-md-6">              
                     <form>
                         <div class="jumbotron">
-                        <h2> Dados Cadastrais</h2>
+                        <h2 class="center"> Dados Cadastrais</h2>
                         <div class="form-group">
                             <label for="inputEmail">E-mail</label>
                             <input type="email" class="form-control" id="inputEmail" placeholder="E-mail">
@@ -41,7 +41,7 @@
                         </div>
                         </div>
                         <div class="jumbotron">
-                        <h2>Endereço</h2>                        
+                        <h2 class="center">Endereço</h2>                        
                         <div class="form-group">
                             <label for="inputCEP">CEP</label>
                             <input type="email" class="form-control" id="inputCep" placeholder="00000-000">
@@ -70,7 +70,7 @@
                             <label for="inputEstado">Estado</label>
                             <input type="email" class="form-control" id="inputEstado" placeholder="Estado">
                         </div>
-                        <button type="submit" class="btn btn-default">Cadastrar</button>
+                        <div class="center"><button type="submit" class="btn btn-default">Cadastrar</button></div>
                         </div>
                     </form>
                 </div>

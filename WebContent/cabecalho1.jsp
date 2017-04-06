@@ -49,7 +49,8 @@
 
 			<div class="col-xs-6 col-sm-2 col-md-3">
 				<div class="row">
-					<a href="login.jsp"><div class="col-xs-6 col-sm-6 col-md-6">
+					<a href="login.jsp">
+					<div class="col-xs-6 col-sm-6 col-md-6">
 						<div class="glyphicon glyphicon-user" id="iconeUsuario"></div>
 						Minha Conta
 					</div></a>
@@ -71,7 +72,7 @@
 				class="icon-bar"></span>
 		</button>
 
-		<div class="collapse navbar-collapse navHeaderCollapse">
+		<div class="collapse navbar-collapse navHeaderCollapse" id="divMenu">
 			<div class="container">
 				<ul class="nav navbar-nav navbar-left">
 					<li><a href="produtocategoria.jsp">Natação</a></li>

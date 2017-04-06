@@ -4,7 +4,7 @@
         <div class="container">
             <div class="row">
 
-                <div class="col-xs-12 col-sm-12 col-md-6">              
+                <div class="col-xs-12 col-sm-12 col-md-6 center">              
                     <form>
                         <div class="jumbotron">
 
@@ -15,7 +15,7 @@
                     </form>
                 </div>
 
-                <div class="col-xs-12 col-sm-12 col-md-6">
+                <div class="col-xs-12 col-sm-12 col-md-6 center">
                     <div class="jumbotron">
                         <h3>Endereço de Entrega</h3>
                         <div class="glyphicon glyphicon-send" id="iconeEnvio"></div>
@@ -32,8 +32,10 @@
                 
                 <div class="col-xs-12 col-sm-12 col-md-6">
                     <div class="jumbotron">
-                        <h3>Cartão de Crédito</h3>
-                        <div class="glyphicon glyphicon-credit-card" id="iconeCartao"></div>
+                        <div class="center">
+	                        <h3>Cartão de Crédito</h3>
+	                        <div class="glyphicon glyphicon-credit-card center" id="iconeCartao"></div>
+                        </div>
                         <div class="form-group">
                             <label for="inputNumCartao">Número</label>
                             <input type="email" class="form-control" id="inputNumCartao" placeholder="Número">
@@ -55,7 +57,7 @@
                             <input type="number" class="form-control" id="inputParcelas" placeholder="0">
                         </div>
                         
-                        <button type="button" class="btn btn-default navbar-btn">Finalizar Compra</button>                    
+                        <div class="center"><button type="button" class="btn btn-default navbar-btn">Finalizar Compra</button></div>                    
                     </div>
                 </div>
                 

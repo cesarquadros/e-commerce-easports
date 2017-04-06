@@ -9,9 +9,11 @@
                     <button type="button" class="btn btn-default navbar-btn">Escolher + Produtos</button>
                 </div>
                 <div class="col-xs-12 col-sm-12 col-md-6">              
-                    <a href="finalizarcompra.jsp" class="btn btn-default navbar-btn">Comprar</a>
+                    <a href="finalizarcompra.jsp" class="btn btn-default navbar-btn">Finalizar Compra</a>
                 </div>
-
+                
+				</br>	
+				
                 <div class="col-xs-12 col-sm-12 col-md-12">
                     <table class="table table-hover">
                             <thead>
@@ -19,7 +21,8 @@
                                     <th>Produto</th>
                                     <th>Quant.</th>
                                     <th>Valor Unitário</th>
-                                    <th>Valor Total</th>                               
+                                    <th>Valor Total</th>
+                                                                 
                                 </tr>
                             </thead>
                             <tbody>
@@ -27,7 +30,8 @@
                                     <td>Bola Nike</td>
                                     <td>2</td>
                                     <td>R$120,00</td>
-                                    <td>R$240,00</td>                            
+                                    <td>R$240,00</td>
+                                    <td><button type="button" class="btn btn-danger navbar-btn">Excluir</button></td>                              
                                 </tr>
                             </tbody>
                             <tbody>
@@ -35,7 +39,8 @@
                                     <td>Mochila Nike</td>
                                     <td>1</td>
                                     <td>R$330,00</td>
-                                    <td>R$330,00</td>                            
+                                    <td>R$330,00</td>
+                                    <td><button type="button" class="btn btn-danger navbar-btn">Excluir</button></td>                             
                                 </tr>
                             </tbody>
                         </table>
@@ -45,7 +50,7 @@
                     <button type="button" class="btn btn-default navbar-btn">Escolher + Produtos</button>
                 </div>
                 <div class="col-xs-12 col-sm-12 col-md-6">              
-                    <a href="finalizarcompra.jsp" class="btn btn-default navbar-btn">Comprar</a>
+                    <a href="finalizarcompra.jsp" class="btn btn-default navbar-btn">Finalizar Compra</a>
                 </div>
             </div>
         </div>
