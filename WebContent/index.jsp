@@ -56,9 +56,11 @@
 						class="img-responsive">					
 						<h3 class="center">Relógio Adidas</h3>
 						<h4>R$145,00</h4>
-						<a href="detalheproduto.jsp" class="btn btn-default navbar-btn">Adicionar ao carrinho</a>
-					
-				</div>
+					<a href="detalheproduto.jsp" class="btn btn-success navbar-btn">
+					 <span class="glyphicon glyphicon-shopping-cart"></span>
+						Adicionar ao carrinho
+					</a>
+					</div>
 			</div>
 
 			<div class="col-xs-12 col-sm-6 col-md-3">

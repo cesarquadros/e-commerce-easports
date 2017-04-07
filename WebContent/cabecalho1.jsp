@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-    pageEncoding="ISO-8859-1"%>
+	pageEncoding="ISO-8859-1"%>
 
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
@@ -23,19 +23,18 @@
 <link rel="stylesheet" href="./css/estiloHome.css" />
 <script src="./js/jquery-3.1.1.min.js"></script>
 <script src="./js/bootstrap.min.js"></script>
-<script src="./js/bootstrap.js"></script>	
+<script src="./js/bootstrap.js"></script>
 
 <title>EA Sports</title>
 </head>
 <body>
 
-		<div class="container" id="banner1">
+	<div class="container" id="banner1">
 		<div class="row">
 			<div class="col-xs-5 col-sm-5 col-md-2">
 				<a href="index.jsp"><img
 					src="https://upload.wikimedia.org/wikipedia/en/c/c4/EA_Sports_logo.png"
-					alt="Logotipo" id="logo" class="img-responsive" />
-				</a>
+					alt="Logotipo" id="logo" class="img-responsive" /> </a>
 			</div>
 
 			<div class="col-xs-5 col-sm-5 col-md-6" id="buscarDoBanner">
@@ -49,16 +48,20 @@
 
 			<div class="col-xs-6 col-sm-2 col-md-3">
 				<div class="row">
-					<a href="login.jsp">
 					<div class="col-xs-6 col-sm-6 col-md-6">
-						<div class="glyphicon glyphicon-user" id="iconeUsuario"></div>
-						Minha Conta
-					</div></a>
+						<a href="login.jsp">
+							<span class="glyphicon glyphicon-user" id="iconeUsuario"></span>
+							Minha Conta
+						</a>
+					</div>
 
-					<a href="carrinho.jsp"><div class="col-xs-6 col-sm-6 col-md-6">
-						<div class="glyphicon glyphicon-shopping-cart" id="iconeCarrinho"></div>
-						Meu Carrinho
-					</div></a>
+					<div class="col-xs-6 col-sm-6 col-md-6">
+						<a href="carrinho.jsp"> 
+						<span class="glyphicon glyphicon-shopping-cart" id="iconeCarrinho"></span>
+							Meu Carrinho
+
+						</a>
+					</div>
 				</div>
 			</div>
 		</div>
@@ -88,7 +91,3 @@
 			</div>
 		</div>
 	</div>
-
-
-</body>
-</html>

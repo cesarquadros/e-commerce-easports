@@ -12,7 +12,7 @@
                     <a href="finalizarcompra.jsp" class="btn btn-default navbar-btn">Finalizar Compra</a>
                 </div>
                 
-				</br>	
+				<br />	
 				
                 <div class="col-xs-12 col-sm-12 col-md-12">
                     <table class="table table-hover">

@@ -18,8 +18,10 @@
 					<h3>R$145,00</h3>
 					<h5>Em até 10X de R$14,50</h5>
 					<h6>ver mais opções de parcelas</h6>
-					<button type="button" class="btn btn-default navbar-btn">Adicionar
-						ao Carrinho</button>
+					<a href="detalheproduto.jsp" class="btn btn-success navbar-btn">
+					 <span class="glyphicon glyphicon-shopping-cart"></span>
+						Adicionar ao carrinho
+					</a>
 				</div>
 			</div>
 		</div>

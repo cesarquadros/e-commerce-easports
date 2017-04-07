@@ -64,13 +64,13 @@ font-size: 25px;
 }
 
 
-#listadescricao {
-
+.botaocarrinho {
+	border: solid 1px green;
+	padding: 10px;	
+	border-radius: 5px;
+	width: 80%;
+	color: green;
 }
-
-
-
-
 
 
 
