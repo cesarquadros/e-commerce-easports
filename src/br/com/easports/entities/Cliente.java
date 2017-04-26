@@ -9,7 +9,7 @@ public class Cliente {
 	private String email;
 	private String senha;
 	private String nome;
-	private Character sexo;
+	private String sexo;
 	private String cpf;
 	private Date dataNascimento;
 	private String telefone;
@@ -21,7 +21,7 @@ public class Cliente {
 		// TODO Auto-generated constructor stub
 	}
 
-	public Cliente(Integer idCliente, String email, String senha, String nome, Character sexo, String cpf,
+	public Cliente(Integer idCliente, String email, String senha, String nome, String sexo, String cpf,
 			Date dataNascimento, String telefone) {
 		super();
 		this.idCliente = idCliente;
@@ -34,7 +34,7 @@ public class Cliente {
 		this.telefone = telefone;
 	}
 
-	public Cliente(Integer idCliente, String email, String senha, String nome, Character sexo, String cpf,
+	public Cliente(Integer idCliente, String email, String senha, String nome, String sexo, String cpf,
 			Date dataNascimento, String telefone, Endereco endereco, Carrinho carrinho, ArrayList<Cartao> listaCartoes) {
 		super();
 		this.idCliente = idCliente;
@@ -82,11 +82,11 @@ public class Cliente {
 		this.nome = nome;
 	}
 
-	public Character getSexo() {
+	public String getSexo() {
 		return sexo;
 	}
 
-	public void setSexo(Character sexo) {
+	public void setSexo(String sexo) {
 		this.sexo = sexo;
 	}
 
