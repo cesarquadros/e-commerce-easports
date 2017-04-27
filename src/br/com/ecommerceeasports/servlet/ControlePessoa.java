@@ -77,9 +77,9 @@ public class ControlePessoa extends HttpServlet {
 				
 				cliente.setEmail(request.getParameter("email"));
 				cliente.setSenha(request.getParameter("senha"));
-				cliente.setNome(request.getParameter("email"));
+				cliente.setNome(request.getParameter("nome"));
 				cliente.setCpf(request.getParameter("cpf"));
-				cliente.setDataNascimento(ConverteData.stringToDate("19-07-1988"));
+				cliente.setDataNascimento(ConverteData.stringToDate(request.getParameter("datanasc")));
 				cliente.setTelefone(request.getParameter("telefone"));
 				cliente.setSexo(request.getParameter("sexo"));
 				
@@ -87,8 +87,18 @@ public class ControlePessoa extends HttpServlet {
 				
 				clienteDAO.insert(cliente, idEndereco);
 				
+				request.setAttribute("modal", "1");	
+				request.setAttribute("titulo","BEM VINDO!");
+				request.setAttribute("mensagem","Cadastro efetuado com sucesso!");
+				request.setAttribute("retorno", cliente.getNome());
+				request.getRequestDispatcher("login.jsp").forward(request, response);
+				
+				
 			} catch (Exception e) {
-				// TODO Auto-generated catch block
+				request.setAttribute("modal", "1");	
+				request.setAttribute("titulo","OPS! Ocorreu um erro");
+				request.setAttribute("mensagem",e.toString());
+				request.getRequestDispatcher("login.jsp").forward(request, response);
 				e.printStackTrace();
 			}
 

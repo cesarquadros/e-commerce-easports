@@ -1,3 +1,10 @@
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
+pageEncoding="ISO-8859-1"%>
+
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fnc"%>
+
 <jsp:include page="cabecalho2.jsp"></jsp:include>
 <div class="navbar navbar-default navbar-static-top"></div>
 <div class="container">
@@ -31,5 +38,38 @@
 			</div>
 		</div>
 	</div>
+
+
+	<div id="myModal" class="modal fade" role="dialog">
+		<div class="modal-dialog">
+
+			<!-- Modal content-->
+			<div class="modal-content center">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal">&times;</button>
+					<h4 class="modal-title">${titulo}</h4>
+				</div>
+				<div class="modal-body">
+					
+					<h2>${mensagem}</h2>
+					<h3>${retorno}</h3>
+					
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-default" data-dismiss="modal">Fechar</button>
+				</div>
+			</div>
+		</div>
+	</div>
+	<c:if test="${modal=='1'}">
+		<script>
+			$(document).ready(function() {
+				$('#myModal').modal('show');
+			});
+		</script>
+	</c:if>
+
+
+
 </div>
 <jsp:include page="rodape.jsp"></jsp:include>
