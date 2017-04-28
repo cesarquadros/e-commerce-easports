@@ -83,7 +83,7 @@ public class ProdutoServlet extends HttpServlet {
 				// String pasta = System.getProperty("user.home") +
 				// "\\Desktop\\PI\\easports\\EASPORTS\\easports\\WebContent\\img";
 
-				String pasta = System.getProperty("user.home") + "\\git\\e-commerce-easports\\WebContent\\img";
+				String pasta = System.getProperty("user.home") + "\\Desktop\\pi4\\e-commerce-easports\\WebContent\\img";
 				// String pasta = System.getProperty("user.dir") +
 				// "\\tomcat\\webapps\\easports\\img";
 

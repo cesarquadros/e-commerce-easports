@@ -57,9 +57,10 @@
 				<div class="thumbnail">
 					<img 
 						src="img/${produto.imagem}"
-						class="img-responsive">					
-						<h3 class="center">${ produto.nome}</h3>
-						<h4>${produto.valorVendaFormatado}0</h4>
+						class="img-responsive">	
+						<hr>				
+						<h5 class="center">${ produto.nome}</h5>
+						<h6>${produto.valorVendaFormatado}</h6>
 					<a href="detalheproduto.jsp" class="btn btn-success navbar-btn">
 					 <span class="glyphicon glyphicon-shopping-cart"></span>
 						Adicionar ao carrinho

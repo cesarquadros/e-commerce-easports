@@ -10,6 +10,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 
 <link rel="stylesheet" type="text/css" href="css/imagens.css" />
+<link rel="stylesheet" type="text/css" href="css/imagens.css" />
 <link rel="stylesheet" href="./css/normalize.min.css" />
 <link rel="stylesheet" href="./css/font-awesome.css" />
 <link rel="stylesheet" href="./css/font-awesome.min.css" />
@@ -30,10 +31,11 @@
 <body>
 <div class="container" id="banner1">
             <div class="row">
-                <div class="col-xs-5 col-sm-5 col-md-2">
+                <div class="col-xs-5 col-sm-5 col-md-2 center">
                     <a href="index.jsp"><img src="https://upload.wikimedia.org/wikipedia/en/c/c4/EA_Sports_logo.png" alt="Logotipo" id="logo" class="img-responsive"/></a>
                 </div>  
             </div>   
         </div>
+        <hr>
 </body>
 </html>

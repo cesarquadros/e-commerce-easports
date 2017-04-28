@@ -1,7 +1,6 @@
 
 	<jsp:include page="cabecalho2.jsp"></jsp:include>
-<div class ="navbar navbar-default navbar-static-top">
-        </div>
+		
         <div class="container">
             <div class="row">
 
