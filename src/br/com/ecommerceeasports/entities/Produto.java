@@ -5,7 +5,6 @@ public class Produto {
 	private Integer idProduto;
 	private String codigo;
 	private String nome;
-	private Double preco;
 	private String imagem;
 	private Double precoCusto;
 	private Double precoVenda;
@@ -15,25 +14,23 @@ public class Produto {
 		// TODO Auto-generated constructor stub
 	}
 
-	public Produto(Integer idProduto, String codigo, String nome, Double preco, String imagem, Double precoCusto,
+	public Produto(Integer idProduto, String codigo, String nome, String imagem, Double precoCusto,
 			Double precoVenda) {
 		super();
 		this.idProduto = idProduto;
 		this.codigo = codigo;
 		this.nome = nome;
-		this.preco = preco;
 		this.imagem = imagem;
 		this.precoCusto = precoCusto;
 		this.precoVenda = precoVenda;
 	}
 
-	public Produto(Integer idProduto, String codigo, String nome, Double preco, String imagem, Double precoCusto,
+	public Produto(Integer idProduto, String codigo, String nome,  String imagem, Double precoCusto,
 			Double precoVenda, Categoria categoria) {
 		super();
 		this.idProduto = idProduto;
 		this.codigo = codigo;
 		this.nome = nome;
-		this.preco = preco;
 		this.imagem = imagem;
 		this.precoCusto = precoCusto;
 		this.precoVenda = precoVenda;
@@ -62,14 +59,6 @@ public class Produto {
 
 	public void setNome(String nome) {
 		this.nome = nome;
-	}
-
-	public Double getPreco() {
-		return preco;
-	}
-
-	public void setPreco(Double preco) {
-		this.preco = preco;
 	}
 
 	public String getImagem() {

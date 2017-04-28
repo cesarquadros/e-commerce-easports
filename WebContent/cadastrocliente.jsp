@@ -6,14 +6,13 @@
 	<div class="row">
 		<div class="col-xs-0 col-sm-0 col-md-3"></div>
 		<div class="col-xs-12 col-sm-12 col-md-6">
-			<form name="formulario" method="post"
-				action="/e-commerce-easports/ClienteServlet?acao=cadastrar">
+			<form name="formulario" method="post" action="/e-commerce-easports/ClienteServlet?acao=cadastrar">
 				<div class="jumbotron">
 					<h2 class="center">Dados Cadastrais</h2>
 					
 					<div class="form-group">
-						<label for="inputCPF">Nome</label> <input type="text"
-							class="form-control" id="inputCPF" placeholder="João das Neves" name="nome" required>
+						<label for="inputCPF">Nome</label> 
+						<input type="text" class="form-control" id="inputCPF" placeholder="João das Neves" name="nome" required>
 					</div>
 					
 					<div class="form-group">

@@ -2,9 +2,11 @@ package br.com.ecommerceeasports.principal;
 
 import br.com.ecommerceeasports.entities.Cliente;
 import br.com.ecommerceeasports.entities.Endereco;
+import br.com.ecommerceeasports.entities.Produto;
 import br.com.ecommerceeasports.persistence.ClienteDAO;
 import br.com.ecommerceeasports.persistence.DAO;
 import br.com.ecommerceeasports.persistence.EnderecoDAO;
+import br.com.ecommerceeasports.persistence.ProdutoDAO;
 import br.com.ecommerceeasports.util.ConverteData;
 
 public class Main {
@@ -22,7 +24,7 @@ public class Main {
 		}
 		
 		
-		Endereco endereco = new Endereco();
+/*		Endereco endereco = new Endereco();
 		
 		endereco.setLogradouro("santa julieta");
 		endereco.setCep("04426090");
@@ -51,7 +53,19 @@ public class Main {
 		
 		ClienteDAO c = new ClienteDAO();
 		
-		c.insert(cli, 1);
+		c.insert(cli, 1);*/
+		
+		Produto p = new Produto();
+		
+		p.setCodigo("100");
+		p.setNome("tenis");
+		p.setPrecoCusto(10.50);
+		p.setPrecoVenda(20.90);
+		p.setImagem("imagem");
+		
+		ProdutoDAO pDao = new ProdutoDAO();
+		
+		pDao.insert(p, 1);
 	}
 
 }
