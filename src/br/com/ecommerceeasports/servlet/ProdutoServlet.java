@@ -45,13 +45,17 @@ public class ProdutoServlet extends HttpServlet {
 		
 		String acao = request.getParameter("acao");
 		
+		Part temp = request.getPart("nome");
+		
 		if(acao.equals("cadastrar")){
+			
+			
 			
 			Produto produto = new Produto();
 
 			ProdutoDAO produtoDao = new ProdutoDAO();
 
-		produto.setNome(request.getParameter("nome"));
+			produto.setNome(request.getParameter("nome"));
 			produto.setPrecoCusto(Double.parseDouble(request.getParameter("precocusto").replaceAll(",", ".")));
 			produto.setPrecoVenda(Double.parseDouble(request.getParameter("precovenda").replaceAll(",", ".")));
 			produto.setCodigo(request.getParameter("codigo"));	
@@ -67,7 +71,7 @@ public class ProdutoServlet extends HttpServlet {
 			// upload...
 			// resgatar o campo imagem (file)
 
-			Part imagem = request.getPart("imagem"); // arquivo
+			Part imagem = request.getPart("img"); // arquivo
 
 			// definir o local onde o arquivo será salvo
 

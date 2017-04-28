@@ -1,3 +1,4 @@
+	<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 	<jsp:include page="cabecalho2.jsp"></jsp:include>
  <div class ="navbar navbar-default navbar-static-top">
         </div>
@@ -6,7 +7,9 @@
                 <div class="col-xs-0 col-sm-0 col-md-3">                    
                 </div>
                 <div class="col-xs-12 col-sm-12 col-md-6">              
-                   <form name="formulario" method="post" action="/e-commerce-easports/ProdutoServlet?acao=cadastrar">
+                   <form name="formulario" method="post" enctype="multipart/form-data" action="/e-commerce-easports/ProdutoServlet">
+                   
+                   <input type="hidden" name="acao" value="cadastrar">
                         <div class="jumbotron">
                             <h2 class="center" >Produto</h2>
                             <div class="form-group">
@@ -43,8 +46,7 @@
                             
                             <div class="form-group">
                                 <label for="exampleInputFile">Inserir Foto</label>
-                                
-                                <input required="required" type="file" name="imagem" class="form-control"/>
+                                <input type="file" id="inputFotoProd"name="img">
                                 
                             </div>
 
