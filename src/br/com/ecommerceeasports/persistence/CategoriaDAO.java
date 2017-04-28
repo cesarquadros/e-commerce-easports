@@ -1,13 +1,9 @@
 package br.com.ecommerceeasports.persistence;
 
-
-
 import java.util.ArrayList;
 import java.util.List;
 
 import br.com.ecommerceeasports.entities.Categoria;
-
-
 
 public class CategoriaDAO extends DAO{
 
@@ -57,8 +53,8 @@ public class CategoriaDAO extends DAO{
 
 		while (rs.next()) {
 
-			categoria.setIdCategoria(rs.getInt("id_categoria"));
-			categoria.setNome(rs.getString("categoria"));
+			categoria.setIdCategoria(rs.getInt("idCategoria"));
+			categoria.setNome(rs.getString("nome"));
 
 		}
 
@@ -72,7 +68,7 @@ public class CategoriaDAO extends DAO{
 	
 	public List<Categoria> listAll() throws Exception {
 
-		String query = "select * from categoria order by categoria";
+		String query = "select * from categoria order by nome";
 
 		abreConexao();
 
@@ -86,8 +82,8 @@ public class CategoriaDAO extends DAO{
 
 			Categoria categoria = new Categoria();
 
-			categoria.setIdCategoria(rs.getInt("id_categoria"));
-			categoria.setNome(rs.getString("categoria"));
+			categoria.setIdCategoria(rs.getInt("idCategoria"));
+			categoria.setNome(rs.getString("nome"));
 
 			lista.add(categoria);
 

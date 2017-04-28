@@ -1,6 +1,6 @@
 	<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 	<jsp:include page="cabecalho2.jsp"></jsp:include>
-	
+		<jsp:useBean class="br.com.ecommerceeasports.managedbean.ManagedBeanCategoria" id="mbCategoria"></jsp:useBean>
 	<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 	
  <div class ="navbar navbar-default navbar-static-top">
@@ -36,19 +36,18 @@
 							<label>Categoria:
 								<select required="required" name="categoria" class="form-control">
 									<option value="">- Selecione uma Opção -</option>
-
-									<option value="1"> Futebol </option>
-									<option value="2"> Volei </option>
-									<option value="3"> Baseball </option>
-									<option value="4"> Natação </option>
-									
+									<c:forEach items="${mbCategoria.listagemCategorias}" var="c">
+										<option value="${c.idCategoria}"> ${c.nome} </option>
+									</c:forEach>
 								</select>
 							</label>                          
                           </div>                         
+                            
                             <div class="form-group">
                                 <label for="exampleInputFile">Inserir Foto</label>
                                 <input type="file" id="inputFotoProd"name="img">
                             </div>
+
                             <div class="center"><button type="submit" class="btn btn-default">Cadastrar</button></div>
                         </div>
                     </form>
