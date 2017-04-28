@@ -1,5 +1,9 @@
 package br.com.ecommerceeasports.persistence;
+import java.util.ArrayList;
+import java.util.List;
+
 import br.com.ecommerceeasports.entities.Produto;
+import br.com.ecommerceeasports.util.FormataValor;
 
 public class ProdutoDAO extends DAO {
 
@@ -25,6 +29,52 @@ public class ProdutoDAO extends DAO {
 		fechaConexao();
 
 	}
+	
+	
+	public List<Produto> listAll() throws Exception {
+
+		String query = "select * from produto order by nome";
+
+		abreConexao();
+
+		stmt = con.prepareStatement(query);
+
+		rs = stmt.executeQuery();
+
+		List<Produto> lista = new ArrayList<Produto>();
+
+		while (rs.next()) {
+
+			Produto produto = new Produto();
+
+			CategoriaDAO categoriaDao = new CategoriaDAO();
+			
+			FormataValor format = new FormataValor();
+
+			produto.setIdProduto(rs.getInt("idProduto"));
+			produto.setCodigo(rs.getString("codigo"));
+			produto.setNome(rs.getString("nome"));
+			produto.setImagem(rs.getString("imagem"));
+			produto.setCategoria(categoriaDao.findById(rs.getInt("idCategoria")));
+			produto.setPrecoVenda(rs.getDouble("precoVenda"));
+			produto.setPrecoCusto(rs.getDouble("precoCusto"));
+			produto.setValorVendaFormatado(format.valorFormatado(rs.getDouble("precoVenda")));
+			produto.setValorCustoFormatado(format.valorFormatado(rs.getDouble("precoCusto")));
+
+			lista.add(produto);
+
+		}
+
+		stmt.close();
+
+		fechaConexao();
+
+		return lista;
+
+	}
+	
+	
+	
 
 	/*public void update(Produto produto) throws Exception {
 
@@ -199,50 +249,7 @@ public class ProdutoDAO extends DAO {
 
 	}
 	
-	public List<Produto> listAll() throws Exception {
-
-		String query = "select * from produto order by nome";
-
-		abreConexao();
-
-		stmt = con.prepareStatement(query);
-
-		rs = stmt.executeQuery();
-
-		List<Produto> lista = new ArrayList<Produto>();
-
-		while (rs.next()) {
-
-			Produto produto = new Produto();
-
-			CategoriaDAO categoriaDao = new CategoriaDAO();
-			FornecedorDAO fornecedorDao = new FornecedorDAO();
-			
-			FormataValor format = new FormataValor();
-
-			produto.setIdProduto(rs.getInt("id_produto"));
-			produto.setNome(rs.getString("nome"));
-			produto.setImagem(rs.getString("imagem"));
-			produto.setCodigo(rs.getString("codigo"));
-			produto.setCategoria(categoriaDao.findById(rs.getInt("id_categoria")));
-			produto.setFornecedor(fornecedorDao.findById(rs.getInt("id_fornecedor")));
-			produto.setValorVenda(rs.getDouble("valor_venda"));
-			produto.setValorCusto(rs.getDouble("valor_custo"));
-			produto.setValorVendaFormatado(format.valorFormatado(rs.getDouble("valor_venda")));
-			produto.setValorCustoFormatado(format.valorFormatado(rs.getDouble("valor_custo")));
-			produto.setQuantidade(rs.getInt("quantidade"));
-
-			lista.add(produto);
-
-		}
-
-		stmt.close();
-
-		fechaConexao();
-
-		return lista;
-
-	}
+	
 	
 	public List<Produto> findByCategoriaFornecedor(Integer idCategoria, Integer idFornecedor) throws Exception {
 

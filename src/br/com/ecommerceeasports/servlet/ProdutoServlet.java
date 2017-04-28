@@ -6,102 +6,118 @@ import java.io.InputStream;
 import java.util.UUID;
 
 import javax.servlet.ServletException;
+import javax.servlet.annotation.MultipartConfig;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.Part;
 
+import br.com.ecommerceeasports.entities.Categoria;
 import br.com.ecommerceeasports.entities.Produto;
+import br.com.ecommerceeasports.persistence.CategoriaDAO;
 import br.com.ecommerceeasports.persistence.ProdutoDAO;
-
 
 /**
  * Servlet implementation class ProdutoServlet
  */
 @WebServlet("/ProdutoServlet")
+@MultipartConfig
 public class ProdutoServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-       
-    /**
-     * @see HttpServlet#HttpServlet()
-     */
-    public ProdutoServlet() {
-        super();
-        // TODO Auto-generated constructor stub
-    }
 
-    
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	/**
+	 * @see HttpServlet#HttpServlet()
+	 */
+	public ProdutoServlet() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
+
+	protected void doGet(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
 		execute(request, response);
 	}
 
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	protected void doPost(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		execute(request, response);
 	}
-	
-	protected void execute (HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException{
-		
+
+	protected void execute(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
+
 		String acao = request.getParameter("acao");
-		
+
 		Part temp = request.getPart("nome");
-		
-		if(acao.equals("cadastrar")){
-			
-			
-			
-			Produto produto = new Produto();
 
-			ProdutoDAO produtoDao = new ProdutoDAO();
+		if (acao.equals("cadastrar")) {
 
-			produto.setNome(request.getParameter("nome"));
-			produto.setPrecoCusto(Double.parseDouble(request.getParameter("precocusto").replaceAll(",", ".")));
-			produto.setPrecoVenda(Double.parseDouble(request.getParameter("precovenda").replaceAll(",", ".")));
-			produto.setCodigo(request.getParameter("codigo"));	
-			Integer categoria = Integer.parseInt(request.getParameter("categoria"));
-			
-			
-			
-			//----------------------------------------------------------------------------------------------------------------------------------------------------------------
-			UUID guid = UUID.randomUUID();
+			try {
+				Produto produto = new Produto();
 
-			produto.setImagem(guid.toString() + ".jpg");
+				ProdutoDAO produtoDao = new ProdutoDAO();
 
-			// upload...
-			// resgatar o campo imagem (file)
+				produto.setNome(request.getParameter("nome"));
+				produto.setPrecoCusto(Double.parseDouble(request.getParameter("precocusto").replaceAll(",", ".")));
+				produto.setPrecoVenda(Double.parseDouble(request.getParameter("precovenda").replaceAll(",", ".")));
+				produto.setCodigo(request.getParameter("codigo"));
+				Integer codCategoria = Integer.parseInt(request.getParameter("categoria"));
 
-			Part imagem = request.getPart("img"); // arquivo
+				// ----------------------------------------------------------------------------------------------------------------------------------------------------------------
+				UUID guid = UUID.randomUUID();
 
-			// definir o local onde o arquivo será salvo
+				produto.setImagem(guid.toString() + ".jpg");
 
-			// Notebook Diego -> System.getProperty("user.home") +
-			// "\\Desktop\\PI\\easports\\EASPORTS\\easports\\WebContent\\img";
+				// upload...
+				// resgatar o campo imagem (file)
 
-			// String pasta = System.getProperty("user.home") +
-			// "\\Desktop\\PI\\easports\\EASPORTS\\easports\\WebContent\\img";
+				Part imagem = request.getPart("img"); // arquivo
 
-			String pasta = System.getProperty("user.home") + "Desktop\\pi4\\e-commerce-easports\\WebContent\\img";
-			//String pasta = System.getProperty("user.dir") + "\\tomcat\\webapps\\easports\\img";
+				// definir o local onde o arquivo será salvo
 
-			FileOutputStream stream = new FileOutputStream(pasta + "/" + produto.getImagem());
+				// Notebook Diego -> System.getProperty("user.home") +
+				// "\\Desktop\\PI\\easports\\EASPORTS\\easports\\WebContent\\img";
 
-			InputStream input = imagem.getInputStream(); // lendo o
-															// arquivo
+				// String pasta = System.getProperty("user.home") +
+				// "\\Desktop\\PI\\easports\\EASPORTS\\easports\\WebContent\\img";
 
-			byte[] buffer = new byte[1024];
+				String pasta = System.getProperty("user.home") + "\\git\\e-commerce-easports\\WebContent\\img";
+				// String pasta = System.getProperty("user.dir") +
+				// "\\tomcat\\webapps\\easports\\img";
 
-			while (input.read(buffer) > 0) {
+				FileOutputStream stream = new FileOutputStream(pasta + "/" + produto.getImagem());
 
-				stream.write(buffer);
+				InputStream input = imagem.getInputStream(); // lendo o
+																// arquivo
 
-			}
+				byte[] buffer = new byte[1024];
 
-			stream.close();
-			//-------------------------------------------------------------------------------------------------------------------------------------------------------------------
+				while (input.read(buffer) > 0) {
+
+					stream.write(buffer);
+
+				}
+
+				stream.close();
+				// -------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+
+				produtoDao.insert(produto, codCategoria);
 				
+				request.setAttribute("titulo", "Cadastro de Produtos");
+				request.setAttribute("mensagem", "Produto " + produto.getNome().toUpperCase() + " cadastrado com sucesso");
+				request.setAttribute("imagem", produto.getImagem());
+				request.setAttribute("modal", 1);
+				
+				request.getRequestDispatcher("cadastroproduto.jsp").forward(request, response);
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 		}
-		
+
 	}
 
 }

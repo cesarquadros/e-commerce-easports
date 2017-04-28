@@ -3,6 +3,7 @@ package br.com.ecommerceeasports.principal;
 import br.com.ecommerceeasports.entities.Cliente;
 import br.com.ecommerceeasports.entities.Endereco;
 import br.com.ecommerceeasports.entities.Produto;
+import br.com.ecommerceeasports.managedbean.ManagedBeanProduto;
 import br.com.ecommerceeasports.persistence.ClienteDAO;
 import br.com.ecommerceeasports.persistence.DAO;
 import br.com.ecommerceeasports.persistence.EnderecoDAO;
@@ -53,7 +54,7 @@ public class Main {
 		
 		ClienteDAO c = new ClienteDAO();
 		
-		c.insert(cli, 1);*/
+		c.insert(cli, 1);
 		
 		Produto p = new Produto();
 		
@@ -65,7 +66,12 @@ public class Main {
 		
 		ProdutoDAO pDao = new ProdutoDAO();
 		
-		pDao.insert(p, 1);
+		pDao.insert(p, 1);*/
+		
+		ManagedBeanProduto m = new ManagedBeanProduto();
+		
+		m.getListagemProdutos();
+		
 	}
 
 }

@@ -69,7 +69,5 @@ pageEncoding="ISO-8859-1"%>
 		</script>
 	</c:if>
 
-
-
 </div>
 <jsp:include page="rodape.jsp"></jsp:include>

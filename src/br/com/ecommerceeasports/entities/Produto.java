@@ -9,6 +9,8 @@ public class Produto {
 	private Double precoCusto;
 	private Double precoVenda;
 	private Categoria categoria;
+	private String valorCustoFormatado;
+	private String valorVendaFormatado;
 
 	public Produto() {
 		// TODO Auto-generated constructor stub
@@ -92,6 +94,23 @@ public class Produto {
 	public void setCategoria(Categoria categoria) {
 		this.categoria = categoria;
 	}
+	
+	public String getValorCustoFormatado() {
+		return valorCustoFormatado;
+	}
+
+	public void setValorCustoFormatado(String valorCustoFormatado) {
+		this.valorCustoFormatado = valorCustoFormatado;
+	}
+
+	public String getValorVendaFormatado() {
+		return valorVendaFormatado;
+	}
+
+	public void setValorVendaFormatado(String valorVendaFormatado) {
+		this.valorVendaFormatado = valorVendaFormatado;
+	}
+	
 	
 	@Override
 	public boolean equals(Object obj) {

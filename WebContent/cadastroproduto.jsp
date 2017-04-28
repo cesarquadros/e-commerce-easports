@@ -1,5 +1,8 @@
 	<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 	<jsp:include page="cabecalho2.jsp"></jsp:include>
+	
+	<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+	
  <div class ="navbar navbar-default navbar-static-top">
         </div>
         <div class="container">
@@ -41,19 +44,44 @@
 									
 								</select>
 							</label>                          
-                          </div>
-                            
-                            
+                          </div>                         
                             <div class="form-group">
                                 <label for="exampleInputFile">Inserir Foto</label>
                                 <input type="file" id="inputFotoProd"name="img">
-                                
                             </div>
-
                             <div class="center"><button type="submit" class="btn btn-default">Cadastrar</button></div>
                         </div>
                     </form>
                 </div>
             </div>
         </div>
+        
+        <div id="myModal" class="modal fade" role="dialog">
+		<div class="modal-dialog">
+
+			<!-- Modal content-->
+			<div class="modal-content center">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal">&times;</button>
+					<h4 class="modal-title">${titulo}</h4>
+				</div>
+				<div class="modal-body">
+					
+					<h4>${mensagem}</h4>
+					<h5><img src="/img/${imagem}.jpg" class="img-responsive"></h5>
+					
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-default center" data-dismiss="modal">Fechar</button>
+				</div>
+			</div>
+		</div>
+	</div>
+	<c:if test="${modal=='1'}">
+		<script>
+			$(document).ready(function() {
+				$('#myModal').modal('show');
+			});
+		</script>
+	</c:if>
 <jsp:include page="rodape.jsp"></jsp:include>
