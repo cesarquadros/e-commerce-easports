@@ -3,6 +3,7 @@ package br.com.ecommerceeasports.servlet;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
+import java.util.List;
 import java.util.UUID;
 
 import javax.servlet.ServletException;
@@ -12,6 +13,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.Part;
+
+import com.fasterxml.jackson.databind.ObjectMapper;
 
 import br.com.ecommerceeasports.entities.Categoria;
 import br.com.ecommerceeasports.entities.Produto;
@@ -116,6 +119,22 @@ public class ProdutoServlet extends HttpServlet {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
+		}else if (acao.equals("find")){
+			
+			List<Produto> listagemProdutos;
+			ProdutoDAO p = new ProdutoDAO();
+			
+			try {
+				listagemProdutos = p.listAll();
+								
+				ObjectMapper mapper = new ObjectMapper();
+				
+				String json = mapper.writeValueAsString(listagemProdutos);
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			
 		}
 
 	}

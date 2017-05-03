@@ -49,28 +49,23 @@
 		</div>
 	</div>
 
-	<div class="container center">
+	<div class="container center" ng-init="listAll()">
 		<div class="row">
-		
-		<c:forEach items="${mb.listagemProdutos}" var="produto">
-			<div class="col-xs-12 col-sm-6 col-md-3">
-				<div class="thumbnail">
-					<img 
-						src="img/${produto.imagem}"
-						class="img-responsive">	
-						<hr>				
-						<h5 class="center">${ produto.nome}</h5>
-						<h6>${produto.valorVendaFormatado}</h6>
-					<a href="detalheproduto.jsp" class="btn btn-success navbar-btn">
-					 <span class="glyphicon glyphicon-shopping-cart"></span>
-						Adicionar ao carrinho
-					</a>
-					</div>
-			</div>
-			</c:forEach>
 
+			<div class="col-xs-12 col-sm-6 col-md-3" ng-repeat="produto in array | filter:texto">
+				<div class="thumbnail">
+					<img src="img/{{produto.imagem}}" class="img-responsive">
+					<hr>
+					<h5 class="center">{{produto.nome}}</h5>
+					<h6>{{produto.valorVendaFormatado}}</h6>
+					<a href="detalheproduto.jsp" class="btn btn-success navbar-btn">
+						<span class="glyphicon glyphicon-shopping-cart"></span> Adicionar
+						ao carrinho
+					</a>
+				</div>
+			</div>
 		</div>
-	</div>	
+	</div>
 
 	<jsp:include page="rodape.jsp"></jsp:include>
 

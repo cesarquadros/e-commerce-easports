@@ -7,6 +7,7 @@
 
 
 <html>
+
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 
@@ -26,9 +27,16 @@
 <script src="./js/bootstrap.min.js"></script>
 <script src="./js/bootstrap.js"></script>
 
+<script
+	src=https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.6.1/angular.min.js></script>
+<script src="./controller/controllerProduto.js"></script>
+
 <title>EA Sports</title>
+
+
 </head>
-<body>
+
+<body ng-app="app" ng-controller="appCtrl">
 
 	<div class="container" id="banner1">
 		<div class="row">
@@ -38,27 +46,26 @@
 					alt="Logotipo" id="logo" class="img-responsive" /> </a>
 			</div>
 
-			<div class="col-xs-5 col-sm-5 col-md-6" id="buscarDoBanner">
-				<input class="form-control input-lg" type="text"
-					placeholder="Buscar">
+			<div class="col-xs-5 col-sm-5 col-md-6" id="buscarDoBanner" >
+				<input class="form-control input-lg" type="text" placeholder="Buscar" id="pesquisaprod" ng-model="texto">
 			</div>
 
 			<div class="col-xs-2 col-sm-2 col-md-1">
 				<div class="glyphicon glyphicon-search" id="iconeBuscar"></div>
 			</div>
 
+
 			<div class="col-xs-6 col-sm-2 col-md-3">
 				<div class="row">
 					<div class="col-xs-6 col-sm-6 col-md-6">
-						<a href="login.jsp">
-							<span class="glyphicon glyphicon-user" id="iconeUsuario"></span>
-							Minha Conta
+						<a href="login.jsp"> <span class="glyphicon glyphicon-user"
+							id="iconeUsuario"></span> Minha Conta
 						</a>
 					</div>
 
 					<div class="col-xs-6 col-sm-6 col-md-6">
-						<a href="carrinho.jsp"> 
-						<span class="glyphicon glyphicon-shopping-cart" id="iconeCarrinho"></span>
+						<a href="carrinho.jsp"> <span
+							class="glyphicon glyphicon-shopping-cart" id="iconeCarrinho"></span>
 							Meu Carrinho
 
 						</a>
@@ -92,3 +99,5 @@
 			</div>
 		</div>
 	</div>
+
+
