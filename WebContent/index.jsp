@@ -52,7 +52,7 @@
 	<div class="container center" ng-init="listAll()">
 		<div class="row">
 
-			<div class="col-xs-12 col-sm-6 col-md-3" ng-repeat="produto in array | filter:texto">
+			<div class="col-xs-12 col-sm-6 col-md-3" ng-repeat="produto in array | filter:pesquisaprod">
 				<div class="thumbnail">
 					<img src="img/{{produto.imagem}}" class="img-responsive">
 					<hr>

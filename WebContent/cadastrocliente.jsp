@@ -2,7 +2,7 @@
 <jsp:include page="cabecalho2.jsp"></jsp:include>
 
 <div class="navbar navbar-default navbar-static-top"></div>
-<div class="container">
+<div class="container" ng-app="app" ng-controller="appCtrl">
 	<div class="row">
 		<div class="col-xs-0 col-sm-0 col-md-3"></div>
 		<div class="col-xs-12 col-sm-12 col-md-6">
@@ -58,9 +58,8 @@
 				<div class="jumbotron">
 					<h2 class="center">Endereço</h2>
 					<div class="form-group">
-						<label for="inputCEP">CEP</label> <input type="text"
-							class="form-control" id="inputCep" placeholder="00000-000"
-							name="cep" required>
+						<label for="inputCEP">CEP</label> 
+						<input type="text" class="form-control" id="inputCep" placeholder="00000-000" name="cep" required ng-model="cCep"ng-blur="validaCep()"/>
 					</div>
 					<div class="form-group">
 						<label for="inputLogradouro">Logradouro</label> <input type="text"

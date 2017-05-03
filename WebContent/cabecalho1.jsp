@@ -27,8 +27,7 @@
 <script src="./js/bootstrap.min.js"></script>
 <script src="./js/bootstrap.js"></script>
 
-<script
-	src=https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.6.1/angular.min.js></script>
+<script src=https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.6.1/angular.min.js></script>
 <script src="./controller/controllerProduto.js"></script>
 
 <title>EA Sports</title>
@@ -46,8 +45,9 @@
 					alt="Logotipo" id="logo" class="img-responsive" /> </a>
 			</div>
 
-			<div class="col-xs-5 col-sm-5 col-md-6" id="buscarDoBanner" >
-				<input class="form-control input-lg" type="text" placeholder="Buscar" id="pesquisaprod" ng-model="texto">
+			<div class="col-xs-5 col-sm-5 col-md-6" id="buscarDoBanner">
+				<input class="form-control input-lg" type="text"
+					placeholder="Buscar" id="pesquisaprod" ng-model="pesquisaprod">
 			</div>
 
 			<div class="col-xs-2 col-sm-2 col-md-1">
@@ -99,5 +99,3 @@
 			</div>
 		</div>
 	</div>
-
-

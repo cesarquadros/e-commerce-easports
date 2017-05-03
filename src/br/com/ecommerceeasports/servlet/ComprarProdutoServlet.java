@@ -1,5 +1,6 @@
 package br.com.ecommerceeasports.servlet;
 
+import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.List;
@@ -11,6 +12,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.util.JSONPObject;
+import com.sun.javafx.scene.paint.GradientUtils.Parser;
 
 import br.com.ecommerceeasports.entities.Produto;
 import br.com.ecommerceeasports.persistence.ProdutoDAO;
@@ -27,6 +30,9 @@ public class ComprarProdutoServlet extends HttpServlet {
 			throws ServletException, IOException {
 		
 		response.setContentType("text/plain");
+		
+		String teste = request.getParameter("nome");
+		System.out.println(teste);
 
 	try {
 			PrintWriter out = response.getWriter();

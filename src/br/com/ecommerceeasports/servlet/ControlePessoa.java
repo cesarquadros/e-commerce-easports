@@ -42,7 +42,9 @@ public class ControlePessoa extends HttpServlet {
 	protected void execute(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 
-		String acao = request.getParameter("acao");
+		response.setContentType("text/plain");
+		String acao = request.getParameter("data");
+		String cep = request.getParameter("testo");
 
 		if (acao.equals("cadastrar")) {
 

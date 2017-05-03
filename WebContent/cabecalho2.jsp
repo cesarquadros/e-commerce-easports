@@ -26,6 +26,9 @@
 <script src="./js/bootstrap.min.js"></script>
 <script src="./js/bootstrap.js"></script>	
 
+<script src=https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.6.1/angular.min.js></script>
+<script src="./controller/controllerEndereco.js"></script>
+
 <title>EA Sports</title>
 </head>
 <body>
