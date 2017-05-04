@@ -66,11 +66,15 @@ public class Main {
 		
 		ProdutoDAO pDao = new ProdutoDAO();
 		
-		pDao.insert(p, 1);*/
+		pDao.insert(p, 1);
 		
 		ManagedBeanProduto m = new ManagedBeanProduto();
 		
-		m.getListagemProdutos();
+		m.getListagemProdutos();*/
+		
+		ClienteDAO c = new ClienteDAO();
+		
+		c.findByLogin("teste@teste", "190788");
 		
 	}
 

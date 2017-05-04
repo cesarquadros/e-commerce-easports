@@ -11,24 +11,20 @@ public class Produto {
 	private Categoria categoria;
 	private String valorCustoFormatado;
 	private String valorVendaFormatado;
+	private String origem;
+	private String dimensoes;
+	private String peso;
+	private String garantia;
+	private String descricao;
+	
 
 	public Produto() {
 		// TODO Auto-generated constructor stub
 	}
 
-	public Produto(Integer idProduto, String codigo, String nome, String imagem, Double precoCusto,
-			Double precoVenda) {
-		super();
-		this.idProduto = idProduto;
-		this.codigo = codigo;
-		this.nome = nome;
-		this.imagem = imagem;
-		this.precoCusto = precoCusto;
-		this.precoVenda = precoVenda;
-	}
 
-	public Produto(Integer idProduto, String codigo, String nome,  String imagem, Double precoCusto,
-			Double precoVenda, Categoria categoria) {
+	public Produto(Integer idProduto, String codigo, String nome, String imagem, Double precoCusto, Double precoVenda,
+			Categoria categoria, String origem, String dimensoes, String peso, String garantia, String descricao) {
 		super();
 		this.idProduto = idProduto;
 		this.codigo = codigo;
@@ -37,7 +33,13 @@ public class Produto {
 		this.precoCusto = precoCusto;
 		this.precoVenda = precoVenda;
 		this.categoria = categoria;
+		this.origem = origem;
+		this.dimensoes = dimensoes;
+		this.peso = peso;
+		this.garantia = garantia;
+		this.descricao= descricao;
 	}
+
 
 	public Integer getIdProduto() {
 		return idProduto;
@@ -112,6 +114,50 @@ public class Produto {
 	}
 	
 	
+	public String getOrigem() {
+		return origem;
+	}
+
+	public void setOrigem(String origem) {
+		this.origem = origem;
+	}
+
+	public String getDimensoes() {
+		return dimensoes;
+	}
+
+	public void setDimensoes(String dimensoes) {
+		this.dimensoes = dimensoes;
+	}
+
+	public String getPeso() {
+		return peso;
+	}
+
+	public void setPeso(String peso) {
+		this.peso = peso;
+	}
+
+	public String getGarantia() {
+		return garantia;
+	}
+
+	public void setGarantia(String garantia) {
+		this.garantia = garantia;
+	}
+	
+	
+
+	public String getDescricao() {
+		return descricao;
+	}
+
+
+	public void setDescricao(String descricao) {
+		this.descricao = descricao;
+	}
+
+
 	@Override
 	public boolean equals(Object obj) {
 		

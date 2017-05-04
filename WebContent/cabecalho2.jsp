@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-    pageEncoding="ISO-8859-1"%>
+	pageEncoding="ISO-8859-1"%>
 
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
@@ -24,21 +24,24 @@
 <link rel="stylesheet" href="./css/estiloHome.css" />
 <script src="./js/jquery-3.1.1.min.js"></script>
 <script src="./js/bootstrap.min.js"></script>
-<script src="./js/bootstrap.js"></script>	
+<script src="./js/bootstrap.js"></script>
 
-<script src=https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.6.1/angular.min.js></script>
+<script
+	src=https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.6.1/angular.min.js></script>
 <script src="./controller/controllerEndereco.js"></script>
 
 <title>EA Sports</title>
 </head>
 <body>
-<div class="container" id="banner1">
-            <div class="row">
-                <div class="col-xs-5 col-sm-5 col-md-2 center">
-                    <a href="index.jsp"><img src="https://upload.wikimedia.org/wikipedia/en/c/c4/EA_Sports_logo.png" alt="Logotipo" id="logo" class="img-responsive"/></a>
-                </div>  
-            </div>   
-        </div>
-        <hr>
+	<div class="container" id="banner1">
+		<div class="row">
+			<div class="col-xs-5 col-sm-5 col-md-2 center">
+				<a href="index.jsp"><img
+					src="https://upload.wikimedia.org/wikipedia/en/c/c4/EA_Sports_logo.png"
+					alt="Logotipo" id="logo" class="img-responsive" /></a>
+			</div>
+		</div>
+	</div>
+	<hr>
 </body>
 </html>

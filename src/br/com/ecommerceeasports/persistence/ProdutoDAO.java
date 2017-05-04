@@ -9,7 +9,10 @@ public class ProdutoDAO extends DAO {
 
 	public void insert(Produto produto, int idCategoria) throws Exception {
 
-		String query = "insert into Produto(codigo, nome, imagem, precoCusto, precoVenda, idCategoria)VALUES(?,?,?,?,?,?)";
+		String query = "insert into Produto"
+				+ "(codigo, nome, imagem, precoCusto, precoVenda, idCategoria, origem, dimensoes, peso, garantia, descricao)"
+				+ "VALUES"
+				+ "(?,?,?,?,?,?,?,?,?,?,?)";
 
 		abreConexao();
 
@@ -21,6 +24,12 @@ public class ProdutoDAO extends DAO {
 		stmt.setDouble(4, produto.getPrecoCusto());
 		stmt.setDouble(5, produto.getPrecoVenda());
 		stmt.setInt(6, idCategoria);
+		
+		stmt.setString(7, produto.getOrigem());
+		stmt.setString(8, produto.getDimensoes());
+		stmt.setString(9, produto.getPeso());
+		stmt.setString(10, produto.getGarantia());
+		stmt.setString(11, produto.getDescricao());
 
 		stmt.execute();
 
@@ -60,6 +69,12 @@ public class ProdutoDAO extends DAO {
 			produto.setPrecoCusto(rs.getDouble("precoCusto"));
 			produto.setValorVendaFormatado(format.valorFormatado(rs.getDouble("precoVenda")));
 			produto.setValorCustoFormatado(format.valorFormatado(rs.getDouble("precoCusto")));
+			
+			produto.setOrigem(rs.getString("origem"));
+			produto.setDimensoes(rs.getString("dimensoes"));
+			produto.setPeso(rs.getString("peso"));
+			produto.setGarantia(rs.getString("garantia"));
+			produto.setDescricao(rs.getString("descricao"));
 
 			lista.add(produto);
 
@@ -70,6 +85,53 @@ public class ProdutoDAO extends DAO {
 		fechaConexao();
 
 		return lista;
+
+	}
+	
+	public Produto findById(Integer idProduto) throws Exception {
+
+		String query = "select * from produto where idProduto = ?";
+
+		abreConexao();
+
+		stmt = con.prepareStatement(query);
+
+		stmt.setInt(1, idProduto);
+
+		rs = stmt.executeQuery();
+
+		Produto produto = new Produto();
+		FormataValor format = new FormataValor();
+
+		while (rs.next()) {
+
+			produto = new Produto();
+
+			CategoriaDAO categoriaDao = new CategoriaDAO();
+			
+			produto.setIdProduto(rs.getInt("idProduto"));
+			produto.setCodigo(rs.getString("codigo"));
+			produto.setNome(rs.getString("nome"));
+			produto.setImagem(rs.getString("imagem"));
+			produto.setCategoria(categoriaDao.findById(rs.getInt("idCategoria")));
+			produto.setPrecoVenda(rs.getDouble("precoVenda"));
+			produto.setPrecoCusto(rs.getDouble("precoCusto"));
+			produto.setValorVendaFormatado(format.valorFormatado(rs.getDouble("precoVenda")));
+			produto.setValorCustoFormatado(format.valorFormatado(rs.getDouble("precoCusto")));
+			
+			produto.setOrigem(rs.getString("origem"));
+			produto.setDimensoes(rs.getString("dimensoes"));
+			produto.setPeso(rs.getString("peso"));
+			produto.setGarantia(rs.getString("garantia"));
+			produto.setDescricao(rs.getString("descricao"));
+			
+		}
+
+		stmt.close();
+		rs.close();
+		fechaConexao();
+
+		return produto;
 
 	}
 	

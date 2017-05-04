@@ -53,8 +53,6 @@ public class ProdutoServlet extends HttpServlet {
 
 		String acao = request.getParameter("acao");
 
-		Part temp = request.getPart("nome");
-
 		if (acao.equals("cadastrar")) {
 
 			try {
@@ -119,17 +117,18 @@ public class ProdutoServlet extends HttpServlet {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
-		}else if (acao.equals("find")){
+		}else if (acao.equals("findById")){
 			
-			List<Produto> listagemProdutos;
+			Produto produto;
 			ProdutoDAO p = new ProdutoDAO();
+			Integer idProduto = Integer.parseInt(request.getParameter("id"));
 			
 			try {
-				listagemProdutos = p.listAll();
-								
-				ObjectMapper mapper = new ObjectMapper();
+				produto = p.findById(idProduto);
 				
-				String json = mapper.writeValueAsString(listagemProdutos);
+				request.setAttribute("produto", produto);
+				request.getRequestDispatcher("detalheproduto.jsp").forward(request, response);				
+				
 			} catch (Exception e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();

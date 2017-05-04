@@ -16,10 +16,11 @@ public class Cliente {
 	private Endereco endereco;
 	private Carrinho carrinho;
 	private ArrayList<Cartao> listaCartoes;
+	private String dataNascFormatada;
 	
-	public Cliente() {
-		// TODO Auto-generated constructor stub
-	}
+	
+	
+
 
 	public Cliente(Integer idCliente, String email, String senha, String nome, String sexo, String cpf,
 			Date dataNascimento, String telefone) {
@@ -48,6 +49,18 @@ public class Cliente {
 		this.endereco = endereco;
 		this.carrinho = carrinho;
 		this.listaCartoes = listaCartoes;
+	}
+	
+	public String getDataNascFormatada() {
+		return dataNascFormatada;
+	}
+
+	public void setDataNascFormatada(String dataNascFormatada) {
+		this.dataNascFormatada = dataNascFormatada;
+	}
+
+	public Cliente() {
+		// TODO Auto-generated constructor stub
 	}
 
 	public Integer getIdCliente() {

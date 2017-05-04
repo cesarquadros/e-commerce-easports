@@ -1,5 +1,6 @@
 	<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 	<jsp:useBean class="br.com.ecommerceeasports.managedbean.ManagedBeanProduto" id="mb"></jsp:useBean>
+	<link rel="stylesheet" type="text/css" href="./css/imageZoom.css" />
 	<jsp:include page="cabecalho1.jsp"></jsp:include>
 
 	<div class="container" id="carrossel">
@@ -54,13 +55,18 @@
 
 			<div class="col-xs-12 col-sm-6 col-md-3" ng-repeat="produto in array | filter:pesquisaprod">
 				<div class="thumbnail">
-					<img src="img/{{produto.imagem}}" class="img-responsive">
+					<img src="img/{{produto.imagem}}" class="img-responsive zoom" style="max-width: 50%;">
 					<hr>
 					<h5 class="center">{{produto.nome}}</h5>
 					<h6>{{produto.valorVendaFormatado}}</h6>
 					<a href="detalheproduto.jsp" class="btn btn-success navbar-btn">
 						<span class="glyphicon glyphicon-shopping-cart"></span> Adicionar
-						ao carrinho
+						
+					</a>
+					<a href="/e-commerce-easports/ProdutoServlet?acao=findById&id={{produto.idProduto}}" 
+					class="btn btn-default navbar-btn">
+						<span class="glyphicon glyphicon-plus-sign"></span> Detalhes
+						
 					</a>
 				</div>
 			</div>

@@ -29,7 +29,7 @@ public class EnderecoDAO extends DAO {
 
 	public Endereco findById(final Integer id_endereco) throws Exception {
 
-		final String query = "select * from Endereco where id_endereco = ?";
+		final String query = "select * from Endereco where idEndereco = ?";
 
 		abreConexao();
 
@@ -45,6 +45,7 @@ public class EnderecoDAO extends DAO {
 			endereco.setIdEndereco(id_endereco);
 			endereco.setLogradouro(rs.getString("logradouro"));
 			endereco.setNumero(rs.getInt("numero"));
+			endereco.setComplemento(rs.getString("complemento"));
 			endereco.setCep(rs.getString("cep"));
 			endereco.setBairro(rs.getString("bairro"));
 			endereco.setCidade(rs.getString("cidade"));

@@ -53,7 +53,7 @@
 			<div class="col-xs-2 col-sm-2 col-md-1">
 				<div class="glyphicon glyphicon-search" id="iconeBuscar"></div>
 			</div>
-
+						
 
 			<div class="col-xs-6 col-sm-2 col-md-3">
 				<div class="row">
