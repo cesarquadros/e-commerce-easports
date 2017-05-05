@@ -38,9 +38,9 @@
 
 <body ng-app="app" ng-controller="appCtrl">
 
-	<div class="container" id="banner1" style="border: 1px solid red">
+	<div class="container-fluid" id="banner1" >
 		<div class="row">
-			<div class="col-xs-5 col-sm-5 col-md-2">
+			<div class="col-xs-4 col-sm-4 col-md-2">
 				<a href="index.jsp"><img
 					src="./imagens_projeto/EA_Sports_logo.png" alt="Logotipo" id="logo"
 					class="img-responsive" /> </a>
@@ -51,33 +51,31 @@
 					placeholder="Buscar" id="pesquisaprod" ng-model="pesquisaprod">
 			</div>
 
-			<div class="col-xs-2 col-sm-2 col-md-1">
-				<div class="glyphicon glyphicon-search" id="iconeBuscar"></div>
-			</div>
+<!-- 			<div class="col-xs-2 col-sm-2 col-md-1"> -->
+<!-- 				<div class="glyphicon glyphicon-search" id="iconeBuscar"></div> -->
+<!-- 			</div> -->
 
+			<div class="col-xs-4 col-sm-4 col-md-4">
 
-			<div class="col-xs-6 col-sm-2 col-md-3" style="border: 1px solid green">
-				<div class="row" style="border: 1px solid purple">
-					<div class="col-xs-12 col-sm-12 col-md-12" style="border: 1px solid blue; width: 100%">
-						<a href="login.jsp"> <span
-							class="btn glyphicon glyphicon-user" id="iconeUsuario"
-							style="color: inherit"
-							ng-init="verificarLogin('${usuarioLogado.nome}')"></span>
+					<div class="col-xs-2 col-sm-2 col-md-2 panelTopButtons" >
+						<a href="login.jsp" class="iconeUsuario"> <span
+							class="btn glyphicon glyphicon-user"
+							
+							ng-init="verificarLogin('${usuarioLogado.nome}')"> </span>
 							{{logado ? '${usuarioLogado.nome}' : 'Entrar' }}
 						</a>
 					</div>
 
-<!-- 					<div class="col-xs-6 col-sm-6 col-md-6">
-						<a href="carrinho.jsp"> <span
+					<div class="col-xs-2 col-sm-2 col-md-2 panelTopButtons1">
+						<a href="carrinho.jsp" class="carrinho"> <span
 							class="glyphicon glyphicon-shopping-cart" id="iconeCarrinho"></span>
 							Meu Carrinho
 
 						</a>
-					</div> -->
+					</div> 
 				</div>
 			</div>
 		</div>
-	</div>
 
 	<div class="navbar navbar-default navbar-static-top">
 

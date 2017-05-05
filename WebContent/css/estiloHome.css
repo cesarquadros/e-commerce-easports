@@ -6,17 +6,37 @@
     padding: 10px;
 }
 
-#iconeUsuario{
-    font-size: 25px;
-    margin-top: 10px;
+.iconeUsuario{
+    font-size: 20px;
 }
 
-#iconeCarrinho{
-    font-size: 25px;
-    margin-top: 10px;
-    margin-right: 0px;
-    padding-right: 0px;
+.iconeUsuario span.btn.glyphicon.glyphicon-user{
+	font-size: 20px;
+    padding: 0;
+    padding-bottom: 3%;
 }
+
+
+
+.carrinho{
+	font-size: 20px;
+}
+
+.panelTopButtons{
+	padding-top:4%;
+		width: 50%;
+}
+
+.panelTopButtons1{
+	padding-top:5%;
+	width: 50%;
+}
+/* #iconeCarrinho{ */
+/*     font-size: 25px; */
+/*     margin-top: 10px; */
+/*     margin-right: 0px; */
+/*     padding-right: 0px; */
+/* } */
 
 #iconeBuscar{
     font-size: 25px;

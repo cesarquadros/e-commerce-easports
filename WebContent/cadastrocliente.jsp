@@ -1,7 +1,6 @@
 
 <jsp:include page="cabecalho2.jsp"></jsp:include>
 
-<div class="navbar navbar-default navbar-static-top"></div>
 <div class="container" ng-app="app" ng-controller="appCtrl">
 	<div class="row">
 		<div class="col-xs-0 col-sm-0 col-md-3"></div>
@@ -51,7 +50,7 @@
 							<input type="radio" id="inlineRadio1" value="M" name="sexo"
 							checked> M
 						</label> <label class="radio-inline"> <input type="radio"
-							id="inlineRadio2" value="F" name="sexo" required> 
+							id="inlineRadio2" value="F" name="sexo" required> F
 						</label>
 					</div>
 				</div>
