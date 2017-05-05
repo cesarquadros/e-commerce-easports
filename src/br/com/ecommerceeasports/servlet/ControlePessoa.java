@@ -6,7 +6,9 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
+import br.com.ecommerceeasports.util.Criptografia;
 import br.com.ecommerceeasports.entities.Cliente;
 import br.com.ecommerceeasports.entities.Endereco;
 import br.com.ecommerceeasports.persistence.ClienteDAO;
@@ -19,13 +21,10 @@ import br.com.ecommerceeasports.util.ConverteData;
 @WebServlet("/ClienteServlet")
 public class ControlePessoa extends HttpServlet {
 	private static final long serialVersionUID = 1L;
+	public static HttpSession session;
 
-	/**
-	 * @see HttpServlet#HttpServlet()
-	 */
 	public ControlePessoa() {
 		super();
-		// TODO Auto-generated constructor stub
 	}
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
@@ -35,7 +34,6 @@ public class ControlePessoa extends HttpServlet {
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		// TODO Auto-generated method stub
 		execute(request, response);
 	}
 
@@ -43,15 +41,11 @@ public class ControlePessoa extends HttpServlet {
 			throws ServletException, IOException {
 
 		response.setContentType("text/plain");
-		String acao = request.getParameter("data");
-		String cep = request.getParameter("testo");
+		String acao = request.getParameter("acao");
 
 		if (acao.equals("cadastrar")) {
 
 			final Endereco endereco = new Endereco();
-			
-
-			
 
 			// Coletando cada parâmetro da página através do "name" do
 			// formulário,
@@ -70,38 +64,77 @@ public class ControlePessoa extends HttpServlet {
 				System.out.println(request.getParameter("logradouro"));
 				// Instanciando a classe responsáel por gravar, alterar e
 				// excluir Endereços no banco
-				
+
 				EnderecoDAO enderecoDAO = new EnderecoDAO();
-				
+
 				final Integer idEndereco = enderecoDAO.insertReturnID(endereco);
-				
+
 				Cliente cliente = new Cliente();
-				
+
 				cliente.setEmail(request.getParameter("email"));
-				cliente.setSenha(request.getParameter("senha"));
+				cliente.setSenha(Criptografia.criptografar(request.getParameter("senha")));
 				cliente.setNome(request.getParameter("nome"));
 				cliente.setCpf(request.getParameter("cpf"));
 				cliente.setDataNascimento(ConverteData.stringToDate(request.getParameter("datanasc")));
 				cliente.setTelefone(request.getParameter("telefone"));
 				cliente.setSexo(request.getParameter("sexo"));
-				
+
 				ClienteDAO clienteDAO = new ClienteDAO();
-				
+
 				clienteDAO.insert(cliente, idEndereco);
-				
-				request.setAttribute("modal", "1");	
-				request.setAttribute("titulo","BEM VINDO!");
-				request.setAttribute("mensagem","Cadastro efetuado com sucesso!");
+
+				request.setAttribute("modal", "1");
+				request.setAttribute("titulo", "BEM VINDO!");
+				request.setAttribute("mensagem", "Cadastro efetuado com sucesso!");
 				request.setAttribute("retorno", cliente.getNome());
 				request.getRequestDispatcher("login.jsp").forward(request, response);
-				
-				
+
 			} catch (Exception e) {
-				request.setAttribute("modal", "1");	
-				request.setAttribute("titulo","OPS! Ocorreu um erro");
-				request.setAttribute("mensagem",e.toString());
+				request.setAttribute("modal", "1");
+				request.setAttribute("titulo", "OPS! Ocorreu um erro");
+				request.setAttribute("mensagem", e.toString());
 				request.getRequestDispatcher("login.jsp").forward(request, response);
 				e.printStackTrace();
+			}
+
+		} else if (acao.equals("autenticar")) {
+
+			String destino = "/login.jsp";
+			try {
+				final String email = request.getParameter("email");
+				final String senha = request.getParameter("senha");
+
+				String senhaCriptografada = Criptografia.criptografar(senha);
+
+				final ClienteDAO clienteDAO = new ClienteDAO();
+
+				final Cliente cliente = clienteDAO.findByLogin(email, senhaCriptografada);
+
+				if (cliente != null) {
+
+					session = request.getSession();
+
+					session.setAttribute("usuarioLogado", cliente);
+
+					request.setAttribute("usuarioLogado", cliente);
+
+					destino = "index.jsp";
+
+				} else {
+
+					request.setAttribute("mensagem", "Acesso negado, tente novamente.");
+					// throw new Exception("Acesso negado, tente novamente.");
+
+					request.getRequestDispatcher(destino);
+
+				}
+			} catch (Exception e) {
+				request.setAttribute("mensagem", e.getMessage());
+				
+				
+			} finally {
+
+				request.getRequestDispatcher(destino).forward(request, response);
 			}
 
 		}

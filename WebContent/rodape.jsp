@@ -4,7 +4,8 @@
         <footer class="footer">
             <div class="row">
                 <div class="col-xs-12 col-sm-6 col-md-4">
-                    <img src= "http://sinalplast.com.br/wp-content/uploads/2014/12/Logos-Cart%C3%B5es-de-Cr%C3%A9dito-com-Logo-Pagseguro.jpg" class="img-responsive"/>
+                    <img src= "./imagens_projeto/Logos-cartoes.jpg" 
+                    class="img-responsive"/>
                 </div>
 
                 <div class="col-xs-0 col-sm-6 col-md-5">

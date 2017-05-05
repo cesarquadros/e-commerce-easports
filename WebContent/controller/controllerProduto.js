@@ -5,11 +5,12 @@
 var app = angular.module('app', []);
 app.controller('appCtrl', [ '$scope', '$http', function($scope, $http) {
 	$scope.array;
+	$scope.logado = false;
 
 	$scope.listAll = function() {
 		$http({
 			method : 'post',
-			url : 'ComprarProdutoServlet',
+			url : 'CarregarProdutosServlet',
 			data : {
 				produto : $scope.texto
 			}
@@ -23,5 +24,11 @@ app.controller('appCtrl', [ '$scope', '$http', function($scope, $http) {
 		alert('Adicionado ao carrinho');
 	}
 	
+	
+	$scope.verificarLogin = function (usuario) {
+		if(usuario){
+			$scope.logado = true;
+		}
+	}
 	
 } ]);

@@ -27,7 +27,8 @@
 <script src="./js/bootstrap.min.js"></script>
 <script src="./js/bootstrap.js"></script>
 
-<script src=https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.6.1/angular.min.js></script>
+<script
+	src=https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.6.1/angular.min.js></script>
 <script src="./controller/controllerProduto.js"></script>
 
 <title>EA Sports</title>
@@ -37,12 +38,12 @@
 
 <body ng-app="app" ng-controller="appCtrl">
 
-	<div class="container" id="banner1">
+	<div class="container" id="banner1" style="border: 1px solid red">
 		<div class="row">
 			<div class="col-xs-5 col-sm-5 col-md-2">
 				<a href="index.jsp"><img
-					src="https://upload.wikimedia.org/wikipedia/en/c/c4/EA_Sports_logo.png"
-					alt="Logotipo" id="logo" class="img-responsive" /> </a>
+					src="./imagens_projeto/EA_Sports_logo.png" alt="Logotipo" id="logo"
+					class="img-responsive" /> </a>
 			</div>
 
 			<div class="col-xs-5 col-sm-5 col-md-6" id="buscarDoBanner">
@@ -53,23 +54,26 @@
 			<div class="col-xs-2 col-sm-2 col-md-1">
 				<div class="glyphicon glyphicon-search" id="iconeBuscar"></div>
 			</div>
-						
 
-			<div class="col-xs-6 col-sm-2 col-md-3">
-				<div class="row">
-					<div class="col-xs-6 col-sm-6 col-md-6">
-						<a href="login.jsp"> <span class="glyphicon glyphicon-user"
-							id="iconeUsuario"></span> Minha Conta
+
+			<div class="col-xs-6 col-sm-2 col-md-3" style="border: 1px solid green">
+				<div class="row" style="border: 1px solid purple">
+					<div class="col-xs-12 col-sm-12 col-md-12" style="border: 1px solid blue; width: 100%">
+						<a href="login.jsp"> <span
+							class="btn glyphicon glyphicon-user" id="iconeUsuario"
+							style="color: inherit"
+							ng-init="verificarLogin('${usuarioLogado.nome}')"></span>
+							{{logado ? '${usuarioLogado.nome}' : 'Entrar' }}
 						</a>
 					</div>
 
-					<div class="col-xs-6 col-sm-6 col-md-6">
+<!-- 					<div class="col-xs-6 col-sm-6 col-md-6">
 						<a href="carrinho.jsp"> <span
 							class="glyphicon glyphicon-shopping-cart" id="iconeCarrinho"></span>
 							Meu Carrinho
 
 						</a>
-					</div>
+					</div> -->
 				</div>
 			</div>
 		</div>

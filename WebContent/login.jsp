@@ -11,19 +11,19 @@ pageEncoding="ISO-8859-1"%>
 	<div class="row">
 
 		<div class="col-xs-12 col-sm-12 col-md-6">
-			<form>
+			<form method="post" action="/e-commerce-easports/ClienteServlet?acao=autenticar">
 				<div class="jumbotron ">
 					<h2 class="center">Já tenho cadastro</h2>
 					<div class="form-group">
-						<label for="inputEmail">E-mail</label> <input type="email"
-							class="form-control" id="inputEmail" placeholder="E-mail">
+						<label for="inputEmail">E-mail</label> 
+						<input type="email"	class="form-control" id="email" name="email" placeholder="E-mail">
 					</div>
 					<div class="form-group">
-						<label for="inputSenha">Senha</label> <input type="password"
-							class="form-control" id="inputSenha" placeholder="Senha">
+						<label for="inputSenha">Senha</label> 
+						<input type="password" class="form-control" id="senha" name="senha" placeholder="Senha">
 					</div>
 					<div class="center">
-						<a href="#" type="submit" class="btn btn-primary center">Entrar</a>
+						<button type="submit" class="btn btn-primary center">Entrar</button>
 					</div>
 				</div>
 			</form>
