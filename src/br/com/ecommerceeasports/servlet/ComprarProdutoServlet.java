@@ -30,9 +30,7 @@ public class ComprarProdutoServlet extends HttpServlet {
 			throws ServletException, IOException {
 		
 		response.setContentType("text/plain");
-		
-		String teste = request.getParameter("nome");
-		System.out.println(teste);
+		               
 
 	try {
 			PrintWriter out = response.getWriter();

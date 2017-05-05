@@ -59,7 +59,7 @@
 					<hr>
 					<h5 class="center">{{produto.nome}}</h5>
 					<h6>{{produto.valorVendaFormatado}}</h6>
-					<a href="detalheproduto.jsp" class="btn btn-success navbar-btn">
+					<a href="#" class="btn btn-success navbar-btn" ng-click="addCarrinho()">
 						<span class="glyphicon glyphicon-shopping-cart"></span> Adicionar
 						
 					</a>

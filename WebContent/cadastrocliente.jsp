@@ -51,7 +51,7 @@
 							<input type="radio" id="inlineRadio1" value="M" name="sexo"
 							checked> M
 						</label> <label class="radio-inline"> <input type="radio"
-							id="inlineRadio2" value="F" name="sexo" required> F
+							id="inlineRadio2" value="F" name="sexo" required> 
 						</label>
 					</div>
 				</div>
@@ -59,12 +59,12 @@
 					<h2 class="center">Endereço</h2>
 					<div class="form-group">
 						<label for="inputCEP">CEP</label> 
-						<input type="text" class="form-control" id="inputCep" placeholder="00000-000" name="cep" required ng-model="cCep"ng-blur="validaCep()"/>
+						<input type="text" class="form-control" id="inputCep" placeholder="00000-000" name="cep" required ng-model="cCep"ng-blur="validaCep(cCep,'')"/>
 					</div>
 					<div class="form-group">
 						<label for="inputLogradouro">Logradouro</label> <input type="text"
 							class="form-control" id="inputLogradouro"
-							placeholder="Ex.: Rua: xxxxx" name="logradouro" required>
+							placeholder="Ex.: Rua: xxxxx" name="logradouro" value="{{array.logradouro}}" required>
 					</div>
 					<div class="form-group">
 						<label for="inputNumero">Número</label> <input type="number"
@@ -72,24 +72,24 @@
 							name="numero" required>
 					</div>
 					<div class="form-group">
-						<label for="inputComplemento">Complemento</label> <input
+						<label for="inputComplemento">Complemento </label> <input
 							type="text" class="form-control" id="inputComplemento"
 							placeholder="Complemento" name="complemento" required>
 					</div>
 					<div class="form-group">
 						<label for="inputBairro">Bairro</label> <input type="text"
 							class="form-control" id="inputBairro" placeholder="Bairro"
-							name="bairro" required>
+							name="bairro" value="{{array.bairro}}" required>
 					</div>
 					<div class="form-group">
 						<label for="inputCidade">Cidade</label> <input type="text"
 							class="form-control" id="inputCidade" placeholder="Cidade"
-							name="cidade" required>
+							name="cidade" value="{{array.cidade}}" required>
 					</div>
 					<div class="form-group">
 						<label for="inputEstado">Estado</label> <input type="text"
 							class="form-control" id="inputEstado" placeholder="Estado"
-							name="estado" required>
+							name="estado" value="{{array.estado}}" required>
 					</div>
 					<div class="center">
 						<button type="submit" class="btn btn-default">Cadastrar</button>

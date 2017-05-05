@@ -18,4 +18,10 @@ app.controller('appCtrl', [ '$scope', '$http', function($scope, $http) {
             //alert(retorno.data);
 		});
 	}
+	
+	$scope.addCarrinho = function() {
+		alert('Adicionado ao carrinho');
+	}
+	
+	
 } ]);
