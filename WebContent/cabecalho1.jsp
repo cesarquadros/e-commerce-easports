@@ -27,6 +27,10 @@
 <script src="./js/bootstrap.min.js"></script>
 <script src="./js/bootstrap.js"></script>
 
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
 <script
 	src=https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.6.1/angular.min.js></script>
 <script src="./controller/controllerProduto.js"></script>
@@ -38,7 +42,9 @@
 
 <body ng-app="app" ng-controller="appCtrl">
 
-	<div class="container-fluid" id="banner1" >
+
+
+	<div class="container-fluid" id="banner1">
 		<div class="row">
 			<div class="col-xs-4 col-sm-4 col-md-2">
 				<a href="index.jsp"><img
@@ -51,31 +57,46 @@
 					placeholder="Buscar" id="pesquisaprod" ng-model="pesquisaprod">
 			</div>
 
-<!-- 			<div class="col-xs-2 col-sm-2 col-md-1"> -->
-<!-- 				<div class="glyphicon glyphicon-search" id="iconeBuscar"></div> -->
-<!-- 			</div> -->
+			<!-- 			<div class="col-xs-2 col-sm-2 col-md-1"> -->
+			<!-- 				<div class="glyphicon glyphicon-search" id="iconeBuscar"></div> -->
+			<!-- 			</div> -->
 
 			<div class="col-xs-4 col-sm-4 col-md-4">
 
-					<div class="col-xs-2 col-sm-2 col-md-2 panelTopButtons" >
-						<a href="login.jsp" class="iconeUsuario"> <span
-							class="btn glyphicon glyphicon-user"
-							
-							ng-init="verificarLogin('${usuarioLogado.nome}')"> </span>
-							{{logado ? '${usuarioLogado.nome}' : 'Entrar' }}
-						</a>
-					</div>
-
-					<div class="col-xs-2 col-sm-2 col-md-2 panelTopButtons1">
-						<a href="carrinho.jsp" class="carrinho"> <span
-							class="glyphicon glyphicon-shopping-cart" id="iconeCarrinho"></span>
-							Meu Carrinho
-
-						</a>
-					</div> 
+<%-- 				<div class="col-xs-2 col-sm-2 col-md-2 panelTopButtons">
+					<a href="login.jsp" class="iconeUsuario"> 
+					<span class="btn glyphicon glyphicon-user" ng-init="verificarLogin('${usuarioLogado.nome}')"> </span>
+						{{logado ? '${usuarioLogado.nome}' : 'Entrar' }}
+					</a>
 				</div>
+
+				<div class="col-xs-2 col-sm-2 col-md-2 panelTopButtons1">
+					<a href="carrinho.jsp" class="carrinho"> <span
+						class="glyphicon glyphicon-shopping-cart" id="iconeCarrinho"></span>
+						Meu Carrinho
+
+					</a>
+				</div>  --%>
+
+				<ul class="nav navbar-nav navbar-right">
+				
+					<li class="dropdown"><a class="dropdown-toggle"	data-toggle="dropdown" href="#">
+					<span class="glyphicon glyphicon-user" ng-init="verificarLogin('${usuarioLogado.nome}')"></span> 
+					{{logado ? '${usuarioLogado.nome}' : 'Entrar' }}<span class="caret"></span></a>
+						<ul class="dropdown-menu">
+						
+							<li><a href="login.jsp">{{logado ? 'Minha conta' : 'Efetuar Login'}}</a></li>
+							<li><a href="carrinho.jsp">Meu Carrinho</a></li>
+							<li><a href="/e-commerce-easports/ClienteServlet?acao=logout">Sair</a></li>
+						</ul></li>
+				
+					<li><a href="carrinho.jsp"><span
+							class="glyphicon glyphicon-shopping-cart"></span> Carrinho</a></li>
+
+				</ul>
 			</div>
 		</div>
+	</div>
 
 	<div class="navbar navbar-default navbar-static-top">
 
@@ -86,7 +107,7 @@
 		</button>
 
 		<div class="collapse navbar-collapse navHeaderCollapse" id="divMenu">
-			<div class="container">
+			<div class="container center">
 				<ul class="nav navbar-nav navbar-left">
 					<li><a href="produtocategoria.jsp">Natação</a></li>
 					<li><a href="#">Tênis</a></li>

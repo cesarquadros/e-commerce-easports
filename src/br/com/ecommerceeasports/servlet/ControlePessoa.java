@@ -137,6 +137,13 @@ public class ControlePessoa extends HttpServlet {
 				request.getRequestDispatcher(destino).forward(request, response);
 			}
 
+		} else if (acao.equals("logout")) {
+			
+			final HttpSession session = request.getSession();
+
+			session.invalidate();
+
+			response.sendRedirect("/e-commerce-easports/index.jsp");
 		}
 
 	}
