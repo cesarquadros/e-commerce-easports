@@ -14,7 +14,7 @@ public class Cliente {
 	private Date dataNascimento;
 	private String telefone;
 	private Endereco endereco;
-	private Carrinho carrinho;
+	private ArrayList<ItemCarrinho> ListaItens;
 	private ArrayList<Cartao> listaCartoes;
 	private String dataNascFormatada;
 	
@@ -36,7 +36,7 @@ public class Cliente {
 	}
 
 	public Cliente(Integer idCliente, String email, String senha, String nome, String sexo, String cpf,
-			Date dataNascimento, String telefone, Endereco endereco, Carrinho carrinho, ArrayList<Cartao> listaCartoes) {
+			Date dataNascimento, String telefone, Endereco endereco, ArrayList<ItemCarrinho> ListaItens, ArrayList<Cartao> listaCartoes) {
 		super();
 		this.idCliente = idCliente;
 		this.email = email;
@@ -47,7 +47,7 @@ public class Cliente {
 		this.dataNascimento = dataNascimento;
 		this.telefone = telefone;
 		this.endereco = endereco;
-		this.carrinho = carrinho;
+		this.ListaItens = ListaItens;
 		this.listaCartoes = listaCartoes;
 	}
 	
@@ -135,14 +135,15 @@ public class Cliente {
 		this.endereco = endereco;
 	}
 
-	public Carrinho getCarrinho() {
-		return carrinho;
+	
+	public ArrayList<ItemCarrinho> getListaItens() {
+		return ListaItens;
 	}
 
-	public void setCarrinho(Carrinho carrinho) {
-		this.carrinho = carrinho;
+	public void setListaItens(ArrayList<ItemCarrinho> listaItens) {
+		ListaItens = listaItens;
 	}
-	
+
 	public ArrayList<Cartao> getListaCartoes() {
 		return listaCartoes;
 	}

@@ -1,6 +1,6 @@
 package br.com.ecommerceeasports.entities;
 
-public class Carrinho {
+public class CarrinhoOld {
 
 	private Integer idCarrinho;
 	private Integer quantidade;
@@ -8,18 +8,18 @@ public class Carrinho {
 	private Produto produto;
 	private Boolean finalizado;
 
-	public Carrinho() {
+	public CarrinhoOld() {
 		// TODO Auto-generated constructor stub
 	}
 
-	public Carrinho(Integer idCarrinho, Integer quantidade, Boolean finalizado) {
+	public CarrinhoOld(Integer idCarrinho, Integer quantidade, Boolean finalizado) {
 		super();
 		this.idCarrinho = idCarrinho;
 		this.quantidade = quantidade;
 		this.finalizado = finalizado;
 	}
 
-	public Carrinho(Integer idCarrinho, Integer quantidade, Cliente cliente, Produto produto,
+	public CarrinhoOld(Integer idCarrinho, Integer quantidade, Cliente cliente, Produto produto,
 			Boolean finalizado) {
 		super();
 		this.idCarrinho = idCarrinho;

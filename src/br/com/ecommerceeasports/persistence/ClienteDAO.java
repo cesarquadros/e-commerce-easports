@@ -151,4 +151,44 @@ public class ClienteDAO extends DAO{
 
 	}
 	
+	public Cliente findById(final Integer idCliente) throws Exception {
+
+		final String query = "select * from cliente where idCliente = ?";
+
+		abreConexao();
+
+		stmt = con.prepareStatement(query);
+
+		stmt.setInt(1, idCliente);
+
+		rs = stmt.executeQuery();
+
+		final Cliente cliente = new Cliente();
+
+		while (rs.next()) {
+
+			final EnderecoDAO enderecoDAO = new EnderecoDAO();
+
+			cliente.setIdCliente(rs.getInt("idCliente"));
+			cliente.setEmail(rs.getString("email"));
+			cliente.setNome(rs.getString("nome"));
+			cliente.setSenha(rs.getString("senha"));
+			cliente.setSexo(rs.getString("sexo"));			
+			
+			cliente.setTelefone(rs.getString("telefone"));
+			cliente.setCpf(rs.getString("cpf"));
+			cliente.setDataNascimento(ConverteData.stringToDate(rs.getString("dataNascimento")));
+			cliente.setDataNascFormatada(rs.getString("dataNascimento"));
+			cliente.setEndereco(enderecoDAO.findById(rs.getInt("idEndereco")));
+
+		}
+
+		stmt.close();
+
+		fechaConexao();
+
+		return cliente;
+
+	}
+	
 }

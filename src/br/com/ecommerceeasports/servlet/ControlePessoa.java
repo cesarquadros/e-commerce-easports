@@ -99,7 +99,7 @@ public class ControlePessoa extends HttpServlet {
 
 		} else if (acao.equals("autenticar")) {
 
-			String destino = "/login.jsp";
+			String destino = "login.jsp";
 			try {
 				final String email = request.getParameter("email");
 				final String senha = request.getParameter("senha");
@@ -122,10 +122,8 @@ public class ControlePessoa extends HttpServlet {
 
 				} else {
 
-					request.setAttribute("mensagem", "Acesso negado, tente novamente.");
+					request.setAttribute("mensagem", "Usuário ou senha inválidos");
 					// throw new Exception("Acesso negado, tente novamente.");
-
-					request.getRequestDispatcher(destino);
 
 				}
 			} catch (Exception e) {

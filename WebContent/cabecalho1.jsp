@@ -86,13 +86,17 @@
 						<ul class="dropdown-menu">
 						
 							<li><a href="login.jsp">{{logado ? 'Minha conta' : 'Efetuar Login'}}</a></li>
-							<li><a href="carrinho.jsp">Meu Carrinho</a></li>
-							<li ng-if="verificarLogin('${usuarioLogado.nome}')"><a href="/e-commerce-easports/ClienteServlet?acao=logout">Sair</a></li>
+							<li><a href="/e-commerce-easports/CarrinhoServlet?acao=carrinhobycli"">Meu Carrinho</a></li>
+							<li><a href="/e-commerce-easports/ClienteServlet?acao=logout">Sair</a></li>
 						</ul></li>
 				
-					<li><a href="carrinho.jsp"><span
-							class="glyphicon glyphicon-shopping-cart"></span> Carrinho</a></li>
-
+					<li>
+						<a href="/e-commerce-easports/CarrinhoServlet?acao=carrinhobycli">
+							<span class="glyphicon glyphicon-shopping-cart">
+							</span> Carrinho
+						</a>
+					</li>
+	
 				</ul>
 			</div>
 		</div>

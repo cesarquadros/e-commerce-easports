@@ -3,10 +3,10 @@ package br.com.ecommerceeasports.entities;
 public class ItemCarrinho {
 	
 	private Integer idItem;
-	private Integer idCliente;
-	private Integer idCompra;
+	private Cliente cliente;
+	private Produto produto;
+	private Compra compra;
 	private boolean finalizado;
-
 	
 	
 	public Integer getIdItem() {
@@ -15,17 +15,23 @@ public class ItemCarrinho {
 	public void setIdItem(Integer idItem) {
 		this.idItem = idItem;
 	}
-	public Integer getIdCliente() {
-		return idCliente;
+	public Cliente getCliente() {
+		return cliente;
 	}
-	public void setIdCliente(Integer idCliente) {
-		this.idCliente = idCliente;
+	public void setCliente(Cliente cliente) {
+		this.cliente = cliente;
 	}
-	public Integer getIdCompra() {
-		return idCompra;
+	public Produto getProduto() {
+		return produto;
 	}
-	public void setIdCompra(Integer idCompra) {
-		this.idCompra = idCompra;
+	public void setProduto(Produto produto) {
+		this.produto = produto;
+	}
+	public Compra getCompra() {
+		return compra;
+	}
+	public void setCompra(Compra compra) {
+		this.compra = compra;
 	}
 	public boolean isFinalizado() {
 		return finalizado;
@@ -33,6 +39,7 @@ public class ItemCarrinho {
 	public void setFinalizado(boolean finalizado) {
 		this.finalizado = finalizado;
 	}
+
 	
 	
 

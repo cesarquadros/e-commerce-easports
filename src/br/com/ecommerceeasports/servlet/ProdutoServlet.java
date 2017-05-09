@@ -114,7 +114,7 @@ public class ProdutoServlet extends HttpServlet {
 				
 				request.getRequestDispatcher("cadastroproduto.jsp").forward(request, response);
 			} catch (Exception e) {
-				// TODO Auto-generated catch block
+				
 				e.printStackTrace();
 			}
 		}else if (acao.equals("findById")){
@@ -130,7 +130,6 @@ public class ProdutoServlet extends HttpServlet {
 				request.getRequestDispatcher("detalheproduto.jsp").forward(request, response);				
 				
 			} catch (Exception e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 			

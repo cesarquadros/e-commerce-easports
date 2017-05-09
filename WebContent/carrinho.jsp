@@ -1,11 +1,11 @@
-
+	<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 	<jsp:include page="cabecalho2.jsp"></jsp:include>
 		
         <div class="container">
             <div class="row">
 
                 <div class="col-xs-12 col-sm-12 col-md-6">              
-                    <button type="button" class="btn btn-default navbar-btn">Escolher + Produtos</button>
+                    <a href="./index.jsp" class="btn btn-default navbar-btn">Escolher + Produtos</a>
                 </div>
                 <div class="col-xs-12 col-sm-12 col-md-6">              
                     <a href="finalizarcompra.jsp" class="btn btn-default navbar-btn">Finalizar Compra</a>
@@ -27,29 +27,22 @@
                                                                  
                                 </tr>
                             </thead>
+                            <c:forEach items="${carrinho}" var="carrinho">
                             <tbody>
                                 <tr>
-                                    <td>Bola Nike</td>
-                                    <td>2</td>
-                                    <td>R$120,00</td>
-                                    <td>R$240,00</td>
+                                    <td>${carrinho.produto.nome}</td>
+                                    <td>*</td>
+                                    <td>R$ ${carrinho.produto.valorVendaFormatado}</td>
+                                    <td>R$</td>
                                     <td><button type="button" class="btn btn-danger navbar-btn">Excluir</button></td>                              
                                 </tr>
                             </tbody>
-                            <tbody>
-                                <tr>
-                                    <td>Mochila Nike</td>
-                                    <td>1</td>
-                                    <td>R$330,00</td>
-                                    <td>R$330,00</td>
-                                    <td><button type="button" class="btn btn-danger navbar-btn">Excluir</button></td>                             
-                                </tr>
-                            </tbody>
+                            </c:forEach>
                         </table>
                 </div>
 
                 <div class="col-xs-12 col-sm-12 col-md-6">              
-                    <button type="button" class="btn btn-default navbar-btn">Escolher + Produtos</button>
+                    <a href="./index.jsp" class="btn btn-default navbar-btn">Escolher + Produtos</a>
                 </div>
                 <div class="col-xs-12 col-sm-12 col-md-6">              
                     <a href="finalizarcompra.jsp" class="btn btn-default navbar-btn">Finalizar Compra</a>

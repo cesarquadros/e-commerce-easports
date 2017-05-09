@@ -23,6 +23,7 @@ pageEncoding="ISO-8859-1"%>
 						<input type="password" class="form-control" id="senha" name="senha" placeholder="Senha">
 					</div>
 					<div class="center">
+						<h5 style="color: red;">${mensagem}</h5>
 						<button type="submit" class="btn btn-primary center">Entrar</button>
 					</div>
 				</div>

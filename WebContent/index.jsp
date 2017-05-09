@@ -1,6 +1,5 @@
 	<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 	<jsp:useBean class="br.com.ecommerceeasports.managedbean.ManagedBeanProduto" id="mb"></jsp:useBean>
-	<link rel="stylesheet" type="text/css" href="./css/imageZoom.css" />
 	<jsp:include page="cabecalho1.jsp"></jsp:include>
 
 	<div class="container" id="carrossel">
@@ -59,7 +58,7 @@
 					<hr>
 					<h5 class="center">{{produto.nome}}</h5>
 					<h6>{{produto.valorVendaFormatado}}</h6>
-					<a href="#" class="btn btn-success navbar-btn" ng-click="addCarrinho()">
+					<a href="#" class="btn btn-success navbar-btn" ng-click="addCarrinho(produto.idProduto,'adicionar')">
 						<span class="glyphicon glyphicon-shopping-cart"></span> Adicionar
 						
 					</a>

@@ -2,8 +2,10 @@ package br.com.ecommerceeasports.principal;
 
 import br.com.ecommerceeasports.entities.Cliente;
 import br.com.ecommerceeasports.entities.Endereco;
+import br.com.ecommerceeasports.entities.ItemCarrinho;
 import br.com.ecommerceeasports.entities.Produto;
 import br.com.ecommerceeasports.managedbean.ManagedBeanProduto;
+import br.com.ecommerceeasports.persistence.CarrinhoDAO;
 import br.com.ecommerceeasports.persistence.ClienteDAO;
 import br.com.ecommerceeasports.persistence.DAO;
 import br.com.ecommerceeasports.persistence.EnderecoDAO;
@@ -70,11 +72,45 @@ public class Main {
 		
 		ManagedBeanProduto m = new ManagedBeanProduto();
 		
-		m.getListagemProdutos();*/
+		m.getListagemProdutos();
 		
 		ClienteDAO c = new ClienteDAO();
 		
-		c.findByLogin("teste@teste", "190788");
+		c.findByLogin("teste@teste", "190788");*/
+		
+		Cliente cli = new Cliente();
+		
+		cli.setEmail("teste@teste");
+		cli.setSenha("190788");
+		cli.setNome("cesar");
+		cli.setSexo("M");
+		cli.setCpf("37765289829");
+		cli.setDataNascimento(ConverteData.stringToDate("19-07-1988"));
+		cli.setTelefone("56214658");
+		cli.setIdCliente(1);
+		
+		Produto p = new Produto();
+		
+		p.setCodigo("100");
+		p.setNome("tenis");
+		p.setPrecoCusto(10.50);
+		p.setPrecoVenda(20.90);
+		p.setImagem("imagem");
+		p.setIdProduto(1);
+			
+		
+		ItemCarrinho i = new ItemCarrinho();
+		
+		i.setCliente(cli);
+		i.setProduto(p);
+		i.setIdItem(1);
+		
+		
+		CarrinhoDAO carrinho = new CarrinhoDAO();
+		
+		carrinho.insert(i);
+		
+		
 		
 	}
 

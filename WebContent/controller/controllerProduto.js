@@ -16,19 +16,27 @@ app.controller('appCtrl', [ '$scope', '$http', function($scope, $http) {
 			}
 		}).then(function(retorno) {
 			$scope.array = (retorno.data.produtos);
-            //alert(retorno.data);
+			// alert(retorno.data);
 		});
 	}
-	
-	$scope.addCarrinho = function() {
-		alert('Adicionado ao carrinho');
+
+	$scope.addCarrinho = function(idProduto,acao) {
+
+		$http({
+			method : 'post',
+			url : 'CarrinhoServlet',
+			data : [idProduto, acao]
+		}).then(function(retorno) {
+			alert('Adicionado ao carrinho');
+		});
+
+		
 	}
-	
-	
-	$scope.verificarLogin = function (usuario) {
-		if(usuario){
+
+	$scope.verificarLogin = function(usuario) {
+		if (usuario) {
 			$scope.logado = true;
 		}
 	}
-	
+
 } ]);
