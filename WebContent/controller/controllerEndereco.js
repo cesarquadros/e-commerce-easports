@@ -28,6 +28,8 @@ app.controller('appCtrl', [ '$scope', '$http', function($scope, $http) {
 		});
 	}
 	
+	
+	
 	$scope.validarSenha = function (){
 		
 		 $scope.result = angular.equals($scope.senha, $scope.corfirmSenha);

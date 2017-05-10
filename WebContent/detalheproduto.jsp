@@ -18,9 +18,9 @@
 					<h3>${produto.valorVendaFormatado}</h3>
 					<h5>Em até 10x sem juros</h5>
 					<h6>ver mais opções de parcelas</h6>
-					<a href="detalheproduto.jsp" class="btn btn-success navbar-btn">
-					 <span class="glyphicon glyphicon-shopping-cart"></span>
-						Adicionar ao carrinho
+					<a href="#" class="btn btn-success navbar-btn" ng-click="addCarrinho(${produto.idProduto},'adicionar')">
+						<span class="glyphicon glyphicon-shopping-cart"></span> Adicionar
+						
 					</a>
 				</div>
 			</div>

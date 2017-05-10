@@ -1,6 +1,3 @@
-/**
- * 
- */
 
 var app = angular.module('app', []);
 app.controller('appCtrl', [ '$scope', '$http', function($scope, $http) {
@@ -21,22 +18,29 @@ app.controller('appCtrl', [ '$scope', '$http', function($scope, $http) {
 	}
 
 	$scope.addCarrinho = function(idProduto,acao) {
-
 		$http({
 			method : 'post',
 			url : 'CarrinhoServlet',
 			data : [idProduto, acao]
 		}).then(function(retorno) {
 			alert('Adicionado ao carrinho');
-		});
-
-		
+		});		
 	}
-
 	$scope.verificarLogin = function(usuario) {
 		if (usuario) {
 			$scope.logado = true;
 		}
+	}
+	
+	$scope.excluirItem = function(idItem, acao) {
+	$http({
+			method : 'post',
+			url : 'CarrinhoServlet',
+			data : [idItem,acao]
+		}).then(function(retorno) {
+			alert('Removido do carrinho');
+			setTimeout('location.reload();', 1);
+		});
 	}
 
 } ]);

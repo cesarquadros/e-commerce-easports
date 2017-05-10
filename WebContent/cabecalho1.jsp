@@ -42,8 +42,6 @@
 
 <body ng-app="app" ng-controller="appCtrl">
 
-
-
 	<div class="container-fluid" id="banner1">
 		<div class="row">
 			<div class="col-xs-4 col-sm-4 col-md-2">

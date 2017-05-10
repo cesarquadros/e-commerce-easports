@@ -63,4 +63,23 @@ public class CarrinhoDAO extends DAO {
 
 		return lista;
 	}
+	
+	public void excluirItem(Integer idItem) throws Exception {
+
+		String query = "update itens_carrinho set finalizado = ? where idItem = ?";
+
+		abreConexao();
+
+		stmt = con.prepareStatement(query);
+
+		stmt.setBoolean(1, false);
+		stmt.setInt(2, idItem);
+
+		stmt.execute();
+
+		stmt.close();
+
+		fechaConexao();
+
+	}
 }

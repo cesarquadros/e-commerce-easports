@@ -2,6 +2,7 @@ package br.com.ecommerceeasports.servlet;
 
 import java.io.BufferedReader;
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.util.ArrayList;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -15,9 +16,6 @@ import br.com.ecommerceeasports.entities.Produto;
 import br.com.ecommerceeasports.persistence.CarrinhoDAO;
 import br.com.ecommerceeasports.persistence.ProdutoDAO;
 
-/**
- * Servlet implementation class CarrinhoServlet
- */
 @WebServlet("/CarrinhoServlet")
 public class CarrinhoServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
@@ -42,6 +40,7 @@ public class CarrinhoServlet extends HttpServlet {
 
 		response.setContentType("text/plain");
 
+		PrintWriter out = null;
 		StringBuilder sb = new StringBuilder();
 		BufferedReader br = request.getReader();
 		String str = null;
@@ -53,7 +52,7 @@ public class CarrinhoServlet extends HttpServlet {
 		String parametros[] = sb.toString().replace("[", "").replace("]", "").replace("\"", "").split(",");
 
 		String acao = "";
-		if (parametros.length > 1) {
+		if (parametros.length >= 1 && !parametros[0].equals("")) {
 			acao = parametros[1];
 		} else {
 			acao = request.getParameter("acao");
@@ -68,7 +67,7 @@ public class CarrinhoServlet extends HttpServlet {
 				session = request.getSession();
 
 				Produto produto = produtoDAO.findById(idProduto);
-				Cliente cliente;
+				Cliente cliente;	
 				if (session.getAttribute("usuarioLogado") == null) {
 
 				} else {
@@ -111,6 +110,17 @@ public class CarrinhoServlet extends HttpServlet {
 					
 				}
 			}	
+		} else if (acao.equals("excluiritem")) {
+			try {
+			Integer idItem = Integer.parseInt(parametros[0]);
+			CarrinhoDAO carrinhoDAO = new CarrinhoDAO();			
+			
+				carrinhoDAO.excluirItem(idItem);
+			} catch (Exception e) {
+				
+				e.printStackTrace();
+			}
+			
 		}
 	}
 }

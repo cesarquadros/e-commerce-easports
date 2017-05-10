@@ -1,5 +1,5 @@
 	<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-	<jsp:include page="cabecalho2.jsp"></jsp:include>
+	<jsp:include page="cabecalho1.jsp"></jsp:include>
 		
         <div class="container">
             <div class="row">
@@ -34,7 +34,7 @@
                                     <td>*</td>
                                     <td>R$ ${carrinho.produto.valorVendaFormatado}</td>
                                     <td>R$</td>
-                                    <td><button type="button" class="btn btn-danger navbar-btn">Excluir</button></td>                              
+                                    <td><a class="btn btn-danger navbar-btn" ng-click="excluirItem(${carrinho.idItem},'excluiritem')">Excluir</a></td>                              
                                 </tr>
                             </tbody>
                             </c:forEach>
