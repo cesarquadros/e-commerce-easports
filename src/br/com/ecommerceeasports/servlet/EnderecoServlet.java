@@ -15,16 +15,12 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import br.com.ecommerceeasports.entities.Endereco;
 import br.com.ecommerceeasports.util.WebServiceCep;
 
-/**
- * Servlet implementation class EnderecoServlet
- */
 @WebServlet("/EnderecoServlet")
 public class EnderecoServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
 	public EnderecoServlet() {
 		super();
-		// TODO Auto-generated constructor stub
 	}
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)

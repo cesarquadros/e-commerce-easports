@@ -104,10 +104,11 @@ public class CarrinhoServlet extends HttpServlet {
 					ArrayList<ItemCarrinho> carrinho = carrinhoDAO.itensPorCliente(cliente.getIdCliente());
 					
 					request.setAttribute("carrinho", carrinho);
+					request.setAttribute("cliente", cliente);
 					request.getRequestDispatcher("carrinho.jsp").forward(request, response);	
 					
 				} catch (Exception e) {
-					
+					System.out.println(e.toString());
 				}
 			}	
 		} else if (acao.equals("excluiritem")) {

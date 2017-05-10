@@ -8,7 +8,7 @@
                     <a href="./index.jsp" class="btn btn-default navbar-btn">Escolher + Produtos</a>
                 </div>
                 <div class="col-xs-12 col-sm-12 col-md-6">              
-                    <a href="finalizarcompra.jsp" class="btn btn-default navbar-btn">Finalizar Compra</a>
+                    <a href="/e-commerce-easports/ComprarProdutoServlet?acao=finalizarbyid" class="btn btn-default navbar-btn">Finalizar Compra</a>
                 </div>
                 
 				<br />	

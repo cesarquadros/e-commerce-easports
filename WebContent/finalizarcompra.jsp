@@ -10,8 +10,8 @@
                         <div class="jumbotron">
 
                             <div class="glyphicon glyphicon-shopping-cart" id="iconeCarrinho"></div>
-                            <h4>0 Produtos</h4>
-                            <h4>Total a pagar: R$0,00 </h4> 
+                            <h4>${quantidade} Produtos</h4>
+                            <h4>Total a pagar: ${valorTotal} </h4> 
                         </div>
                     </form>
                 </div>
@@ -21,9 +21,9 @@
                         <h3>Endereço de Entrega</h3>
                         <div class="glyphicon glyphicon-send" id="iconeEnvio"></div>
                         <address>
-                            <strong>Elder Albuquerque</strong><br>
-                            Rua Pedro Gonçalves Meira, 312 Jd. São Carlos<br>
-                            So Paulo - SP, CEP 04433-250<br>                            
+                            <strong>${cliente.nome}</strong><br>
+                            ${cliente.endereco.logradouro}, ${cliente.endereco.numero} (${cliente.endereco.complemento})- ${cliente.endereco.bairro}<br>
+                            ${cliente.endereco.cidade} - ${cliente.endereco.estado}, ${cliente.endereco.cep}<br>                            
                             </address>
                         <button type="button" class="btn btn-default navbar-btn">Aterar Endereço</button>                    
                     </div>

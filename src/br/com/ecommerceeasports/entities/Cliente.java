@@ -18,10 +18,6 @@ public class Cliente {
 	private ArrayList<Cartao> listaCartoes;
 	private String dataNascFormatada;
 	
-	
-	
-
-
 	public Cliente(Integer idCliente, String email, String senha, String nome, String sexo, String cpf,
 			Date dataNascimento, String telefone) {
 		super();

@@ -96,12 +96,13 @@ public class EnderecoDAO extends DAO {
 		stmt = con.prepareStatement(query, Statement.RETURN_GENERATED_KEYS);
 
 		stmt.setString(1, endereco.getLogradouro());
-		stmt.setInt(2, endereco.getNumero());
-		stmt.setString(3, endereco.getCep());
-		stmt.setString(4, endereco.getBairro());
-		stmt.setString(5, endereco.getCidade());
-		stmt.setString(6, endereco.getEstado());
-		stmt.setString(7, endereco.getComplemento());
+		stmt.setString(2, endereco.getCep());
+		stmt.setInt(3, endereco.getNumero());
+		stmt.setString(4, endereco.getComplemento());
+		stmt.setString(5, endereco.getBairro());
+		stmt.setString(6, endereco.getCidade());
+		stmt.setString(7, endereco.getEstado());
+		
 		stmt.execute();
 
 		rs = stmt.getGeneratedKeys();

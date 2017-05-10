@@ -1,5 +1,7 @@
 package br.com.ecommerceeasports.entities;
 
+import java.util.ArrayList;
+
 public class ItemCarrinho {
 	
 	private Integer idItem;
@@ -7,6 +9,7 @@ public class ItemCarrinho {
 	private Produto produto;
 	private Compra compra;
 	private boolean finalizado;
+	private Double valorTotal;
 	
 	
 	public Integer getIdItem() {
@@ -39,8 +42,16 @@ public class ItemCarrinho {
 	public void setFinalizado(boolean finalizado) {
 		this.finalizado = finalizado;
 	}
-
 	
+	public Double getValorTotal(ArrayList<ItemCarrinho> listCarrinho) {
+		
+		this.valorTotal = 0.0;
+		
+		for (int i = 0; i < listCarrinho.size(); i++) {
+			this.valorTotal+= listCarrinho.get(i).getProduto().getPrecoVenda();
+		}		
+		return this.valorTotal;
+	}
 	
 
 }
