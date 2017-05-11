@@ -39,4 +39,16 @@ app.controller('appCtrl', [ '$scope', '$http', function($scope, $http) {
 			 $scope.result = true;			 
 		 }
 	}
+	
+	$scope.excluirItem = function(idItem, acao) {
+		$http({
+				method : 'post',
+				url : 'CarrinhoServlet',
+				data : [idItem,acao]
+			}).then(function(retorno) {
+				alert('Removido do carrinho');
+				setTimeout('location.reload();', 1);
+			});
+		}
+	
 } ]);

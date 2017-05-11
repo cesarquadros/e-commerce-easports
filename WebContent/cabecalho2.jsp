@@ -26,8 +26,7 @@
 <script src="./js/bootstrap.min.js"></script>
 <script src="./js/bootstrap.js"></script>
 
-<script
-	src=https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.6.1/angular.min.js></script>
+<script src=https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.6.1/angular.min.js></script>
 <script src="./controller/controllerEndereco.js"></script>
 
 <title>EA Sports</title>
@@ -37,11 +36,12 @@
 		<div class="row">
 			<div class="col-xs-5 col-sm-5 col-md-2 center">
 				<a href="index.jsp"><img
-					src="https://upload.wikimedia.org/wikipedia/en/c/c4/EA_Sports_logo.png"
+					src="./imagens_projeto/EA_Sports_logo.png"
 					alt="Logotipo" id="logo" class="img-responsive" /></a>
 			</div>
 		</div>
 	</div>
-	<hr>
+	<hr />
+	<br />
 </body>
 </html>

@@ -8,6 +8,7 @@ public class Compra {
 	private Date dataCompra;
 	private Integer parcelas;
 	private Integer idCartao;
+	private Integer idEnreco;
 	
 	public Integer getIdCompra() {
 		return idCompra;
@@ -32,6 +33,12 @@ public class Compra {
 	}
 	public void setIdCartao(Integer idCartao) {
 		this.idCartao = idCartao;
+	}
+	public Integer getIdEnreco() {
+		return idEnreco;
+	}
+	public void setIdEnreco(Integer idEnreco) {
+		this.idEnreco = idEnreco;
 	}
 	
 	

@@ -23,7 +23,7 @@
 <link rel="stylesheet" href="./css/bootstrap-social.less" />
 <link rel="stylesheet" href="./css/bootstrap-social.scss" />
 <link rel="stylesheet" href="./css/estiloHome.css" />
-<script src="./js/jquery-3.1.1.min.js"></script>
+<!-- <script src="./js/jquery-3.1.1.min.js"></script> -->
 <script src="./js/bootstrap.min.js"></script>
 <script src="./js/bootstrap.js"></script>
 
@@ -84,7 +84,7 @@
 						<ul class="dropdown-menu">
 						
 							<li><a href="login.jsp">{{logado ? 'Minha conta' : 'Efetuar Login'}}</a></li>
-							<li><a href="/e-commerce-easports/CarrinhoServlet?acao=carrinhobycli"">Meu Carrinho</a></li>
+							<li><a href="/e-commerce-easports/CarrinhoServlet?acao=carrinhobycli">Meu Carrinho</a></li>
 							<li><a href="/e-commerce-easports/ClienteServlet?acao=logout">Sair</a></li>
 						</ul></li>
 				
@@ -101,11 +101,11 @@
 	</div>
 
 	<div class="navbar navbar-default navbar-static-top">
-
 		<button class="navbar-toggle" data-toggle="collapse"
 			data-target=".navHeaderCollapse">
-			<span class="icon-bar"></span> <span class="icon-bar"></span> <span
-				class="icon-bar"></span>
+			<span class="icon-bar"></span> 
+			<span class="icon-bar"></span> 
+			<span class="icon-bar"></span>
 		</button>
 
 		<div class="collapse navbar-collapse navHeaderCollapse" id="divMenu">
