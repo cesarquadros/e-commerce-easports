@@ -73,6 +73,7 @@ public class ComprarProdutoServlet extends HttpServlet {
 				request.setAttribute("cliente", cliente);
 				request.setAttribute("valorTotal", valorTotalFormatado);
 				request.setAttribute("quantidade", carrinho.size());
+				request.setAttribute("carrinho", carrinho);
 				request.getRequestDispatcher("finalizarcompra.jsp").forward(request, response);
 				} catch (Exception e) {
 					// TODO Auto-generated catch block

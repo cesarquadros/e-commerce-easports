@@ -1,12 +1,13 @@
 <jsp:include page="cabecalho2.jsp"></jsp:include>
 <link rel="stylesheet" href="./css/stepbar.css" />
 <link rel="stylesheet" href="./css/radio.css" />
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <script
 	src=https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.6.1/angular.min.js></script>
 
 <div ng-app="app" ng-controller="appCtrl">
 
-	<div class="container">
+	<div class="container-fluid">
 
 		<br />
 		<div class="stepwizard">
@@ -44,7 +45,8 @@
 				<div class="jumbotron">
 					<div class="center">
 						<h3>Cartão de Crédito</h3>
-						<div class="glyphicon glyphicon-credit-card center"	id="iconeCartao"></div>
+						<div class="glyphicon glyphicon-credit-card center"
+							id="iconeCartao"></div>
 					</div>
 
 					<div class="funkyradio">
@@ -53,8 +55,9 @@
 								for="radio3">${cliente.nome}</label>
 						</div>
 						<div class="center">
-						<button type="button" class="btn btn-default navbar-btn" id="btnCard">Aterar cartão</button>
-							</div>
+							<button type="button" class="btn btn-default navbar-btn"
+								id="btnCard">Aterar cartão</button>
+						</div>
 					</div>
 				</div>
 			</div>
@@ -70,9 +73,34 @@
 						${cliente.endereco.cep}<br>
 					</address>
 					<div class="center">
-						<button type="button" class="btn btn-default navbar-btn" id="btnEnd">Aterar Endereço</button>
+						<button type="button" class="btn btn-default navbar-btn"
+							id="btnEnd">Aterar Endereço</button>
 					</div>
 				</div>
+			</div>
+
+			<div class="col-xs-12 col-sm-12 col-md-4">
+				<form>
+					<table class="table table-hover">
+						<thead>
+							<tr style="background: #eee;">
+								<th>Itens</th>
+								<th>Valor</th>
+							</tr>
+						</thead>
+						<c:forEach items="${carrinho}" var="carrinho">
+							<tbody style="font-size: 12px;">
+								<tr>
+									<td>${carrinho.produto.nome}</td>
+									<td>R$ ${carrinho.produto.valorVendaFormatado}</td>
+								</tr>
+							</tbody>
+						</c:forEach>
+					</table>
+					<div style="background: #eee; padding: 10px;">
+						<span>Total a pagar: </span> <span style="margin-right: 0px;">R$ ${valorTotal}</span>
+					</div>
+				</form>
 			</div>
 		</div>
 	</div>
