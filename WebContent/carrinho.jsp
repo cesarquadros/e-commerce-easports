@@ -19,7 +19,7 @@
 
 			<div class="stepwizard-step">
 				<a href="/e-commerce-easports/ComprarProdutoServlet?acao=finalizarbyid" class="btn btn-default btn-circle">
-					<span class="glyphicon glyphicon-send"></span>
+					<span class="glyphicon glyphicon-usd"></span>
 				</a>
 				<p>Pagamento</p>
 			</div>

@@ -48,10 +48,10 @@ public class CarregarProdutosServlet extends HttpServlet {
 
 			listagemProdutos = p.listAll();
 
-			String json = mapper.writeValueAsString(listagemProdutos);
+			String json = mapper.writerWithDefaultPrettyPrinter().writeValueAsString(listagemProdutos);
 			json = "{\"produtos\":" + json + "}";
 
-			//System.out.println(json);
+			System.out.println(json);
 			out.println(json);
 
 		} catch (Exception e) {

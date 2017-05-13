@@ -57,7 +57,7 @@ public class EnderecoServlet extends HttpServlet {
 		PrintWriter out = response.getWriter();
 		ObjectMapper mapper = new ObjectMapper();
 		
-		String json = mapper.writeValueAsString(endereco);
+		String json = mapper.writerWithDefaultPrettyPrinter().writeValueAsString(endereco);
 		json = "{\"endereco\":"+json+"}";
 		System.out.println(json);
 		out.println(json);
