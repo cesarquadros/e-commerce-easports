@@ -48,6 +48,8 @@ public class ClienteDAO extends DAO{
 		while (rs.next()) {
 
 			final EnderecoDAO enderecoDAO = new EnderecoDAO();
+			final CartaoDAO cartaoDAO = new CartaoDAO();
+			final CarrinhoDAO carrinhoDAO = new CarrinhoDAO();
 
 			cliente.setIdCliente(rs.getInt("idCliente"));
 			cliente.setEmail(rs.getString("email"));
@@ -60,13 +62,13 @@ public class ClienteDAO extends DAO{
 			cliente.setDataNascimento(ConverteData.stringToDate(rs.getString("dataNascimento")));
 			cliente.setDataNascFormatada(rs.getString("dataNascimento"));
 			cliente.setEndereco(enderecoDAO.findById(rs.getInt("idEndereco")));
+			cliente.setCartao(cartaoDAO.findById(rs.getInt("idCartao")));
+			cliente.setListaItens(carrinhoDAO.itensPorCliente(rs.getInt("idCliente")));
 			return cliente;
 		}
 
 		stmt.close();
-
 		fechaConexao();
-
 		return null;
 
 	}

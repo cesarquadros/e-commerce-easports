@@ -14,8 +14,8 @@ public class Cliente {
 	private Date dataNascimento;
 	private String telefone;
 	private Endereco endereco;
-	private ArrayList<ItemCarrinho> ListaItens;
-	private ArrayList<Cartao> listaCartoes;
+	private ArrayList<ItemCarrinho> listaItens;
+	private Cartao cartao;
 	private String dataNascFormatada;
 	
 	public Cliente(Integer idCliente, String email, String senha, String nome, String sexo, String cpf,
@@ -32,7 +32,7 @@ public class Cliente {
 	}
 
 	public Cliente(Integer idCliente, String email, String senha, String nome, String sexo, String cpf,
-			Date dataNascimento, String telefone, Endereco endereco, ArrayList<ItemCarrinho> ListaItens, ArrayList<Cartao> listaCartoes) {
+			Date dataNascimento, String telefone, Endereco endereco, ArrayList<ItemCarrinho> ListaItens, Cartao cartao) {
 		super();
 		this.idCliente = idCliente;
 		this.email = email;
@@ -43,8 +43,8 @@ public class Cliente {
 		this.dataNascimento = dataNascimento;
 		this.telefone = telefone;
 		this.endereco = endereco;
-		this.ListaItens = ListaItens;
-		this.listaCartoes = listaCartoes;
+		this.listaItens = ListaItens;
+		this.cartao = cartao;
 	}
 	
 	public String getDataNascFormatada() {
@@ -133,19 +133,19 @@ public class Cliente {
 
 	
 	public ArrayList<ItemCarrinho> getListaItens() {
-		return ListaItens;
+		return listaItens;
 	}
 
 	public void setListaItens(ArrayList<ItemCarrinho> listaItens) {
-		ListaItens = listaItens;
+		this.listaItens = listaItens;
 	}
 
-	public ArrayList<Cartao> getListaCartoes() {
-		return listaCartoes;
+	public Cartao getCartao() {
+		return cartao;
 	}
 
-	public void setListaCartoes(ArrayList<Cartao> listaCartoes) {
-		this.listaCartoes = listaCartoes;
+	public void setCartao(Cartao cartao) {
+		this.cartao = cartao;
 	}
 
 	@Override

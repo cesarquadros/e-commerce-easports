@@ -51,7 +51,7 @@ public class CarregarProdutosServlet extends HttpServlet {
 			String json = mapper.writerWithDefaultPrettyPrinter().writeValueAsString(listagemProdutos);
 			json = "{\"produtos\":" + json + "}";
 
-			System.out.println(json);
+			//System.out.println(json);
 			out.println(json);
 
 		} catch (Exception e) {

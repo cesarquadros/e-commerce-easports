@@ -40,7 +40,7 @@ public class CarrinhoServlet extends HttpServlet {
 
 		response.setContentType("text/plain");
 
-		PrintWriter out = null;
+		PrintWriter out = response.getWriter();
 		StringBuilder sb = new StringBuilder();
 		BufferedReader br = request.getReader();
 		String str = null;
@@ -78,8 +78,11 @@ public class CarrinhoServlet extends HttpServlet {
 					itemCarrinho.setProduto(produto);
 
 					CarrinhoDAO carrinhoDAO = new CarrinhoDAO();
-
 					carrinhoDAO.insert(itemCarrinho);
+					carrinhoDAO = new CarrinhoDAO();
+					ArrayList<ItemCarrinho> carrinho = carrinhoDAO.itensPorCliente(cliente.getIdCliente());
+					cliente.setListaItens(carrinho);
+					out.println("OK");
 
 				}
 				System.out.println("");
@@ -102,8 +105,8 @@ public class CarrinhoServlet extends HttpServlet {
 
 				try {
 					ArrayList<ItemCarrinho> carrinho = carrinhoDAO.itensPorCliente(cliente.getIdCliente());
+					cliente.setListaItens(carrinho);
 					
-					request.setAttribute("carrinho", carrinho);
 					request.setAttribute("cliente", cliente);
 					request.getRequestDispatcher("carrinho.jsp").forward(request, response);	
 					
@@ -118,7 +121,6 @@ public class CarrinhoServlet extends HttpServlet {
 			
 				carrinhoDAO.excluirItem(idItem);
 			} catch (Exception e) {
-				
 				e.printStackTrace();
 			}
 			

@@ -8,7 +8,7 @@ public class ItemCarrinho {
 	private Cliente cliente;
 	private Produto produto;
 	private Compra compra;
-	private boolean finalizado;
+	private Integer finalizado;
 	private Double valorTotal;
 	
 	
@@ -36,13 +36,13 @@ public class ItemCarrinho {
 	public void setCompra(Compra compra) {
 		this.compra = compra;
 	}
-	public boolean isFinalizado() {
+
+	public Integer getFinalizado() {
 		return finalizado;
 	}
-	public void setFinalizado(boolean finalizado) {
+	public void setFinalizado(Integer finalizado) {
 		this.finalizado = finalizado;
 	}
-	
 	public Double getValorTotal(ArrayList<ItemCarrinho> listCarrinho) {
 		
 		this.valorTotal = 0.0;

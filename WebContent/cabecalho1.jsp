@@ -54,35 +54,15 @@
 				<input class="form-control input-lg" type="text"
 					placeholder="Buscar" id="pesquisaprod" ng-model="pesquisaprod">
 			</div>
-
-			<!-- 			<div class="col-xs-2 col-sm-2 col-md-1"> -->
-			<!-- 				<div class="glyphicon glyphicon-search" id="iconeBuscar"></div> -->
-			<!-- 			</div> -->
-
+			
 			<div class="col-xs-4 col-sm-4 col-md-4">
-
-<%-- 				<div class="col-xs-2 col-sm-2 col-md-2 panelTopButtons">
-					<a href="login.jsp" class="iconeUsuario"> 
-					<span class="btn glyphicon glyphicon-user" ng-init="verificarLogin('${usuarioLogado.nome}')"> </span>
-						{{logado ? '${usuarioLogado.nome}' : 'Entrar' }}
-					</a>
-				</div>
-
-				<div class="col-xs-2 col-sm-2 col-md-2 panelTopButtons1">
-					<a href="carrinho.jsp" class="carrinho"> <span
-						class="glyphicon glyphicon-shopping-cart" id="iconeCarrinho"></span>
-						Meu Carrinho
-
-					</a>
-				</div>  --%>
-
 				<ul class="nav navbar-nav navbar-right">
 				
-					<li class="dropdown"><a class="dropdown-toggle"	data-toggle="dropdown" href="#">
-					<span class="glyphicon glyphicon-user" ng-init="verificarLogin('${usuarioLogado.nome}')"></span> 
+					<li class="dropdown">
+						<a class="dropdown-toggle"	data-toggle="dropdown" href="#">
+							<span class="glyphicon glyphicon-user" ng-init="verificarLogin('${usuarioLogado.nome}')"></span> 
 					{{logado ? '${usuarioLogado.nome}' : 'Entrar' }}<span class="caret"></span></a>
-						<ul class="dropdown-menu">
-						
+						<ul class="dropdown-menu">						
 							<li><a href="login.jsp">{{logado ? 'Minha conta' : 'Efetuar Login'}}</a></li>
 							<li><a href="/e-commerce-easports/CarrinhoServlet?acao=carrinhobycli">Meu Carrinho</a></li>
 							<li><a href="/e-commerce-easports/ClienteServlet?acao=logout">Sair</a></li>
@@ -91,10 +71,9 @@
 					<li>
 						<a href="/e-commerce-easports/CarrinhoServlet?acao=carrinhobycli">
 							<span class="glyphicon glyphicon-shopping-cart">
-							</span> Carrinho
+							</span> Carrinho <span style="color: green;">(${fnc:length(usuarioLogado.listaItens)}) </span>
 						</a>
-					</li>
-	
+					</li>	
 				</ul>
 			</div>
 		</div>

@@ -20,9 +20,6 @@ import br.com.ecommerceeasports.persistence.ClienteDAO;
 import br.com.ecommerceeasports.persistence.EnderecoDAO;
 import br.com.ecommerceeasports.util.ConverteData;
 
-/**
- * Servlet implementation class ClienteServlet
- */
 @WebServlet("/ClienteServlet")
 public class ControlePessoa extends HttpServlet {
 	private static final long serialVersionUID = 1L;
@@ -110,32 +107,25 @@ public class ControlePessoa extends HttpServlet {
 				final String senha = request.getParameter("senha");
 
 				String senhaCriptografada = Criptografia.criptografar(senha);
-
 				final ClienteDAO clienteDAO = new ClienteDAO();
-
 				final Cliente cliente = clienteDAO.findByLogin(email, senhaCriptografada);
 
 				if (cliente != null) {
 
 					session = request.getSession();
-
 					session.setAttribute("usuarioLogado", cliente);
-
 					request.setAttribute("usuarioLogado", cliente);
-
 					destino = "index.jsp";
 
 				} else {
-
 					request.setAttribute("mensagem", "Usuário ou senha inválidos");
 					// throw new Exception("Acesso negado, tente novamente.");
-
 				}
 			} catch (Exception e) {
+				System.out.println(e.toString());
 				request.setAttribute("mensagem", e.getMessage());
 
 			} finally {
-
 				request.getRequestDispatcher(destino).forward(request, response);
 			}
 

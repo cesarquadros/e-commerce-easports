@@ -29,18 +29,15 @@ public class CarrinhoDAO extends DAO {
 
 	public ArrayList<ItemCarrinho> itensPorCliente(Integer idCliente) throws Exception {
 
-		String query = "select * from itens_carrinho where idCliente = ? and finalizado = 'false'";
+		String query = "select * from itens_carrinho where idCliente = ? and finalizado = '0'";
 
 		abreConexao();
 
 		stmt = con.prepareStatement(query);
-
 		stmt.setInt(1, idCliente);
-
 		rs = stmt.executeQuery();
 
 		ArrayList<ItemCarrinho> lista = new ArrayList<ItemCarrinho>();
-
 		FormataValor format = new FormataValor();
 
 		while (rs.next()) {
@@ -72,7 +69,7 @@ public class CarrinhoDAO extends DAO {
 
 		stmt = con.prepareStatement(query);
 
-		stmt.setBoolean(1, false);
+		stmt.setInt(1, 1);
 		stmt.setInt(2, idItem);
 
 		stmt.execute();

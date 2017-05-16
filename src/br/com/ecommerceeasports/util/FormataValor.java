@@ -11,8 +11,6 @@ public class FormataValor {
 		BigDecimal bigDecimal = new BigDecimal (valor);  
 		NumberFormat nf = NumberFormat.getCurrencyInstance();  
 		String formatado = nf.format (bigDecimal);
-		
 		return formatado;
-		
 	}
 }

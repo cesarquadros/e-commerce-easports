@@ -23,7 +23,14 @@ app.controller('appCtrl', [ '$scope', '$http', function($scope, $http) {
 			url : 'CarrinhoServlet',
 			data : [idProduto, acao]
 		}).then(function(retorno) {
-			alert('Adicionado ao carrinho');
+			
+			if(retorno.data){
+				alert('Adicionado ao carrinho');
+				setTimeout('location.reload();', 1);
+			} else {
+				alert('OPS! Ocorreu um erro');
+			}
+			
 		});		
 	}
 	$scope.verificarLogin = function(usuario) {
@@ -38,8 +45,13 @@ app.controller('appCtrl', [ '$scope', '$http', function($scope, $http) {
 			url : 'CarrinhoServlet',
 			data : [idItem,acao]
 		}).then(function(retorno) {
-			alert('Removido do carrinho');
-			setTimeout('location.reload();', 1);
+			if(retorno.data){
+				alert('Removido do carrinho');
+				setTimeout('location.reload();', 1);
+			} else {
+				alert('OPS! Ocorreu um erro');
+			}
+			
 		});
 	}
 

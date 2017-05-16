@@ -63,7 +63,7 @@
 
 					</tr>
 				</thead>
-				<c:forEach items="${carrinho}" var="carrinho">
+				<c:forEach items="${cliente.listaItens}" var="carrinho">
 					<tbody>
 						<tr>
 							<td>${carrinho.produto.nome}</td>
@@ -83,8 +83,9 @@
 				+ Produtos</a>
 		</div>
 		<div class="col-xs-12 col-sm-12 col-md-6">
-			<a href="finalizarcompra.jsp" class="btn btn-default navbar-btn">Finalizar
-				Compra</a>
+			<a
+				href="/e-commerce-easports/ComprarProdutoServlet?acao=finalizarbyid"
+				class="btn btn-default navbar-btn">Finalizar Compra</a>
 		</div>
 	</div>
 </div>

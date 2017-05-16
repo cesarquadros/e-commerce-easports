@@ -5,16 +5,16 @@ import java.util.Date;
 public class Cartao {
 
 	private Integer idCartao;
-	private Integer numero;
+	private String numero;
+	private String numeroX;
 	private String nomeImpresso;
 	private Date validade;
 	private Integer codigoSeguranca;
 	
 	public Cartao() {
-		// TODO Auto-generated constructor stub
 	}
 
-	public Cartao(Integer idCartao, Integer numero, String nomeImpresso, Date validade, Integer codigoSeguranca) {
+	public Cartao(Integer idCartao, String numero, String nomeImpresso, Date validade, Integer codigoSeguranca) {
 		super();
 		this.idCartao = idCartao;
 		this.numero = numero;
@@ -31,11 +31,11 @@ public class Cartao {
 		this.idCartao = idCartao;
 	}
 
-	public Integer getNumero() {
+	public String getNumero() {
 		return numero;
 	}
 
-	public void setNumero(Integer numero) {
+	public void setNumero(String numero) {
 		this.numero = numero;
 	}
 
@@ -62,5 +62,18 @@ public class Cartao {
 	public void setCodigoSeguranca(Integer codigoSeguranca) {
 		this.codigoSeguranca = codigoSeguranca;
 	}
+
+	public String getNumeroX() {
+		numeroX = this.numero.substring(8);
+		numeroX = "XXXXXXXX" + numeroX;
+		
+		return numeroX;
+	}
+
+	public void setNumeroX(String numeroX) {
+		this.numeroX = numeroX;
+	}
+	
+	
 	
 }
