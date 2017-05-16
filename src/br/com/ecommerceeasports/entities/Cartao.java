@@ -64,8 +64,8 @@ public class Cartao {
 	}
 
 	public String getNumeroX() {
-		numeroX = this.numero.substring(8);
-		numeroX = "XXXXXXXX" + numeroX;
+		numeroX = this.numero.substring(12);
+		numeroX = "XXXX-XXXX-XXXX-" + numeroX;
 		
 		return numeroX;
 	}

@@ -1,6 +1,8 @@
 package br.com.ecommerceeasports.servlet;
 
 import java.io.IOException;
+import java.util.ArrayList;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -10,8 +12,10 @@ import javax.servlet.http.HttpSession;
 
 import br.com.ecommerceeasports.entities.Cartao;
 import br.com.ecommerceeasports.entities.Cliente;
+import br.com.ecommerceeasports.entities.ItemCarrinho;
 import br.com.ecommerceeasports.persistence.CartaoDAO;
 import br.com.ecommerceeasports.util.ConverteData;
+import br.com.ecommerceeasports.util.FormataValor;
 
 @WebServlet("/CartaoServlet")
 public class CartaoServlet extends HttpServlet {
@@ -77,11 +81,20 @@ public class CartaoServlet extends HttpServlet {
 					cartaoDAO.update(cartao);
 					
 					cliente.setCartao(cartao);
-					
-					session.setAttribute("usuarioLogado", cliente);
-					request.setAttribute("usuarioLogado", cliente);
-					
-					
+
+					ItemCarrinho itemCarrinho = new ItemCarrinho();
+
+					FormataValor formataValor = new FormataValor();
+
+					Double valorTotal = itemCarrinho.getValorTotal(cliente.getListaItens());
+
+					String valorTotalFormatado = formataValor.valorFormatado(valorTotal);
+
+					request.setAttribute("cliente", cliente);
+					request.setAttribute("valorTotal", valorTotalFormatado);
+					request.setAttribute("quantidade", cliente.getListaItens().size());
+					//request.setAttribute("carrinho", carrinho);
+					request.getRequestDispatcher("finalizarcompra.jsp").forward(request, response);
 				}		
 				
 			} catch (Exception e) {

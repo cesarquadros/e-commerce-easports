@@ -1,71 +1,12 @@
-<!DOCTYPE html>
-<!--
-To change this license header, choose License Headers in Project Properties.
-To change this template file, choose Tools | Templates
-and open the template in the editor.
--->
+
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <html>
     <head>
         <title>TODO supply a title</title>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <script  src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
-        <script src=https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.6.1/angular.min.js></script>
-
-        <script>
-          /*  $(document).ready(function () {
-                $("#butao").on('click', function () {
-
-                    $.ajax({
-                        method: 'post',
-                        url: 'controller',
-                        data: {nome: 'nino'},
-                        success: function (retorno) {
-                            alert(retorno);
-                        }
-                    });
-
-                });
-            });*/
-
-
-            var app = angular.module('app', []);
-            app.controller('appCtrl', ['$scope', '$http', function ($scope, $http) {
-                    $scope.array;
-                    
-                    
-                    
-                    $scope.req = function () {
-                        $http({
-                            method: 'post',
-                            url: 'ComprarProdutoServlet',
-                            data: JSON.stringify($scope.texto)
- 
-                        }).then(function (retorno) {
-                            $scope.array = (retorno.data.menu);
-                        });
-                    };
-                    
-                    $scope.texto;
-                }]);
-
-
-        </script>
-
-    </head>
-    <body ng-app="app" >
-        <div>TODO write content</div>
-
-        <div ng-controller="appCtrl">
-            <input type="text" ng-model="texto"/>
-            <div ng-repeat="teste in array | filter:texto">
-                <p>{{teste.id}}</p>
-                <p>{{teste.nome}}</p>
-                
-                
-            </div>
-            <input type="button" id="butao" ng-click="req()" value="Enviar"/>
-            
-        </div>        
+     </head>
+    <body>
+    	<jsp:include page="cabecalho2.jsp"></jsp:include>
+    
     </body>
 </html>

@@ -3,6 +3,7 @@ package br.com.ecommerceeasports.persistence;
 import java.util.ArrayList;
 
 import br.com.ecommerceeasports.entities.Cliente;
+import br.com.ecommerceeasports.entities.CountCarrinho;
 import br.com.ecommerceeasports.entities.ItemCarrinho;
 import br.com.ecommerceeasports.util.FormataValor;
 
@@ -50,7 +51,7 @@ public class CarrinhoDAO extends DAO {
 			itemCarrinho.setIdItem((rs.getInt("idItem")));
 			itemCarrinho.setCliente(clienteDAO.findById(rs.getInt("idCliente")));
 			itemCarrinho.setProduto(produtoDao.findById(rs.getInt("idProduto")));
-			
+
 			lista.add(itemCarrinho);
 		}
 
@@ -60,7 +61,7 @@ public class CarrinhoDAO extends DAO {
 
 		return lista;
 	}
-	
+
 	public void excluirItem(Integer idItem) throws Exception {
 
 		String query = "update itens_carrinho set finalizado = ? where idItem = ?";
@@ -78,5 +79,35 @@ public class CarrinhoDAO extends DAO {
 
 		fechaConexao();
 
+	}
+
+	public ArrayList<CountCarrinho> countByBliente(Integer idCliente) throws Exception {
+
+		String query = "SELECT P.NOME, P.PRECOVENDA, count(*) as quantidade FROM ITENS_CARRINHO IC INNER JOIN PRODUTO P ON IC.IDPRODUTO = P.IDPRODUTO WHERE IC.FINALIZADO = ? and idCliente = ? GROUP BY IC.IDPRODUTO;";
+
+		abreConexao();
+
+		stmt = con.prepareStatement(query);
+		stmt.setInt(1, 0);
+		stmt.setInt(2, idCliente);
+		rs = stmt.executeQuery();
+
+		ArrayList<CountCarrinho> lista = new ArrayList<CountCarrinho>();
+		FormataValor format = new FormataValor();
+
+		while (rs.next()) {
+
+			CountCarrinho countCarrinho = new CountCarrinho();
+			Integer quantidade = rs.getInt("quantidade");
+			
+			countCarrinho.setNome(rs.getString("nome"));
+			countCarrinho.setValorFormatado(format.valorFormatado(rs.getDouble("precoVenda")*quantidade));
+			countCarrinho.setQuantidade(rs.getInt("quantidade"));
+			lista.add(countCarrinho);
+		}
+
+		stmt.close();
+		fechaConexao();
+		return lista;
 	}
 }

@@ -13,6 +13,7 @@ import javax.servlet.http.HttpSession;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.sun.glass.ui.Pixels.Format;
 import br.com.ecommerceeasports.entities.Cliente;
+import br.com.ecommerceeasports.entities.CountCarrinho;
 import br.com.ecommerceeasports.entities.ItemCarrinho;
 import br.com.ecommerceeasports.entities.Produto;
 import br.com.ecommerceeasports.persistence.CarrinhoDAO;
@@ -67,11 +68,15 @@ public class ComprarProdutoServlet extends HttpServlet {
 					Double valorTotal = itemCarrinho.getValorTotal(carrinho);
 
 					String valorTotalFormatado = formataValor.valorFormatado(valorTotal);
-
+					
+					carrinhoDAO = new CarrinhoDAO();
+					
+					ArrayList<CountCarrinho> carrinhoCount = carrinhoDAO.countByBliente(cliente.getIdCliente());
+					
 					request.setAttribute("cliente", cliente);
 					request.setAttribute("valorTotal", valorTotalFormatado);
 					request.setAttribute("quantidade", carrinho.size());
-					request.setAttribute("carrinho", carrinho);
+					request.setAttribute("carrinhocount", carrinhoCount);
 					request.getRequestDispatcher("finalizarcompra.jsp").forward(request, response);
 				} catch (Exception e) {
 					e.printStackTrace();

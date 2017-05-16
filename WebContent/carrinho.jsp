@@ -28,7 +28,7 @@
 				<button type="button" class="btn btn-default btn-circle" disabled="disabled">
 					<span class="glyphicon glyphicon-ok"></span>
 				</button>
-				<p>Finalizar venda</p>
+				<p>Confirmação</p>
 			</div>
 		</div>
 	</div>
