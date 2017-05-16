@@ -1,6 +1,8 @@
 package br.com.ecommerceeasports.servlet;
 
 import java.io.IOException;
+import java.util.ArrayList;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -9,8 +11,11 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import br.com.ecommerceeasports.util.Criptografia;
+import br.com.ecommerceeasports.util.FormataValor;
 import br.com.ecommerceeasports.entities.Cliente;
 import br.com.ecommerceeasports.entities.Endereco;
+import br.com.ecommerceeasports.entities.ItemCarrinho;
+import br.com.ecommerceeasports.persistence.CarrinhoDAO;
 import br.com.ecommerceeasports.persistence.ClienteDAO;
 import br.com.ecommerceeasports.persistence.EnderecoDAO;
 import br.com.ecommerceeasports.util.ConverteData;
@@ -128,20 +133,75 @@ public class ControlePessoa extends HttpServlet {
 				}
 			} catch (Exception e) {
 				request.setAttribute("mensagem", e.getMessage());
-				
-				
+
 			} finally {
 
 				request.getRequestDispatcher(destino).forward(request, response);
 			}
 
 		} else if (acao.equals("logout")) {
-			
+
 			final HttpSession session = request.getSession();
-
 			session.invalidate();
-
 			response.sendRedirect("/e-commerce-easports/index.jsp");
+			
+		} else if (acao.equals("updateendereco")) {
+
+			try {
+				session = request.getSession();
+
+				Cliente cliente;
+
+				if (session.getAttribute("usuarioLogado") == null) {
+
+				} else {
+					
+					cliente = (Cliente) session.getAttribute("usuarioLogado");
+
+					CarrinhoDAO carrinhoDAO = new CarrinhoDAO();				
+					
+					final Endereco endereco = new Endereco();
+					endereco.setLogradouro(request.getParameter("logradouro"));
+					endereco.setNumero(Integer.parseInt(request.getParameter("numero")));
+					endereco.setCep(request.getParameter("cep"));
+					endereco.setBairro(request.getParameter("bairro"));
+					endereco.setCidade(request.getParameter("cidade"));
+					endereco.setEstado(request.getParameter("estado"));
+					endereco.setComplemento(request.getParameter("complemento"));
+					endereco.setIdEndereco(cliente.getEndereco().getIdEndereco());
+					
+					EnderecoDAO enderecoDAO = new EnderecoDAO();
+
+					enderecoDAO.update(endereco);
+					
+					cliente.setEndereco(endereco);
+					
+					session.setAttribute("usuarioLogado", cliente);
+					request.setAttribute("usuarioLogado", cliente);
+					
+					ArrayList<ItemCarrinho> carrinho = carrinhoDAO.itensPorCliente(cliente.getIdCliente());
+
+					cliente.setListaItens(carrinho);
+
+					ItemCarrinho itemCarrinho = new ItemCarrinho();
+
+					FormataValor formataValor = new FormataValor();
+
+					Double valorTotal = itemCarrinho.getValorTotal(carrinho);
+
+					String valorTotalFormatado = formataValor.valorFormatado(valorTotal);
+
+					request.setAttribute("cliente", cliente);
+					request.setAttribute("valorTotal", valorTotalFormatado);
+					request.setAttribute("quantidade", carrinho.size());
+					request.setAttribute("carrinho", carrinho);
+					request.getRequestDispatcher("finalizarcompra.jsp").forward(request, response);
+				}
+				
+				
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
 		}
 
 	}

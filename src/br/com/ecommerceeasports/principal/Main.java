@@ -76,7 +76,7 @@ public class Main {
 		
 		ClienteDAO c = new ClienteDAO();
 		
-		c.findByLogin("teste@teste", "190788");*/
+		c.findByLogin("teste@teste", "190788");
 		
 		Cliente cli = new Cliente();
 		
@@ -108,7 +108,22 @@ public class Main {
 		
 		CarrinhoDAO carrinho = new CarrinhoDAO();
 		
-		carrinho.insert(i);
+		carrinho.insert(i); */
+		
+		Endereco endereco = new Endereco();
+		
+		endereco.setLogradouro("Yervant");
+		endereco.setCep("04426000");
+		endereco.setNumero(100);
+		endereco.setComplemento("");
+		endereco.setBairro("missionaria");
+		endereco.setCidade("São paulo");
+		endereco.setEstado("SP");
+		endereco.setIdEndereco(8);
+		
+		EnderecoDAO e = new EnderecoDAO();
+		
+		e.update(endereco);
 		
 		
 		

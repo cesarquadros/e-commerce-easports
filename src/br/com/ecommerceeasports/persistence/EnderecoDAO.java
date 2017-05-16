@@ -162,17 +162,19 @@ public class EnderecoDAO extends DAO {
 
 		abreConexao();
 
-		final String query = "update endereco set logradouro = ?, numero = ?, cep = ?, " + "bairro = ?, cidade = ?, estado = ?, pais = ? where id_endereco = ?";
+		final String query = "update endereco set logradouro = ?, cep = ?, numero = ?, complemento = ?,bairro = ?, cidade = ?, estado = ? where idEndereco = ?";
 
 		stmt = con.prepareStatement(query);
 
 		stmt.setString(1, endereco.getLogradouro());
-		stmt.setInt(2, endereco.getNumero());
-		stmt.setString(3, endereco.getCep());
-		stmt.setString(4, endereco.getBairro());
-		stmt.setString(5, endereco.getCidade());
-		stmt.setString(6, endereco.getEstado());
+		stmt.setString(2, endereco.getCep());
+		stmt.setInt(3, endereco.getNumero());
+		stmt.setString(4, endereco.getComplemento());
+		stmt.setString(5, endereco.getBairro());
+		stmt.setString(6, endereco.getCidade());
+		stmt.setString(7, endereco.getEstado());
 		stmt.setInt(8, endereco.getIdEndereco());
+		
 		stmt.execute();
 
 		stmt.close();

@@ -37,6 +37,8 @@ app.controller('appCtrl', [ '$scope', '$http', function($scope, $http) {
 		 if(!$scope.result){
 			 $scope.corfirmSenha = "";
 			 $scope.result = true;			 
+		 }else {
+			 $scope.result = false;	
 		 }
 	}
 	

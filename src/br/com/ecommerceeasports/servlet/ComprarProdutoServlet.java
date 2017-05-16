@@ -1,6 +1,5 @@
 package br.com.ecommerceeasports.servlet;
 
-
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
@@ -37,46 +36,44 @@ public class ComprarProdutoServlet extends HttpServlet {
 			throws ServletException, IOException {
 		execute(request, response);
 	}
-	
+
 	protected void execute(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		
+
 		String acao = request.getParameter("acao");
-		
-		if(acao.equals("finalizarbyid")){
-			
+
+		if (acao.equals("finalizarbyid")) {
+
 			session = request.getSession();
 
 			Cliente cliente;
-			
+
 			if (session.getAttribute("usuarioLogado") == null) {
-				
+
 			} else {
 				cliente = (Cliente) session.getAttribute("usuarioLogado");
-				
+
 				CarrinhoDAO carrinhoDAO = new CarrinhoDAO();
-				
+
 				try {
-				ArrayList<ItemCarrinho> carrinho = carrinhoDAO.itensPorCliente(cliente.getIdCliente());
-				
-				cliente.setListaItens(carrinho);
-				
-				ItemCarrinho itemCarrinho = new ItemCarrinho();
-				
-				FormataValor formataValor = new FormataValor();
-				
-				
-				Double valorTotal = itemCarrinho.getValorTotal(carrinho);
-				
-				String valorTotalFormatado = formataValor.valorFormatado(valorTotal);
-				
-				request.setAttribute("cliente", cliente);
-				request.setAttribute("valorTotal", valorTotalFormatado);
-				request.setAttribute("quantidade", carrinho.size());
-				request.setAttribute("carrinho", carrinho);
-				request.getRequestDispatcher("finalizarcompra.jsp").forward(request, response);
+					ArrayList<ItemCarrinho> carrinho = carrinhoDAO.itensPorCliente(cliente.getIdCliente());
+
+					cliente.setListaItens(carrinho);
+
+					ItemCarrinho itemCarrinho = new ItemCarrinho();
+
+					FormataValor formataValor = new FormataValor();
+
+					Double valorTotal = itemCarrinho.getValorTotal(carrinho);
+
+					String valorTotalFormatado = formataValor.valorFormatado(valorTotal);
+
+					request.setAttribute("cliente", cliente);
+					request.setAttribute("valorTotal", valorTotalFormatado);
+					request.setAttribute("quantidade", carrinho.size());
+					request.setAttribute("carrinho", carrinho);
+					request.getRequestDispatcher("finalizarcompra.jsp").forward(request, response);
 				} catch (Exception e) {
-					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
 			}

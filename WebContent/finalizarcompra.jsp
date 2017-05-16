@@ -112,7 +112,7 @@
 			<div class="modal-content">
 				<div class="modal-header">
 					<button type="button" class="close" data-dismiss="modal">&times;</button>
-					<h2 class="modal-title center">Alterar endereço</h2>
+					<h2 class="modal-title center">Alterar Cartão</h2>
 				</div>
 				<div class="modal-body">
 
@@ -171,7 +171,7 @@
 
 					<div class="jumbotron">
 
-						<form action="">
+						<form name="formulario" method="post" action="/e-commerce-easports/ClienteServlet?acao=updateendereco">
 							<div class="form-group">
 								<label for="inputCEP" class="">CEP</label> <input type="text"
 									class="form-control" id="inputCep" placeholder="00000-000"
@@ -192,7 +192,7 @@
 							<div class="form-group">
 								<label for="inputComplemento">Complemento </label> <input
 									type="text" class="form-control" id="inputComplemento"
-									placeholder="Complemento" name="complemento" required>
+									placeholder="Complemento" name="complemento">
 							</div>
 							<div class="form-group">
 								<label for="inputBairro">Bairro</label> <input type="text"
