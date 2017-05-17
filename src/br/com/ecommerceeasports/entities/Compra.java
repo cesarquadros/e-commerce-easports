@@ -7,8 +7,8 @@ public class Compra {
 	private Integer idCompra;
 	private Date dataCompra;
 	private Integer parcelas;
-	private Integer idCartao;
-	private Integer idEnreco;
+	private Cartao cartao;
+	private String tipoPagamento;
 	
 	public Integer getIdCompra() {
 		return idCompra;
@@ -28,18 +28,18 @@ public class Compra {
 	public void setParcelas(Integer parcelas) {
 		this.parcelas = parcelas;
 	}
-	public Integer getIdCartao() {
-		return idCartao;
-	}
-	public void setIdCartao(Integer idCartao) {
-		this.idCartao = idCartao;
-	}
-	public Integer getIdEnreco() {
-		return idEnreco;
-	}
-	public void setIdEnreco(Integer idEnreco) {
-		this.idEnreco = idEnreco;
-	}
 	
+	public Cartao getCartao() {
+		return cartao;
+	}
+	public void setCartao(Cartao cartao) {
+		this.cartao = cartao;
+	}
+	public String getTipoPagamento() {
+		return tipoPagamento;
+	}
+	public void setTipoPagamento(String tipoPagamento) {
+		this.tipoPagamento = tipoPagamento;
+	}
 	
 }

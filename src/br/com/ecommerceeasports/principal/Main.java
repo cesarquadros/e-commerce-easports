@@ -1,12 +1,17 @@
 package br.com.ecommerceeasports.principal;
 
+import java.util.Date;
+
+import br.com.ecommerceeasports.entities.Cartao;
 import br.com.ecommerceeasports.entities.Cliente;
+import br.com.ecommerceeasports.entities.Compra;
 import br.com.ecommerceeasports.entities.Endereco;
 import br.com.ecommerceeasports.entities.ItemCarrinho;
 import br.com.ecommerceeasports.entities.Produto;
 import br.com.ecommerceeasports.managedbean.ManagedBeanProduto;
 import br.com.ecommerceeasports.persistence.CarrinhoDAO;
 import br.com.ecommerceeasports.persistence.ClienteDAO;
+import br.com.ecommerceeasports.persistence.CompraDao;
 import br.com.ecommerceeasports.persistence.DAO;
 import br.com.ecommerceeasports.persistence.EnderecoDAO;
 import br.com.ecommerceeasports.persistence.ProdutoDAO;
@@ -108,8 +113,13 @@ public class Main {
 		
 		CarrinhoDAO carrinho = new CarrinhoDAO();
 		
-		carrinho.insert(i); */
+		carrinho.insert(i); 
 		
+		Date data = ConverteData.getDataAtual();
+		
+		System.out.println(data);
+		
+		System.out.println(ConverteData.dateCompletaToString(data));
 		Endereco endereco = new Endereco();
 		
 		endereco.setLogradouro("Yervant");
@@ -124,8 +134,26 @@ public class Main {
 		EnderecoDAO e = new EnderecoDAO();
 		
 		e.update(endereco);
+		*/
 		
+		Cartao cartao = new Cartao();
 		
+		cartao.setNumero("0055002200330044");
+		cartao.setNomeImpresso("Cesar Quadros");
+		cartao.setValidade(ConverteData.stringToDate("2017-19-07"));
+		cartao.setCodigoSeguranca(569);
+		cartao.setIdCartao(1);
+		
+		Compra compra = new Compra();
+		
+		compra.setDataCompra(ConverteData.getDataAtual());
+		compra.setCartao(cartao);
+		compra.setParcelas(5);
+		compra.setTipoPagamento("cartao");
+		
+		CompraDao c = new CompraDao(); 
+		
+		c.insert(compra);
 		
 	}
 

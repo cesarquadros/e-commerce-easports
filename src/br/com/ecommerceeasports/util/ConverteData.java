@@ -40,8 +40,21 @@ public class ConverteData {
          return dataString;
  	}
 	
+	public static String dateCompletaToString(Date data) { 
+ 		if (data == null || data.equals(""))
+ 			return null;
+         String dataString = null;
+         try {
+        	 Format formatter = new SimpleDateFormat("dd-MM-yyyy HH:mm:ss");
+        	 dataString = formatter.format(data);
+         } catch (Exception e) {            
+        	 e.printStackTrace();
+         }
+         return dataString;
+ 	}
+	
 	public static Date getDataAtual() throws ParseException {        
-	    SimpleDateFormat sd = new SimpleDateFormat("dd/MM/yyyy");
+	    SimpleDateFormat sd = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
 	    Date dataAtual = new Date();
 	    String data = sd.format(dataAtual);
 	    Date dataDate = sd.parse(data);

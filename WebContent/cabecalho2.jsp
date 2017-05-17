@@ -36,12 +36,12 @@
 		<div class="row">
 			<div class="col-xs-5 col-sm-5 col-md-2 center">
 				<a href="index.jsp"><img
-					src="./imagens_projeto/EA_Sports_logo.png"
+					src="./imagens_projeto/logo_preto.png"
 					alt="Logotipo" id="logo" class="img-responsive" /></a>
 			</div>
 		</div>
 	</div>
 	<hr />
-	<br />
+
 </body>
 </html>

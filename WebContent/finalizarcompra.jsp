@@ -134,16 +134,16 @@
 					<thead>
 						<tr style="background: #eee;">
 							<th><img src="./imagens_projeto/boleto.png"></th>
-							<th>Número</th>
-							<th>Titular</th>
+							<th>Pagamento</th>
+							<th></th>
 							<th>Total</th>
 						</tr>
 					</thead>
 					<tbody style="font-size: 12px;">
 						<tr>
 							<td></td>
-							<td>${cliente.cartao.numeroX}</td>
-							<td>${cliente.cartao.nomeImpresso}</td>
+							<td>Á vista</td>
+							<td></td>
 							<td>${valorTotal}</td>
 						</tr>
 					</tbody>
