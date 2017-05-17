@@ -1,7 +1,5 @@
 package br.com.ecommerceeasports.persistence;
 
-import java.sql.SQLException;
-
 import br.com.ecommerceeasports.entities.Cartao;
 import br.com.ecommerceeasports.util.ConverteData;
 
@@ -59,6 +57,7 @@ public class CartaoDAO extends DAO{
 			cartao.setNumero(rs.getString("numero"));
 			cartao.setNomeImpresso(rs.getString("nomeImpresso"));
 			cartao.setValidade(ConverteData.stringToDate(rs.getString("validade")));
+			cartao.setValidadeFormatada(rs.getString("validade"));
 			cartao.setCodigoSeguranca(rs.getInt("codigoSeguranca"));
 		
 			return cartao;

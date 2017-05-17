@@ -110,4 +110,24 @@ public class CarrinhoDAO extends DAO {
 		fechaConexao();
 		return lista;
 	}
+	
+	public void finalizarItem(Integer idItem, Integer idCompra) throws Exception {
+
+		String query = "update itens_carrinho set finalizado = ?, idCompra = ? where idItem = ?";
+
+		abreConexao();
+
+		stmt = con.prepareStatement(query);
+
+		stmt.setInt(1, 3);
+		stmt.setInt(2, idCompra);
+		stmt.setInt(3, idItem);
+
+		stmt.execute();
+
+		stmt.close();
+
+		fechaConexao();
+
+	}
 }

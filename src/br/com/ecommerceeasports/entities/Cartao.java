@@ -9,6 +9,7 @@ public class Cartao {
 	private String numeroX;
 	private String nomeImpresso;
 	private Date validade;
+	private String validadeFormatada;
 	private Integer codigoSeguranca;
 	
 	public Cartao() {
@@ -72,6 +73,14 @@ public class Cartao {
 
 	public void setNumeroX(String numeroX) {
 		this.numeroX = numeroX;
+	}
+
+	public String getValidadeFormatada() {
+		return validadeFormatada;
+	}
+
+	public void setValidadeFormatada(String validadeFormatada) {
+		this.validadeFormatada = validadeFormatada;
 	}
 	
 	

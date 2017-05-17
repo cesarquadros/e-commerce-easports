@@ -2,6 +2,7 @@ package br.com.ecommerceeasports.servlet;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.List;
 import javax.servlet.ServletException;
@@ -13,11 +14,15 @@ import javax.servlet.http.HttpSession;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.sun.glass.ui.Pixels.Format;
 import br.com.ecommerceeasports.entities.Cliente;
+import br.com.ecommerceeasports.entities.Compra;
 import br.com.ecommerceeasports.entities.CountCarrinho;
 import br.com.ecommerceeasports.entities.ItemCarrinho;
 import br.com.ecommerceeasports.entities.Produto;
 import br.com.ecommerceeasports.persistence.CarrinhoDAO;
+import br.com.ecommerceeasports.persistence.ClienteDAO;
+import br.com.ecommerceeasports.persistence.CompraDao;
 import br.com.ecommerceeasports.persistence.ProdutoDAO;
+import br.com.ecommerceeasports.util.ConverteData;
 import br.com.ecommerceeasports.util.FormataValor;
 
 @WebServlet("/ComprarProdutoServlet")
@@ -68,15 +73,58 @@ public class ComprarProdutoServlet extends HttpServlet {
 					Double valorTotal = itemCarrinho.getValorTotal(carrinho);
 
 					String valorTotalFormatado = formataValor.valorFormatado(valorTotal);
-					
+
 					carrinhoDAO = new CarrinhoDAO();
-					
+
 					ArrayList<CountCarrinho> carrinhoCount = carrinhoDAO.countByBliente(cliente.getIdCliente());
-					
+
 					request.setAttribute("cliente", cliente);
-					request.setAttribute("valorTotal", valorTotalFormatado);
+					request.setAttribute("valorTotalFormatado", valorTotalFormatado);
+					request.setAttribute("valorTotal", valorTotal);
 					request.setAttribute("quantidade", carrinho.size());
 					request.setAttribute("carrinhocount", carrinhoCount);
+					request.getRequestDispatcher("finalizarcompra.jsp").forward(request, response);
+				
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+			}
+		} else if (acao.equals("comprar")) {
+
+			session = request.getSession();
+
+			Cliente cliente;
+
+			if (session.getAttribute("usuarioLogado") == null) {
+
+			} else {
+				cliente = (Cliente) session.getAttribute("usuarioLogado");
+
+				try {
+					ArrayList<ItemCarrinho> listItem = cliente.getListaItens();
+
+					Compra compra = new Compra();
+
+					compra.setDataCompra(ConverteData.getDataAtual());
+					compra.setCartao(cliente.getCartao());
+					compra.setParcelas(Integer.parseInt(request.getParameter("parcelas")));
+					compra.setTipoPagamento("cartao");
+
+					CompraDao compraDao = new CompraDao();
+
+					int idCompra = compraDao.insert(compra);
+					
+					for (int i = 0; i < listItem.size(); i++) {
+						
+						CarrinhoDAO carrinhoDAO = new CarrinhoDAO();
+						carrinhoDAO.finalizarItem(listItem.get(i).getIdItem(), idCompra);
+					}
+					
+					ClienteDAO clienteDAO = new ClienteDAO();
+					cliente = clienteDAO.findById(cliente.getIdCliente());
+					session.setAttribute("usuarioLogado", cliente);
+					request.setAttribute("usuarioLogado", cliente);
+					request.setAttribute("cliente", cliente);
 					request.getRequestDispatcher("finalizarcompra.jsp").forward(request, response);
 				} catch (Exception e) {
 					e.printStackTrace();

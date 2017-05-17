@@ -27,9 +27,6 @@ app.controller('appCtrl', [ '$scope', '$http', function($scope, $http) {
             //alert($scope.array.logradouro);
 		});
 	}
-	
-	
-	
 	$scope.validarSenha = function (){
 		
 		 $scope.result = angular.equals($scope.senha, $scope.corfirmSenha);
@@ -51,6 +48,10 @@ app.controller('appCtrl', [ '$scope', '$http', function($scope, $http) {
 				alert('Removido do carrinho');
 				setTimeout('location.reload();', 1);
 			});
+		}
+	
+		$scope.parcelar = function(valor, parcela){
+			return (valor / parcela);
 		}
 	
 } ]);

@@ -64,7 +64,7 @@
 							<tr style="background: #eee;">
 								<td>Total a pagar:</td>
 								<td></td>
-								<td>${valorTotal}</td>
+								<td>${valorTotalFormatado}</td>
 							</tr>
 						</tbody>
 					</table>
@@ -105,6 +105,7 @@
 							<th>Número</th>
 							<th>Titular</th>
 							<th>Validade</th>
+
 						</tr>
 					</thead>
 					<tbody style="font-size: 12px;">
@@ -112,17 +113,31 @@
 							<td></td>
 							<td>${cliente.cartao.numeroX}</td>
 							<td>${cliente.cartao.nomeImpresso}</td>
-							<td><fmt:formatDate value="${cliente.cartao.validade}"
-									type="both" pattern="dd/MM/yyyy" dateStyle="full" /></td>
+							<td>${cliente.cartao.validadeFormatada}</td>
+
 						</tr>
 					</tbody>
 				</table>
-
 				<div>
-					<button type="button" class="btn btn-default navbar-btn"
-						id="btnCard">Aterar cartão</button>
-					<button type="button" class="btn btn-success navbar-btn"
-						id="finalizarCompra">Finalizar compra com cartão</button>
+
+					<button type="button" class="btn btn-default navbar-btn" id="btnCard">Aterar cartão</button>
+					<form name="formulario" method="post" action="/e-commerce-easports/ComprarProdutoServlet?acao=comprar">
+					<div class="form-group" style="font-size: 12pt;">
+						<select required="required" name="parcelas" class="form-control">
+							<option value="1">Á vista {{parcelar('${valorTotal}',1)|
+								number:2}}</option>
+							<option value="2">2x de R$
+								{{parcelar('${valorTotal}',2)| number:2}}</option>
+							<option value="3">3x de R$ {{parcelar('${valorTotal}',3)
+								| number:2}}</option>
+							<option value="4">4x de R$ {{parcelar('${valorTotal}',4)
+								| number:2}}</option>
+							<option value="5">5x de R$ {{parcelar('${valorTotal}',5)
+								| number:2}}</option>
+						</select>
+						<button type="submit" class="btn btn-success navbar-btn" id="finalizarCompraCard">Finalizar compra com cartão</button>
+					</div>					
+					</form>
 				</div>
 			</div>
 
@@ -144,13 +159,13 @@
 							<td></td>
 							<td>Á vista</td>
 							<td></td>
-							<td>${valorTotal}</td>
+							<td>${valorTotalFormatado}</td>
 						</tr>
 					</tbody>
 				</table>
-					<button type="button" class="btn btn-primary navbar-btn" id="finalizarCompra">Finalizar compra com boleto</button>
+				<button type="button" class="btn btn-primary navbar-btn"
+					id="finalizarCompraBoleto">Finalizar compra com boleto</button>
 			</div>
-
 		</div>
 	</div>
 
@@ -166,7 +181,6 @@
 				</div>
 				<div class="modal-body">
 					<div class="jumbotron">
-
 						<form name="formulario" method="post"
 							action="/e-commerce-easports/CartaoServlet?acao=update">
 							<div class="form-group">

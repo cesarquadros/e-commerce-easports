@@ -13,6 +13,7 @@ import javax.servlet.http.HttpSession;
 import br.com.ecommerceeasports.util.Criptografia;
 import br.com.ecommerceeasports.util.FormataValor;
 import br.com.ecommerceeasports.entities.Cliente;
+import br.com.ecommerceeasports.entities.CountCarrinho;
 import br.com.ecommerceeasports.entities.Endereco;
 import br.com.ecommerceeasports.entities.ItemCarrinho;
 import br.com.ecommerceeasports.persistence.CarrinhoDAO;
@@ -180,15 +181,13 @@ public class ControlePessoa extends HttpServlet {
 					Double valorTotal = itemCarrinho.getValorTotal(carrinho);
 
 					String valorTotalFormatado = formataValor.valorFormatado(valorTotal);
-
+					ArrayList<CountCarrinho> carrinhoCount = carrinhoDAO.countByBliente(cliente.getIdCliente());
+					
 					request.setAttribute("cliente", cliente);
 					request.setAttribute("valorTotal", valorTotalFormatado);
 					request.setAttribute("quantidade", carrinho.size());
-					request.setAttribute("carrinho", carrinho);
-					request.getRequestDispatcher("finalizarcompra.jsp").forward(request, response);
-				}
-				
-				
+					request.setAttribute("carrinhocount", carrinhoCount);
+					request.getRequestDispatcher("finalizarcompra.jsp").forward(request, response);}
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
