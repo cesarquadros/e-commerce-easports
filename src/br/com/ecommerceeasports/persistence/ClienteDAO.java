@@ -1,5 +1,7 @@
 package br.com.ecommerceeasports.persistence;
 
+import java.sql.Statement;
+
 import br.com.ecommerceeasports.entities.Cliente;
 import br.com.ecommerceeasports.util.ConverteData;
 
@@ -90,6 +92,8 @@ public class ClienteDAO extends DAO{
 		while (rs.next()) {
 
 			final EnderecoDAO enderecoDAO = new EnderecoDAO();
+			final CartaoDAO cartaoDAO = new CartaoDAO();
+			final CarrinhoDAO carrinhoDAO = new CarrinhoDAO();
 
 			cliente.setIdCliente(rs.getInt("idCliente"));
 			cliente.setEmail(rs.getString("email"));
@@ -102,6 +106,9 @@ public class ClienteDAO extends DAO{
 			cliente.setDataNascimento(ConverteData.stringToDate(rs.getString("dataNascimento")));
 			cliente.setDataNascFormatada(rs.getString("dataNascimento"));
 			cliente.setEndereco(enderecoDAO.findById(rs.getInt("idEndereco")));
+			cliente.setCartao(cartaoDAO.findById(rs.getInt("idCartao")));
+			cliente.setListaItens(carrinhoDAO.itensPorCliente(rs.getInt("idCliente")));
+			return cliente;
 
 		}
 
@@ -130,6 +137,8 @@ public class ClienteDAO extends DAO{
 		while (rs.next()) {
 
 			final EnderecoDAO enderecoDAO = new EnderecoDAO();
+			final CartaoDAO cartaoDAO = new CartaoDAO();
+			final CarrinhoDAO carrinhoDAO = new CarrinhoDAO();
 
 			cliente.setIdCliente(rs.getInt("idCliente"));
 			cliente.setEmail(rs.getString("email"));
@@ -142,6 +151,9 @@ public class ClienteDAO extends DAO{
 			cliente.setDataNascimento(ConverteData.stringToDate(rs.getString("dataNascimento")));
 			cliente.setDataNascFormatada(rs.getString("dataNascimento"));
 			cliente.setEndereco(enderecoDAO.findById(rs.getInt("idEndereco")));
+			cliente.setCartao(cartaoDAO.findById(rs.getInt("idCartao")));
+			cliente.setListaItens(carrinhoDAO.itensPorCliente(rs.getInt("idCliente")));
+			return cliente;
 
 		}
 
@@ -170,6 +182,8 @@ public class ClienteDAO extends DAO{
 		while (rs.next()) {
 
 			final EnderecoDAO enderecoDAO = new EnderecoDAO();
+			final CartaoDAO cartaoDAO = new CartaoDAO();
+			final CarrinhoDAO carrinhoDAO = new CarrinhoDAO();
 
 			cliente.setIdCliente(rs.getInt("idCliente"));
 			cliente.setEmail(rs.getString("email"));
@@ -182,15 +196,30 @@ public class ClienteDAO extends DAO{
 			cliente.setDataNascimento(ConverteData.stringToDate(rs.getString("dataNascimento")));
 			cliente.setDataNascFormatada(rs.getString("dataNascimento"));
 			cliente.setEndereco(enderecoDAO.findById(rs.getInt("idEndereco")));
+			cliente.setCartao(cartaoDAO.findById(rs.getInt("idCartao")));
+			cliente.setListaItens(carrinhoDAO.itensPorCliente(rs.getInt("idCliente")));
+			return cliente;
 
 		}
-
 		stmt.close();
-
 		fechaConexao();
-
 		return cliente;
 
 	}
 	
+	public void updateCartao(int idCliente, int idCartao) throws Exception{
+		
+		String query = "update Cliente set idCartao = ? where idCliente = ?";
+		
+		abreConexao();
+		
+		stmt = con.prepareStatement(query);
+		stmt.setInt(1, idCartao);
+		stmt.setInt(2, idCliente);
+		
+		stmt.execute();
+		stmt.close();
+		fechaConexao();
+		
+	}	
 }

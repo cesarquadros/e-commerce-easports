@@ -6,6 +6,7 @@ public class Compra {
 
 	private Integer idCompra;
 	private Date dataCompra;
+	private String dataCompraFormata;
 	private Integer parcelas;
 	private Cartao cartao;
 	private String tipoPagamento;
@@ -41,5 +42,12 @@ public class Compra {
 	public void setTipoPagamento(String tipoPagamento) {
 		this.tipoPagamento = tipoPagamento;
 	}
+	public String getDataCompraFormata() {
+		return dataCompraFormata;
+	}
+	public void setDataCompraFormata(String dataCompraFormata) {
+		this.dataCompraFormata = dataCompraFormata;
+	}
+	
 	
 }

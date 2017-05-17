@@ -16,6 +16,7 @@ import br.com.ecommerceeasports.entities.CountCarrinho;
 import br.com.ecommerceeasports.entities.ItemCarrinho;
 import br.com.ecommerceeasports.persistence.CarrinhoDAO;
 import br.com.ecommerceeasports.persistence.CartaoDAO;
+import br.com.ecommerceeasports.persistence.ClienteDAO;
 import br.com.ecommerceeasports.util.ConverteData;
 import br.com.ecommerceeasports.util.FormataValor;
 
@@ -23,7 +24,7 @@ import br.com.ecommerceeasports.util.FormataValor;
 public class CartaoServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	public static HttpSession session;
-	
+
 	public CartaoServlet() {
 		super();
 	}
@@ -45,22 +46,63 @@ public class CartaoServlet extends HttpServlet {
 
 		if (acao.equals("cadastrar")) {
 			try {
-				Cartao cartao = new Cartao();
 
-				cartao.setNumero(request.getParameter("numero"));
-				cartao.setNomeImpresso(request.getParameter("nome"));
-				cartao.setValidade(ConverteData.stringToDate(request.getParameter("data")));
-				cartao.setCodigoSeguranca(Integer.parseInt(request.getParameter("codigo")));
+				session = request.getSession();
+				Cliente cliente;
 
-				CartaoDAO cartaoDAO = new CartaoDAO();
+				if (session.getAttribute("usuarioLogado") == null) {
 
-				cartaoDAO.inserir(cartao);
+				} else {
+
+					cliente = (Cliente) session.getAttribute("usuarioLogado");
+					Cartao cartao = new Cartao();
+
+					cartao.setNumero(request.getParameter("numero"));
+					cartao.setNomeImpresso(request.getParameter("nome"));
+					cartao.setValidade(ConverteData.stringToDate(request.getParameter("data")));
+					cartao.setCodigoSeguranca(Integer.parseInt(request.getParameter("codigo")));
+
+					CartaoDAO cartaoDAO = new CartaoDAO();
+					int idCartao = cartaoDAO.inserir(cartao);
+					
+					cartao.setIdCartao(idCartao);
+					
+					ClienteDAO clienteDAO = new ClienteDAO();
+					clienteDAO.updateCartao(cliente.getIdCliente(), idCartao);
+					
+					session.setAttribute("usuarioLogado", cliente);
+					request.setAttribute("usuarioLogado", cliente);
+					
+					cliente.setCartao(cartao);
+
+					CarrinhoDAO carrinhoDAO = new CarrinhoDAO();
+					ArrayList<ItemCarrinho> carrinho = carrinhoDAO.itensPorCliente(cliente.getIdCliente());
+					ItemCarrinho itemCarrinho = new ItemCarrinho();
+					
+					FormataValor formataValor = new FormataValor();
+
+					Double valorTotal = itemCarrinho.getValorTotal(cliente.getListaItens());
+
+					String valorTotalFormatado = formataValor.valorFormatado(valorTotal);
+					ArrayList<CountCarrinho> carrinhoCount = carrinhoDAO.countByBliente(cliente.getIdCliente());
+					
+					session.setAttribute("usuarioLogado", cliente);
+					request.setAttribute("usuarioLogado", cliente);
+					
+					request.setAttribute("cliente", cliente);
+					request.setAttribute("valorTotalFormatado", valorTotalFormatado);
+					request.setAttribute("valorTotal", valorTotal);
+					request.setAttribute("quantidade", carrinho.size());
+					request.setAttribute("carrinhocount", carrinhoCount);
+					request.getRequestDispatcher("finalizarcompra.jsp").forward(request, response);
+					
+				}
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
 		} else if (acao.equals("update")) {
 			try {
-				
+
 				session = request.getSession();
 
 				Cliente cliente;
@@ -71,8 +113,7 @@ public class CartaoServlet extends HttpServlet {
 
 					Cartao cartao = new Cartao();
 					cliente = (Cliente) session.getAttribute("usuarioLogado");
-					
-					
+
 					CarrinhoDAO carrinhoDAO = new CarrinhoDAO();
 					ArrayList<ItemCarrinho> carrinho = carrinhoDAO.itensPorCliente(cliente.getIdCliente());
 					carrinhoDAO = new CarrinhoDAO();
@@ -81,11 +122,11 @@ public class CartaoServlet extends HttpServlet {
 					cartao.setValidade(ConverteData.stringToDate(request.getParameter("data")));
 					cartao.setCodigoSeguranca(Integer.parseInt(request.getParameter("codigo")));
 					cartao.setIdCartao(cliente.getCartao().getIdCartao());
-					
+
 					CartaoDAO cartaoDAO = new CartaoDAO();
 
 					cartaoDAO.update(cartao);
-					
+
 					cliente.setCartao(cartao);
 
 					ItemCarrinho itemCarrinho = new ItemCarrinho();
@@ -103,8 +144,8 @@ public class CartaoServlet extends HttpServlet {
 					request.setAttribute("quantidade", carrinho.size());
 					request.setAttribute("carrinhocount", carrinhoCount);
 					request.getRequestDispatcher("finalizarcompra.jsp").forward(request, response);
-				}		
-				
+				}
+
 			} catch (Exception e) {
 				e.printStackTrace();
 			}

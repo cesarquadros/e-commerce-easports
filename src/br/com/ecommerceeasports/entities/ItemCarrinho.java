@@ -7,11 +7,10 @@ public class ItemCarrinho {
 	private Integer idItem;
 	private Cliente cliente;
 	private Produto produto;
-	private Compra compra;
+	private Integer idCompra;
 	private Integer finalizado;
 	private Double valorTotal;
-	
-	
+		
 	public Integer getIdItem() {
 		return idItem;
 	}
@@ -30,19 +29,24 @@ public class ItemCarrinho {
 	public void setProduto(Produto produto) {
 		this.produto = produto;
 	}
-	public Compra getCompra() {
-		return compra;
+	
+		
+	public Integer getIdCompra() {
+		return idCompra;
 	}
-	public void setCompra(Compra compra) {
-		this.compra = compra;
+	public void setIdCompra(Integer idCompra) {
+		this.idCompra = idCompra;
 	}
-
+	public Double getValorTotal() {
+		return valorTotal;
+	}
 	public Integer getFinalizado() {
 		return finalizado;
 	}
 	public void setFinalizado(Integer finalizado) {
 		this.finalizado = finalizado;
 	}
+	
 	public Double getValorTotal(ArrayList<ItemCarrinho> listCarrinho) {
 		
 		this.valorTotal = 0.0;

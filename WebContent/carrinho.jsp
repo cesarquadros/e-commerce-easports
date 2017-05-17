@@ -4,10 +4,7 @@
 <link rel="stylesheet" href="./css/stepbar.css" />
 
 <div class="container" ng-app="app" ng-controller="appCtrl">
-	<br />
-	
-	
-	
+	<br />	
 		<div class="stepwizard">
 		<div class="stepwizard-row">
 			<div class="stepwizard-step">

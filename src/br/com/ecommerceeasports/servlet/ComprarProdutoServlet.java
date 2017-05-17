@@ -19,6 +19,7 @@ import br.com.ecommerceeasports.entities.CountCarrinho;
 import br.com.ecommerceeasports.entities.ItemCarrinho;
 import br.com.ecommerceeasports.entities.Produto;
 import br.com.ecommerceeasports.persistence.CarrinhoDAO;
+import br.com.ecommerceeasports.persistence.CartaoDAO;
 import br.com.ecommerceeasports.persistence.ClienteDAO;
 import br.com.ecommerceeasports.persistence.CompraDao;
 import br.com.ecommerceeasports.persistence.ProdutoDAO;
@@ -84,7 +85,7 @@ public class ComprarProdutoServlet extends HttpServlet {
 					request.setAttribute("quantidade", carrinho.size());
 					request.setAttribute("carrinhocount", carrinhoCount);
 					request.getRequestDispatcher("finalizarcompra.jsp").forward(request, response);
-				
+
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
@@ -101,34 +102,64 @@ public class ComprarProdutoServlet extends HttpServlet {
 				cliente = (Cliente) session.getAttribute("usuarioLogado");
 
 				try {
+
 					ArrayList<ItemCarrinho> listItem = cliente.getListaItens();
 
 					Compra compra = new Compra();
+					CartaoDAO cartaoDAO = new CartaoDAO();
 
 					compra.setDataCompra(ConverteData.getDataAtual());
-					compra.setCartao(cliente.getCartao());
+
 					compra.setParcelas(Integer.parseInt(request.getParameter("parcelas")));
 					compra.setTipoPagamento("cartao");
 
 					CompraDao compraDao = new CompraDao();
 
-					int idCompra = compraDao.insert(compra);
-					
+					int idCompra = compraDao.insert(compra, cliente.getCartao().getIdCartao());
+
 					for (int i = 0; i < listItem.size(); i++) {
-						
+
 						CarrinhoDAO carrinhoDAO = new CarrinhoDAO();
 						carrinhoDAO.finalizarItem(listItem.get(i).getIdItem(), idCompra);
 					}
-					
+
+					compraDao = new CompraDao();
+
+					ArrayList<Compra> listaCompras = compraDao.listCompraFinalizadas();
+					request.setAttribute("listacompras", listaCompras);
+
 					ClienteDAO clienteDAO = new ClienteDAO();
 					cliente = clienteDAO.findById(cliente.getIdCliente());
+
 					session.setAttribute("usuarioLogado", cliente);
 					request.setAttribute("usuarioLogado", cliente);
 					request.setAttribute("cliente", cliente);
-					request.getRequestDispatcher("finalizarcompra.jsp").forward(request, response);
+					request.getRequestDispatcher("comprasfinalizadas.jsp").forward(request, response);
+
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
+			}
+		} else if (acao.equals("listacompra")) {
+
+			session = request.getSession();
+
+			Cliente cliente;
+
+			if (session.getAttribute("usuarioLogado") == null) {
+
+			} else {
+				try {
+					cliente = (Cliente) session.getAttribute("usuarioLogado");
+					CompraDao compraDao = new CompraDao();
+					ArrayList<Compra> listaCompras;
+					listaCompras = compraDao.listCompraFinalizadas();
+					request.setAttribute("listacompras", listaCompras);
+					request.getRequestDispatcher("comprasfinalizadas.jsp").forward(request, response);
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+
 			}
 		}
 	}

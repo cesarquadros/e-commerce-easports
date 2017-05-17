@@ -43,13 +43,11 @@ public class CarrinhoDAO extends DAO {
 
 		while (rs.next()) {
 
-			ClienteDAO clienteDAO = new ClienteDAO();
 			ProdutoDAO produtoDao = new ProdutoDAO();
 
 			ItemCarrinho itemCarrinho = new ItemCarrinho();
 
 			itemCarrinho.setIdItem((rs.getInt("idItem")));
-			itemCarrinho.setCliente(clienteDAO.findById(rs.getInt("idCliente")));
 			itemCarrinho.setProduto(produtoDao.findById(rs.getInt("idProduto")));
 
 			lista.add(itemCarrinho);
