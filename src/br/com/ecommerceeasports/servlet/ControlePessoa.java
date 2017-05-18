@@ -135,7 +135,7 @@ public class ControlePessoa extends HttpServlet {
 			final HttpSession session = request.getSession();
 			session.invalidate();
 			response.sendRedirect("/e-commerce-easports/index.jsp");
-			
+
 		} else if (acao.equals("updateendereco")) {
 
 			try {
@@ -146,11 +146,11 @@ public class ControlePessoa extends HttpServlet {
 				if (session.getAttribute("usuarioLogado") == null) {
 
 				} else {
-					
+
 					cliente = (Cliente) session.getAttribute("usuarioLogado");
 
-					CarrinhoDAO carrinhoDAO = new CarrinhoDAO();				
-					
+					CarrinhoDAO carrinhoDAO = new CarrinhoDAO();
+
 					final Endereco endereco = new Endereco();
 					endereco.setLogradouro(request.getParameter("logradouro"));
 					endereco.setNumero(Integer.parseInt(request.getParameter("numero")));
@@ -160,16 +160,16 @@ public class ControlePessoa extends HttpServlet {
 					endereco.setEstado(request.getParameter("estado"));
 					endereco.setComplemento(request.getParameter("complemento"));
 					endereco.setIdEndereco(cliente.getEndereco().getIdEndereco());
-					
+
 					EnderecoDAO enderecoDAO = new EnderecoDAO();
 
 					enderecoDAO.update(endereco);
-					
+
 					cliente.setEndereco(endereco);
-					
+
 					session.setAttribute("usuarioLogado", cliente);
 					request.setAttribute("usuarioLogado", cliente);
-					
+
 					ArrayList<ItemCarrinho> carrinho = carrinhoDAO.itensPorCliente(cliente.getIdCliente());
 
 					cliente.setListaItens(carrinho);
@@ -182,17 +182,36 @@ public class ControlePessoa extends HttpServlet {
 
 					String valorTotalFormatado = formataValor.valorFormatado(valorTotal);
 					ArrayList<CountCarrinho> carrinhoCount = carrinhoDAO.countByBliente(cliente.getIdCliente());
-					
+
 					request.setAttribute("cliente", cliente);
 					request.setAttribute("valorTotal", valorTotalFormatado);
 					request.setAttribute("quantidade", carrinho.size());
 					request.setAttribute("carrinhocount", carrinhoCount);
-					request.getRequestDispatcher("finalizarcompra.jsp").forward(request, response);}
+					request.getRequestDispatcher("finalizarcompra.jsp").forward(request, response);
+				}
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
+		} else if (acao.equals("minhaconta")) {
+
+			session = request.getSession();
+
+			Cliente cliente;
+
+			if (session.getAttribute("usuarioLogado") == null) {
+				request.getRequestDispatcher("login.jsp").forward(request, response);
+			} else {
+				cliente = (Cliente) session.getAttribute("usuarioLogado");
+				request.setAttribute("cliente", cliente);
+				request.getRequestDispatcher("minhaconta.jsp").forward(request, response);
+			}
 		}
-
 	}
-
 }
+
+
+
+
+
+
+

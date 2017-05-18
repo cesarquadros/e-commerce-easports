@@ -44,18 +44,13 @@
 
 	<div class="container-fluid" id="banner1">
 		<div class="row">
-			<div class="col-xs-4 col-sm-4 col-md-2">
+			<div class="col-xs-4 col-sm-4 col-md-4">
 				<a href="index.jsp"><img
-					src="./imagens_projeto/EA_Sports_logo.png" alt="Logotipo" id="logo"
+					src="./imagens_projeto/logo2.png" alt="Logotipo" id="logo"
 					class="img-responsive" /> </a>
 			</div>
-
-			<div class="col-xs-5 col-sm-5 col-md-6" id="buscarDoBanner">
-				<input class="form-control input-lg" type="text"
-					placeholder="Buscar" id="pesquisaprod" ng-model="pesquisaprod">
-			</div>
 			
-			<div class="col-xs-4 col-sm-4 col-md-4">
+			<div class="col-xs-4 col-sm-4 col-md-8">
 				<ul class="nav navbar-nav navbar-right">
 				
 					<li class="dropdown">
@@ -63,8 +58,7 @@
 							<span class="glyphicon glyphicon-user" ng-init="verificarLogin('${usuarioLogado.nome}')"></span> 
 					{{logado ? '${usuarioLogado.nome}' : 'Entrar' }}<span class="caret"></span></a>
 						<ul class="dropdown-menu">						
-							<li><a href="{{logado ? '/e-commerce-easports/ClienteServlet?acao=minhaconta' : 'login.jsp' }}">
-							{{logado ? 'Minha conta' : 'Efetuar Login'}}</a></li>
+							<li><a href="{{logado ? 'minhaconta.jsp' : 'login.jsp' }}">{{logado ? 'Minha conta' : 'Efetuar Login'}}</a></li>
 							<li><a href="/e-commerce-easports/CarrinhoServlet?acao=carrinhobycli">Meu Carrinho</a></li>
 							<li><a href="/e-commerce-easports/ClienteServlet?acao=logout">Sair</a></li>
 						</ul></li>

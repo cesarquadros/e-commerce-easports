@@ -4,7 +4,7 @@
         <footer class="footer">
             <div class="row">
                 <div class="col-xs-12 col-sm-6 col-md-4">
-                    <img src= "./imagens_projeto/Logos-cartoes.jpg" 
+                    <img src= "./imagens_projeto/pagseguro.jpg" 
                     class="img-responsive"/>
                 </div>
 
