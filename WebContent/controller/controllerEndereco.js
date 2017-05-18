@@ -9,7 +9,8 @@ app.controller('appCtrl', [ '$scope', '$http', function($scope, $http) {
 	$scope.senha;
 	$scope.corfirmSenha;
 	$scope.result = false;
-
+	
+	
 	$scope.validaCep = function(cep) {
 			
 		$http({
@@ -52,6 +53,14 @@ app.controller('appCtrl', [ '$scope', '$http', function($scope, $http) {
 	
 		$scope.parcelar = function(valor, parcela){
 			return (valor / parcela);
+		}
+		
+		$scope.hideCard = function(cartao){
+			if(cartao){
+				return true;
+			}else {
+				return false;
+			}
 		}
 	
 } ]);

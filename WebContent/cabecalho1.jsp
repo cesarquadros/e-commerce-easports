@@ -63,7 +63,7 @@
 							<span class="glyphicon glyphicon-user" ng-init="verificarLogin('${usuarioLogado.nome}')"></span> 
 					{{logado ? '${usuarioLogado.nome}' : 'Entrar' }}<span class="caret"></span></a>
 						<ul class="dropdown-menu">						
-							<li><a href="login.jsp">{{logado ? 'Minha conta' : 'Efetuar Login'}}</a></li>
+							<li><a href="{{logado ? 'minhaconta.jsp' : 'login.jsp' }}">{{logado ? 'Minha conta' : 'Efetuar Login'}}</a></li>
 							<li><a href="/e-commerce-easports/CarrinhoServlet?acao=carrinhobycli">Meu Carrinho</a></li>
 							<li><a href="/e-commerce-easports/ClienteServlet?acao=logout">Sair</a></li>
 						</ul></li>

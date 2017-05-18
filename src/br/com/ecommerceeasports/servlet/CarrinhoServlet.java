@@ -85,9 +85,10 @@ public class CarrinhoServlet extends HttpServlet {
 					out.println("OK");
 
 				}
-				System.out.println("");
-			} catch (Exception e) {
+
+			} catch (Exception e) {				
 				e.printStackTrace();
+				out.println(e.toString());
 			}
 		
 		} else if (acao.equals("carrinhobycli")) {

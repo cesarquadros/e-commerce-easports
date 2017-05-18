@@ -41,33 +41,31 @@
 
 		<div class="row">
 			<div class="col-xs-12 col-sm-12 col-md-8">
-				<form>
-					<table class="table table-hover">
-						<thead>
-							<tr style="background: #eee;">
-								<th>Itens</th>
-								<th>Quantidade</th>
-								<th>Valor</th>
-							</tr>
-						</thead>
-						<c:forEach items="${carrinhocount}" var="carrinho">
-							<tbody style="font-size: 12px;">
-								<tr>
-									<td>${carrinho.nome}</td>
-									<td>${carrinho.quantidade}</td>
-									<td>${carrinho.valorFormatado}</td>
-								</tr>
-							</tbody>
-						</c:forEach>
-						<tbody>
-							<tr style="background: #eee;">
-								<td>Total a pagar:</td>
-								<td></td>
-								<td>${valorTotalFormatado}</td>
+				<table class="table table-hover">
+					<thead>
+						<tr style="background: #eee;">
+							<th>Itens</th>
+							<th>Quantidade</th>
+							<th>Valor</th>
+						</tr>
+					</thead>
+					<c:forEach items="${carrinhocount}" var="carrinho">
+						<tbody style="font-size: 12px;">
+							<tr>
+								<td>${carrinho.nome}</td>
+								<td>${carrinho.quantidade}</td>
+								<td>${carrinho.valorFormatado}</td>
 							</tr>
 						</tbody>
-					</table>
-				</form>
+					</c:forEach>
+					<tbody>
+						<tr style="background: #eee;">
+							<td>Total a pagar:</td>
+							<td></td>
+							<td>${valorTotalFormatado}</td>
+						</tr>
+					</tbody>
+				</table>
 			</div>
 
 			<div class="col-xs-12 col-sm-12 col-md-4">
@@ -118,23 +116,26 @@
 				</table>
 				<div>
 
-					<button type="button" class="btn btn-default navbar-btn" id="btnCard">Aterar cartão</button>
-					<form name="formulario" method="post" action="/e-commerce-easports/ComprarProdutoServlet?acao=comprar">
-					<div class="form-group" style="font-size: 12pt;">
-						<select required="required" name="parcelas" class="form-control">
-							<option value="1">Á vista {{parcelar('${valorTotal}',1)|
-								number:2}}</option>
-							<option value="2">2x de R$
-								{{parcelar('${valorTotal}',2)| number:2}}</option>
-							<option value="3">3x de R$ {{parcelar('${valorTotal}',3)
-								| number:2}}</option>
-							<option value="4">4x de R$ {{parcelar('${valorTotal}',4)
-								| number:2}}</option>
-							<option value="5">5x de R$ {{parcelar('${valorTotal}',5)
-								| number:2}}</option>
-						</select>
-						<button type="submit" class="btn btn-success navbar-btn" id="finalizarCompraCard">Finalizar compra com cartão</button>
-					</div>					
+					<button type="button" class="btn btn-default navbar-btn"
+						id="btnCard">Aterar cartão</button>
+					<form name="formulario" method="post"
+						action="/e-commerce-easports/ComprarProdutoServlet?acao=comprar&formapagamento=cartao">
+						<div class="form-group" style="font-size: 12pt;">
+							<select required="required" name="parcelas" class="form-control">
+								<option value="1">Á vista
+									{{parcelar('${valorTotal}',1)| number:2}}</option>
+								<option value="2">2x de R$
+									{{parcelar('${valorTotal}',2)| number:2}}</option>
+								<option value="3">3x de R$
+									{{parcelar('${valorTotal}',3) | number:2}}</option>
+								<option value="4">4x de R$
+									{{parcelar('${valorTotal}',4) | number:2}}</option>
+								<option value="5">5x de R$
+									{{parcelar('${valorTotal}',5) | number:2}}</option>
+							</select>
+							<button type="submit" class="btn btn-success navbar-btn" ng-show="hideCard('${cliente.cartao.nomeImpresso}')"
+								id="finalizarCompraCard">Finalizar compra com cartão</button>
+						</div>
 					</form>
 				</div>
 			</div>
@@ -161,9 +162,12 @@
 						</tr>
 					</tbody>
 				</table>
-				<button type="button" class="btn btn-primary navbar-btn"
-					id="finalizarCompraBoleto">Finalizar compra com boleto</button>
+				<a
+					href="/e-commerce-easports/ComprarProdutoServlet?acao=comprar&formapagamento=boleto&parcelas=1"
+					type="button" class="btn btn-primary navbar-btn"> Finalizar
+					compra com boleto </a>
 			</div>
+			</form>
 		</div>
 	</div>
 

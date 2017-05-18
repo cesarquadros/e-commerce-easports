@@ -78,7 +78,9 @@ public class ComprarProdutoServlet extends HttpServlet {
 					carrinhoDAO = new CarrinhoDAO();
 
 					ArrayList<CountCarrinho> carrinhoCount = carrinhoDAO.countByBliente(cliente.getIdCliente());
-
+					
+					session.setAttribute("carrinhocount", carrinhoCount);
+					
 					request.setAttribute("cliente", cliente);
 					request.setAttribute("valorTotalFormatado", valorTotalFormatado);
 					request.setAttribute("valorTotal", valorTotal);
@@ -91,7 +93,7 @@ public class ComprarProdutoServlet extends HttpServlet {
 				}
 			}
 		} else if (acao.equals("comprar")) {
-
+			
 			session = request.getSession();
 
 			Cliente cliente;
@@ -106,12 +108,11 @@ public class ComprarProdutoServlet extends HttpServlet {
 					ArrayList<ItemCarrinho> listItem = cliente.getListaItens();
 
 					Compra compra = new Compra();
-					CartaoDAO cartaoDAO = new CartaoDAO();
 
 					compra.setDataCompra(ConverteData.getDataAtual());
 
 					compra.setParcelas(Integer.parseInt(request.getParameter("parcelas")));
-					compra.setTipoPagamento("cartao");
+					compra.setTipoPagamento(request.getParameter("formapagamento"));
 
 					CompraDao compraDao = new CompraDao();
 
@@ -133,8 +134,10 @@ public class ComprarProdutoServlet extends HttpServlet {
 
 					session.setAttribute("usuarioLogado", cliente);
 					request.setAttribute("usuarioLogado", cliente);
+					
+					request.setAttribute("carrinhocount", session.getAttribute("carrinhocount"));
 					request.setAttribute("cliente", cliente);
-					request.getRequestDispatcher("comprasfinalizadas.jsp").forward(request, response);
+					request.getRequestDispatcher("confirmacaocompra.jsp").forward(request, response);
 
 				} catch (Exception e) {
 					e.printStackTrace();

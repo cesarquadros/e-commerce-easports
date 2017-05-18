@@ -1,6 +1,6 @@
 	<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 	<jsp:useBean class="br.com.ecommerceeasports.managedbean.ManagedBeanProduto" id="mb"></jsp:useBean>
-	<jsp:include page="cabecalho1.jsp"></jsp:include>
+		<jsp:include page="cabecalho1.jsp"></jsp:include>
 
 	<div class="container" id="carrossel">
 		<div id="carousel-example-generic" class="carousel slide"
