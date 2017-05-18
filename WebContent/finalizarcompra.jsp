@@ -182,37 +182,7 @@
 					<h2 class="modal-title center">Alterar Cartão</h2>
 				</div>
 				<div class="modal-body">
-					<div class="jumbotron">
-						<form name="formulario" method="post"
-							action="/e-commerce-easports/CartaoServlet?acao=update">
-							<div class="form-group">
-								<label for="inputNumCartao">Número</label> <input type="number"
-									class="form-control" id="inputNumCartao" name="numero"
-									placeholder="Número">
-							</div>
-							<div class="form-group">
-								<label for="inputNomeCartao">Nome Impresso</label> <input
-									type="text" class="form-control" id="inputNomeCartao"
-									placeholder="Nome" name="nome">
-							</div>
-							<div class="form-group">
-								<label for="inputValidCartao">Validade</label> <input
-									type="date" class="form-control" id="inputValidCartao"
-									placeholder="Data" name="data">
-							</div>
-							<div class="form-group">
-								<label for="inputCodSegCart">Código de Segurança</label> <input
-									type="text" class="form-control" id="inputCodSegCart"
-									placeholder="Código" name="codigo">
-							</div>
-
-							<div class="center">
-								<button type="submit" class="btn btn-primary">Cadastrar</button>
-								<button type="button" class="btn btn-danger"
-									data-dismiss="modal">Cancelar</button>
-							</div>
-						</form>
-					</div>
+					<jsp:include page="formcartao.jsp"></jsp:include>
 				</div>
 			</div>
 		</div>
@@ -230,55 +200,9 @@
 					<h2 class="modal-title center">Alterar endereço</h2>
 				</div>
 				<div class="modal-body">
+				
+				<jsp:include page="formendereco.jsp"></jsp:include>
 
-					<div class="jumbotron">
-
-						<form name="formulario" method="post"
-							action="/e-commerce-easports/ClienteServlet?acao=updateendereco">
-							<div class="form-group">
-								<label for="inputCEP" class="">CEP</label> <input type="text"
-									class="form-control" id="inputCep" placeholder="00000-000"
-									name="cep" required ng-model="cCep"
-									ng-blur="validaCep(cCep,'')" />
-							</div>
-							<div class="form-group">
-								<label for="inputLogradouro">Logradouro</label> <input
-									type="text" class="form-control" id="inputLogradouro"
-									placeholder="Ex.: Rua: xxxxx" name="logradouro"
-									value="{{array.logradouro}}" required>
-							</div>
-							<div class="form-group">
-								<label for="inputNumero">Número</label> <input type="number"
-									class="form-control" id="inputNumero" placeholder="Número"
-									name="numero" required>
-							</div>
-							<div class="form-group">
-								<label for="inputComplemento">Complemento </label> <input
-									type="text" class="form-control" id="inputComplemento"
-									placeholder="Complemento" name="complemento">
-							</div>
-							<div class="form-group">
-								<label for="inputBairro">Bairro</label> <input type="text"
-									class="form-control" id="inputBairro" placeholder="Bairro"
-									name="bairro" value="{{array.bairro}}" required>
-							</div>
-							<div class="form-group">
-								<label for="inputCidade">Cidade</label> <input type="text"
-									class="form-control" id="inputCidade" placeholder="Cidade"
-									name="cidade" value="{{array.cidade}}" required>
-							</div>
-							<div class="form-group">
-								<label for="inputEstado">Estado</label> <input type="text"
-									class="form-control" id="inputEstado" placeholder="Estado"
-									name="estado" value="{{array.estado}}" required>
-							</div>
-							<div class="center">
-								<button type="submit" class="btn btn-primary">Cadastrar</button>
-								<button type="button" class="btn btn-danger"
-									data-dismiss="modal">Cancelar</button>
-							</div>
-						</form>
-					</div>
 				</div>
 			</div>
 		</div>

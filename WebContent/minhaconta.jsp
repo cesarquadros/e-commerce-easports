@@ -3,11 +3,11 @@
 <br />
 <br />
 <br />
-<div class="container">
+<div class="container" ng-app="app" ng-controller="appCtrl">
 
 	<div class="row">
-
-		<div class="col-xs-12 col-sm-12 col-md-2" style="background: #eee; padding-top: 20px;">
+		<div class="col-xs-12 col-sm-12 col-md-2"
+			style="background: #eee; padding-top: 20px;">
 			<div class="row">
 				<div class="col-xs-12 col-sm-12 col-md-12">
 					<img alt="avatar" src="./imagens_projeto/avatar.jpg">
@@ -29,25 +29,85 @@
 			<div class="row">
 				<div class="col-xs-12 col-sm-12 col-md-12">
 					<h4>MEUS PEDIDOS</h4>
+					<hr />
 					<ul>
 						<li><a href="#">Relatorio de compras</a></li>
 					</ul>
-					<hr />
+
 					<br />
 				</div>
 			</div>
 			<div class="row">
 				<div class="col-xs-12 col-sm-12 col-md-12">
 					<h4>MEUS DADOS</h4>
+					<hr />
 					<ul>
 						<li><a href="#">Dados pessoais</a></li>
-						<li><a href="#">Endereço</a></li>
+						<li><a href="#" id="btnEnd">Endereço</a></li>
 						<li><a href="#">Alterar senha</a></li>
 					</ul>
-					<hr />
+					<br />
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-xs-12 col-sm-12 col-md-12">
+					<h4>Pagamento</h4>
+					<hr />					
+					<ul>
+						<li><a href="#" id="btnCard">Cartão</a></li>
+					</ul>
 					<br />
 				</div>
 			</div>
 		</div>
 	</div>
+
+	<!-- -------------------------------------------------------------------------- MODAL ENDEREÇO ------------------------------------------------------->
+	<div id="myModal" class="modal fade" role="dialog">
+		<div class="modal-dialog">
+
+			<!-- Modal content-->
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal">&times;</button>
+					<h2 class="modal-title center">Alterar endereço</h2>
+				</div>
+				<div class="modal-body">
+					<jsp:include page="formendereco.jsp"></jsp:include>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- ------------------------------------------------------------------------------ MODAL CARTAO ------------------------------------------------------->
+
+	<div id="myModal2" class="modal fade" role="dialog">
+		<div class="modal-dialog">
+			<!-- Modal content-->
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal">&times;</button>
+					<h2 class="modal-title center">Alterar Cartão</h2>
+				</div>
+				<div class="modal-body">
+					<jsp:include page="formcartao.jsp"></jsp:include>
+				</div>
+			</div>
+		</div>
+	</div>
 </div>
+
+<script>
+	$(document).ready(function() {
+		$("#btnEnd").click(function() {
+			$("#myModal").modal();
+		});
+	});
+</script>
+
+<script>
+	$(document).ready(function() {
+		$("#btnCard").click(function() {
+			$("#myModal2").modal();
+		});
+	});
+</script>

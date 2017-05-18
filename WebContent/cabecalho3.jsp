@@ -33,10 +33,9 @@
 
 <script
 	src=https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.6.1/angular.min.js></script>
-<script src="./controller/controllerProduto.js"></script>
+<script src="./controller/controllerPessoa.js"></script>
 
 <title>EA Sports</title>
-
 
 </head>
 
@@ -49,7 +48,7 @@
 					src="./imagens_projeto/logo2.png" alt="Logotipo" id="logo"
 					class="img-responsive" /> </a>
 			</div>
-			
+	
 			<div class="col-xs-4 col-sm-4 col-md-8">
 				<ul class="nav navbar-nav navbar-right">
 				
@@ -73,7 +72,8 @@
 			</div>
 		</div>
 	</div>
-
+	<br />
+	<br />
 	<div class="navbar navbar-default navbar-static-top">
 		<button class="navbar-toggle" data-toggle="collapse"
 			data-target=".navHeaderCollapse">

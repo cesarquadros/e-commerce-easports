@@ -1,7 +1,3 @@
-/**
- * 
- */
-
 
 var app = angular.module('app', []);
 app.controller('appCtrl', [ '$scope', '$http', function($scope, $http) {
