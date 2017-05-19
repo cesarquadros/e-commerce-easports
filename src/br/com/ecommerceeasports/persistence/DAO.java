@@ -18,6 +18,8 @@ public class DAO {
 	public void abreConexao() throws Exception {
 
 		Class.forName(DRIVER);
+		
+		con = null;
 
 		if (con == null) {
 			

@@ -5,7 +5,7 @@ import java.util.List;
 import br.com.ecommerceeasports.entities.Produto;
 import br.com.ecommerceeasports.util.FormataValor;
 
-public class ProdutoDAO extends DAO {
+public class ProdutoDAO extends Conexao {
 
 	public void insert(Produto produto, int idCategoria) throws Exception {
 
@@ -42,7 +42,7 @@ public class ProdutoDAO extends DAO {
 	
 	public List<Produto> listAll() throws Exception {
 
-		String query = "select * from produto order by RANDOM()";
+		String query = "select * from produto order by RAND()";
 
 		abreConexao();
 

@@ -7,7 +7,7 @@ import java.util.List;
 
 import br.com.ecommerceeasports.entities.Endereco;
 
-public class EnderecoDAO extends DAO {
+public class EnderecoDAO extends Conexao {
 
 	public void delete(final Integer id_endereco) throws Exception {
 

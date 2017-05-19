@@ -5,7 +5,7 @@ import java.sql.Statement;
 import br.com.ecommerceeasports.entities.Cartao;
 import br.com.ecommerceeasports.util.ConverteData;
 
-public class CartaoDAO extends DAO {
+public class CartaoDAO extends Conexao {
 
 	public int inserir(Cartao cartao) throws Exception {
 

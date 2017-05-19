@@ -5,7 +5,7 @@ import java.util.List;
 
 import br.com.ecommerceeasports.entities.Categoria;
 
-public class CategoriaDAO extends DAO{
+public class CategoriaDAO extends Conexao{
 
 	
 	public Categoria findById(Integer id_categoria) throws Exception {

@@ -1,11 +1,9 @@
 package br.com.ecommerceeasports.persistence;
 
-import java.sql.Statement;
-
 import br.com.ecommerceeasports.entities.Cliente;
 import br.com.ecommerceeasports.util.ConverteData;
 
-public class ClienteDAO extends DAO{
+public class ClienteDAO extends Conexao{
 
 	public void insert(final Cliente cliente, final int idEndereco) throws Exception {
 

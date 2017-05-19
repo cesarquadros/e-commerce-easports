@@ -153,7 +153,7 @@ public class Main {
 		
 		CompraDao c = new CompraDao(); 
 		
-		c.insert(compra, 1);
+		c.compraCartao(compra, 1);
 		
 	}
 

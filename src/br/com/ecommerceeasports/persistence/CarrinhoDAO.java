@@ -7,7 +7,7 @@ import br.com.ecommerceeasports.entities.CountCarrinho;
 import br.com.ecommerceeasports.entities.ItemCarrinho;
 import br.com.ecommerceeasports.util.FormataValor;
 
-public class CarrinhoDAO extends DAO {
+public class CarrinhoDAO extends Conexao {
 
 	public void insert(ItemCarrinho item) throws Exception {
 
@@ -81,8 +81,10 @@ public class CarrinhoDAO extends DAO {
 
 	public ArrayList<CountCarrinho> countByBliente(Integer idCliente) throws Exception {
 
-		String query = "SELECT P.NOME, P.PRECOVENDA, count(*) as quantidade FROM ITENS_CARRINHO IC INNER JOIN PRODUTO P ON IC.IDPRODUTO = P.IDPRODUTO WHERE IC.FINALIZADO = ? and idCliente = ? GROUP BY IC.IDPRODUTO;";
-
+		String query = "SELECT P.NOME, P.PRECOVENDA,(SELECT  COUNT(*) AS CONT "
+				+ "FROM ITENS_CARRINHO IC WHERE P.IDPRODUTO = IC.IDPRODUTO and IC.FINALIZADO = ? and idCliente = ?) "
+				+ "AS 'QUANTIDADE' FROM PRODUTO P;";
+		
 		abreConexao();
 
 		stmt = con.prepareStatement(query);
@@ -94,14 +96,16 @@ public class CarrinhoDAO extends DAO {
 		FormataValor format = new FormataValor();
 
 		while (rs.next()) {
-
-			CountCarrinho countCarrinho = new CountCarrinho();
+			
 			Integer quantidade = rs.getInt("quantidade");
 			
-			countCarrinho.setNome(rs.getString("nome"));
-			countCarrinho.setValorFormatado(format.valorFormatado(rs.getDouble("precoVenda")*quantidade));
-			countCarrinho.setQuantidade(rs.getInt("quantidade"));
-			lista.add(countCarrinho);
+			if (quantidade > 0) {
+				CountCarrinho countCarrinho = new CountCarrinho();
+				countCarrinho.setNome(rs.getString("nome"));
+				countCarrinho.setValorFormatado(format.valorFormatado(rs.getDouble("precoVenda")*quantidade));
+				countCarrinho.setQuantidade(rs.getInt("quantidade"));
+				lista.add(countCarrinho);
+			}
 		}
 
 		stmt.close();

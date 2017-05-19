@@ -108,15 +108,22 @@ public class ComprarProdutoServlet extends HttpServlet {
 					ArrayList<ItemCarrinho> listItem = cliente.getListaItens();
 
 					Compra compra = new Compra();
+					String formaPagamento = request.getParameter("formapagamento");
 
 					compra.setDataCompra(ConverteData.getDataAtual());
 
 					compra.setParcelas(Integer.parseInt(request.getParameter("parcelas")));
-					compra.setTipoPagamento(request.getParameter("formapagamento"));
+					compra.setTipoPagamento(formaPagamento);
 
 					CompraDao compraDao = new CompraDao();
-
-					int idCompra = compraDao.insert(compra, cliente.getCartao().getIdCartao());
+					
+					int idCompra = 0;
+					
+					if(formaPagamento.equals("boleto")){
+						idCompra = compraDao.compraBoleto(compra);	
+					} else {
+						idCompra = compraDao.compraCartao(compra, cliente.getCartao().getIdCartao());
+					}					
 
 					for (int i = 0; i < listItem.size(); i++) {
 

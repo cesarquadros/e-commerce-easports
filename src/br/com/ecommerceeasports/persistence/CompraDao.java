@@ -6,9 +6,9 @@ import java.util.ArrayList;
 import br.com.ecommerceeasports.entities.Compra;
 import br.com.ecommerceeasports.util.ConverteData;
 
-public class CompraDao extends DAO{
+public class CompraDao extends Conexao{
 	
-	public int insert (Compra compra, int idCartao) throws Exception {
+	public int compraCartao (Compra compra, int idCartao) throws Exception {
 		
 		int idCompra = 0;
 		String query = "insert into carrinho_compra(dataCompra, parcelas, idCartao, tipoPagamento) values(?,?,?,?)";
@@ -35,6 +35,34 @@ public class CompraDao extends DAO{
 		
 		return idCompra;
 	}
+	
+	public int compraBoleto (Compra compra) throws Exception {
+		
+		int idCompra = 0;
+		String query = "insert into carrinho_compra(dataCompra, parcelas, tipoPagamento) values(?,?,?)";
+		
+		abreConexao();
+		stmt = con.prepareStatement(query, Statement.RETURN_GENERATED_KEYS);
+		
+		stmt.setString(1, ConverteData.dateCompletaToString(compra.getDataCompra()));
+		stmt.setInt(2, compra.getParcelas());
+		stmt.setString(3, compra.getTipoPagamento());
+		
+		stmt.execute();
+
+		rs = stmt.getGeneratedKeys();
+
+		while (rs.next()) {
+			idCompra = rs.getInt(1);
+		}
+		
+		stmt.close();
+		fechaConexao();
+		
+		return idCompra;
+	}
+	
+	
 	
 	public ArrayList<Compra> listCompraFinalizadas() throws Exception{
 		

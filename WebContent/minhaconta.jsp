@@ -43,7 +43,10 @@
 					<hr />
 					<ul>
 						<li><a href="#">Dados pessoais</a></li>
-						<li><a href="#" id="btnEnd">Endereço</a></li>
+						<li><a href="#" id="btnEnd">Endereço</a>
+						<p>${cliente.endereco.logradouro}, nº${cliente.endereco.numero} - ${cliente.endereco.bairro} - 
+						${cliente.endereco.cidade} ${cliente.endereco.estado}</p>
+						</li>
 						<li><a href="#">Alterar senha</a></li>
 					</ul>
 					<br />
