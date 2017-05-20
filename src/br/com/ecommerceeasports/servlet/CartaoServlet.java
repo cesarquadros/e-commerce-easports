@@ -43,18 +43,21 @@ public class CartaoServlet extends HttpServlet {
 			throws ServletException, IOException {
 
 		String acao = request.getParameter("acao");
+		String page = request.getParameter("page");
 
-		if (acao.equals("cadastrar")) {
+		if (acao.equals("insert")) {
+			
 			try {
 
 				session = request.getSession();
-				Cliente cliente;
-
+				Cliente cliente = null;
+				
 				if (session.getAttribute("usuarioLogado") == null) {
 
 				} else {
 
 					cliente = (Cliente) session.getAttribute("usuarioLogado");
+					
 					Cartao cartao = new Cartao();
 
 					cartao.setNumero(request.getParameter("numero"));
@@ -63,17 +66,20 @@ public class CartaoServlet extends HttpServlet {
 					cartao.setCodigoSeguranca(Integer.parseInt(request.getParameter("codigo")));
 
 					CartaoDAO cartaoDAO = new CartaoDAO();
+					
 					int idCartao = cartaoDAO.inserir(cartao);
 					
 					cartao.setIdCartao(idCartao);
 					
 					ClienteDAO clienteDAO = new ClienteDAO();
+					
 					clienteDAO.updateCartao(cliente.getIdCliente(), idCartao);
+					cliente.setCartao(cartao);
 					
 					session.setAttribute("usuarioLogado", cliente);
 					request.setAttribute("usuarioLogado", cliente);
 					
-					cliente.setCartao(cartao);
+					
 
 					CarrinhoDAO carrinhoDAO = new CarrinhoDAO();
 					ArrayList<ItemCarrinho> carrinho = carrinhoDAO.itensPorCliente(cliente.getIdCliente());
@@ -94,7 +100,8 @@ public class CartaoServlet extends HttpServlet {
 					request.setAttribute("valorTotal", valorTotal);
 					request.setAttribute("quantidade", carrinho.size());
 					request.setAttribute("carrinhocount", carrinhoCount);
-					request.getRequestDispatcher("finalizarcompra.jsp").forward(request, response);
+					
+					request.getRequestDispatcher(page+".jsp").forward(request, response);
 					
 				}
 			} catch (Exception e) {
@@ -143,7 +150,7 @@ public class CartaoServlet extends HttpServlet {
 					request.setAttribute("valorTotal", valorTotal);
 					request.setAttribute("quantidade", carrinho.size());
 					request.setAttribute("carrinhocount", carrinhoCount);
-					request.getRequestDispatcher("finalizarcompra.jsp").forward(request, response);
+					request.getRequestDispatcher(page+".jsp").forward(request, response);
 				}
 
 			} catch (Exception e) {

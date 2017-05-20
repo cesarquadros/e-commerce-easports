@@ -39,7 +39,7 @@ public class CategoriaDAO extends Conexao{
 	
 	public Categoria findByName(String nome) throws Exception {
 
-		String query = "select * from categoria where categoria like ?";
+		String query = "select * from categoria where nome like ?";
 
 		abreConexao();
 

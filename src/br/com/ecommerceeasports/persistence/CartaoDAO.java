@@ -10,25 +10,32 @@ public class CartaoDAO extends Conexao {
 	public int inserir(Cartao cartao) throws Exception {
 
 		int idCartao = 0;
+		
 		String query = "insert into Cartao(numero, nomeImpresso, validade, codigoSeguranca) values(?,?,?,?)";
 
 		abreConexao();
-		stmt = con.prepareStatement(query, Statement.RETURN_GENERATED_KEYS);
-
+		
 		stmt = con.prepareStatement(query);
+		
 		stmt.setString(1, cartao.getNumero());
 		stmt.setString(2, cartao.getNomeImpresso());
 		stmt.setString(3, ConverteData.dateToString(cartao.getValidade()));
 		stmt.setInt(4, cartao.getCodigoSeguranca());
 
 		stmt.execute();
+		
+		query = "select max(idCartao) as idCartao from cartao";
 
-		rs = stmt.getGeneratedKeys();
-
-		while (rs.next()) {
-			idCartao = rs.getInt(1);
+		stmt = con.prepareStatement(query);
+		
+		rs = stmt.executeQuery();
+		
+		while(rs.next()){
+			
+			idCartao = rs.getInt("idCartao");
+			
 		}
-
+		
 		stmt.close();
 		fechaConexao();
 		return idCartao;

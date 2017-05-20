@@ -1,7 +1,6 @@
 package br.com.ecommerceeasports.servlet;
 
 import java.io.IOException;
-import java.io.PrintWriter;
 import java.util.List;
 
 import javax.servlet.ServletException;
@@ -10,16 +9,16 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.fasterxml.jackson.databind.ObjectMapper;
-
+import br.com.ecommerceeasports.entities.Categoria;
 import br.com.ecommerceeasports.entities.Produto;
+import br.com.ecommerceeasports.persistence.CategoriaDAO;
 import br.com.ecommerceeasports.persistence.ProdutoDAO;
 
-@WebServlet("/CarregarProdutosServlet")
-public class CarregarProdutosServlet extends HttpServlet {
+@WebServlet("/CategoriaServlet")
+public class CategoriaServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
-	public CarregarProdutosServlet() {
+	public CategoriaServlet() {
 		super();
 	}
 
@@ -35,31 +34,27 @@ public class CarregarProdutosServlet extends HttpServlet {
 
 	private void execute(HttpServletRequest request, HttpServletResponse response) {
 
-		response.setContentType("text/plain");
-
-		PrintWriter out = null;
-		ObjectMapper mapper = new ObjectMapper();
-		
 		try {
 			
-			out = response.getWriter();
+			String categoriaString = request.getParameter("categoria").toUpperCase();
 
-			ProdutoDAO p = new ProdutoDAO();
-
-			List<Produto> listagemProdutos;
-
-			listagemProdutos = p.listAll();
-
-			String json = mapper.writerWithDefaultPrettyPrinter().writeValueAsString(listagemProdutos);
-			json = "{\"produtos\":" + json + "}";
-
-			//System.out.println(json);
-			out.println(json);
-
+			CategoriaDAO categoriaDao = new CategoriaDAO();
+			Categoria categoria = new Categoria();
+			
+			categoria = categoriaDao.findByName(categoriaString);
+			
+			ProdutoDAO produtoDao = new ProdutoDAO();
+			
+			List<Produto> lista = produtoDao.findByCategoria(categoria);
+			
+			request.setAttribute("listaProdutos", lista);
+			request.getRequestDispatcher("produtocategoria.jsp").forward(request, response);
+			
 		} catch (Exception e) {
-			out.println(e.toString());
+			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+		
 	}
 
 }

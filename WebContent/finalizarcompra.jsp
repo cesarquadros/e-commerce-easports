@@ -117,7 +117,14 @@
 				<div>
 
 					<button type="button" class="btn btn-default navbar-btn"
-						id="btnCard">Aterar cartão</button>
+						id="btnCard" ng-show="hideCard('${cliente.cartao.nomeImpresso}')">Aterar
+						cartão</button>
+
+
+					<button type="submit" class="btn btn-success navbar-btn"
+						ng-show="showCard('${cliente.cartao.nomeImpresso}')"
+						id="btnCardInsert">Inserir Cartão</button>
+
 					<form name="formulario" method="post"
 						action="/e-commerce-easports/ComprarProdutoServlet?acao=comprar&formapagamento=cartao">
 						<div class="form-group" style="font-size: 12pt;">
@@ -133,7 +140,8 @@
 								<option value="5">5x de R$
 									{{parcelar('${valorTotal}',5) | number:2}}</option>
 							</select>
-							<button type="submit" class="btn btn-success navbar-btn" ng-show="hideCard('${cliente.cartao.nomeImpresso}')"
+							<button type="submit" class="btn btn-success navbar-btn"
+								ng-show="hideCard('${cliente.cartao.nomeImpresso}')"
 								id="finalizarCompraCard">Finalizar compra com cartão</button>
 						</div>
 					</form>
@@ -172,6 +180,7 @@
 	</div>
 
 
+	<!-- ------------------------------------------------------------------------------  MODAL EDITAR CARTAO ------------------------------------------------------->
 
 	<div id="myModal2" class="modal fade" role="dialog">
 		<div class="modal-dialog">
@@ -182,7 +191,34 @@
 					<h2 class="modal-title center">Alterar Cartão</h2>
 				</div>
 				<div class="modal-body">
-					<jsp:include page="formcartao.jsp"></jsp:include>
+					<div class="jumbotron">
+						<form name="formulario" method="post"
+							action="/e-commerce-easports/CartaoServlet?acao=update&page=finalizarcompra">
+							<jsp:include page="formcartaoupdate.jsp"></jsp:include>
+						</form>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<!-- ------------------------------------------------------------------------------  MODAL INSERIR CARTAO ------------------------------------------------------->
+
+	<div id="myModal3" class="modal fade" role="dialog">
+		<div class="modal-dialog">
+			<!-- Modal content-->
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal">&times;</button>
+					<h2 class="modal-title center">Alterar Cartão</h2>
+				</div>
+				<div class="modal-body">
+					<div class="jumbotron">
+						<form name="formulario" method="post"
+							action="/e-commerce-easports/CartaoServlet?acao=insert&page=finalizarcompra">
+							<jsp:include page="formcartaoinsert.jsp"></jsp:include>
+						</form>
+					</div>
 				</div>
 			</div>
 		</div>
@@ -200,9 +236,12 @@
 					<h2 class="modal-title center">Alterar endereço</h2>
 				</div>
 				<div class="modal-body">
-				
-				<jsp:include page="formendereco.jsp"></jsp:include>
-
+					<div class="jumbotron">
+						<form name="formulario" method="post"
+							action="/e-commerce-easports/ClienteServlet?acao=updateendereco&page=finalizarcompra">
+							<jsp:include page="formendereco.jsp"></jsp:include>
+						</form>
+					</div>
 				</div>
 			</div>
 		</div>
@@ -224,7 +263,13 @@
 		});
 	});
 </script>
-
+<script>
+	$(document).ready(function() {
+		$("#btnCardInsert").click(function() {
+			$("#myModal3").modal();
+		});
+	});
+</script>
 <br />
 <br />
 <br />

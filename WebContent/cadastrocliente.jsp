@@ -7,7 +7,10 @@
 		<div class="col-xs-12 col-sm-12 col-md-6">
 			<form name="formulario" method="post" action="/e-commerce-easports/ClienteServlet?acao=cadastrar">
 				<div class="jumbotron">
+				
 					<h2 class="center">Dados Cadastrais</h2>
+				
+					<p style="color: red; font-size: 10pt">Erro teste</p>
 					
 					<div class="form-group">
 						<label for="inputCPF">Nome</label> 

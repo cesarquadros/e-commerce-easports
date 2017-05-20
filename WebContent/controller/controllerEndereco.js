@@ -58,5 +58,12 @@ app.controller('appCtrl', [ '$scope', '$http', function($scope, $http) {
 				return false;
 			}
 		}
-	
+		
+		$scope.showCard = function(cartao){
+			if(cartao){
+				return false;
+			}else {
+				return true;
+			}
+		}	
 } ]);

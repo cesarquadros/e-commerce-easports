@@ -44,9 +44,9 @@
 					<ul>
 						<li><a href="#">Dados pessoais</a></li>
 						<li><a href="#" id="btnEnd">Endereço</a>
-						<p>${cliente.endereco.logradouro}, nº${cliente.endereco.numero} - ${cliente.endereco.bairro} - 
-						${cliente.endereco.cidade} ${cliente.endereco.estado}</p>
-						</li>
+							<p>${cliente.endereco.logradouro},
+								nº${cliente.endereco.numero} - ${cliente.endereco.bairro} -
+								${cliente.endereco.cidade} ${cliente.endereco.estado}</p></li>
 						<li><a href="#">Alterar senha</a></li>
 					</ul>
 					<br />
@@ -55,9 +55,11 @@
 			<div class="row">
 				<div class="col-xs-12 col-sm-12 col-md-12">
 					<h4>Pagamento</h4>
-					<hr />					
+					<hr />
 					<ul>
-						<li><a href="#" id="btnCard">Cartão</a></li>
+						<li><a href="#" id="btnCard">Editar Cartão</a></li>
+						<li><a href="#" id="btnCardInsert">Inserir Cartão</a></li>
+						<li>${cliente.cartao.numeroX}</li>
 					</ul>
 					<br />
 				</div>
@@ -75,13 +77,16 @@
 					<button type="button" class="close" data-dismiss="modal">&times;</button>
 					<h2 class="modal-title center">Alterar endereço</h2>
 				</div>
-				<div class="modal-body">
-					<jsp:include page="formendereco.jsp"></jsp:include>
-				</div>
+					<div class="jumbotron">
+						<form name="formulario" method="post"
+							action="/e-commerce-easports/ClienteServlet?acao=updateendereco&page=minhaconta">
+							<jsp:include page="formendereco.jsp"></jsp:include>
+						</form>
+					</div>
 			</div>
 		</div>
 	</div>
-	<!-- ------------------------------------------------------------------------------ MODAL CARTAO ------------------------------------------------------->
+	<!-- ------------------------------------------------------------------------------  MODAL EDITAR CARTAO ------------------------------------------------------->
 
 	<div id="myModal2" class="modal fade" role="dialog">
 		<div class="modal-dialog">
@@ -92,7 +97,33 @@
 					<h2 class="modal-title center">Alterar Cartão</h2>
 				</div>
 				<div class="modal-body">
-					<jsp:include page="formcartao.jsp"></jsp:include>
+					<div class="jumbotron">
+						<form name="formulario" method="post"
+							action="/e-commerce-easports/CartaoServlet?acao=update&page=minhaconta">
+							<jsp:include page="formcartaoupdate.jsp"></jsp:include>
+						</form>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+<!-- ------------------------------------------------------------------------------  MODAL INSERIR CARTAO ------------------------------------------------------->
+
+<div id="myModal3" class="modal fade" role="dialog">
+	<div class="modal-dialog">
+		<!-- Modal content-->
+		<div class="modal-content">
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal">&times;</button>
+				<h2 class="modal-title center">Alterar Cartão</h2>
+			</div>
+			<div class="modal-body">
+				<div class="jumbotron">
+					<form name="formulario" method="post"
+						action="/e-commerce-easports/CartaoServlet?acao=insert&page=minhaconta">
+						<jsp:include page="formcartaoinsert.jsp"></jsp:include>
+					</form>
 				</div>
 			</div>
 		</div>
@@ -111,6 +142,13 @@
 	$(document).ready(function() {
 		$("#btnCard").click(function() {
 			$("#myModal2").modal();
+		});
+	});
+</script>
+<script>
+	$(document).ready(function() {
+		$("#btnCardInsert").click(function() {
+			$("#myModal3").modal();
 		});
 	});
 </script>

@@ -1,7 +1,5 @@
 
-<div class="jumbotron">
-	<form name="formulario" method="post"
-		action="/e-commerce-easports/CartaoServlet?acao=update">
+
 		<div class="form-group">
 			<label for="inputNumCartao">Número</label> <input type="number"
 				class="form-control" id="inputNumCartao" name="numero"
@@ -27,5 +25,3 @@
 			<button type="submit" class="btn btn-primary">Cadastrar</button>
 			<button type="button" class="btn btn-danger" data-dismiss="modal">Cancelar</button>
 		</div>
-	</form>
-</div>

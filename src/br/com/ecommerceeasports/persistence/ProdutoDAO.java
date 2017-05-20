@@ -2,6 +2,7 @@ package br.com.ecommerceeasports.persistence;
 import java.util.ArrayList;
 import java.util.List;
 
+import br.com.ecommerceeasports.entities.Categoria;
 import br.com.ecommerceeasports.entities.Produto;
 import br.com.ecommerceeasports.util.FormataValor;
 
@@ -135,8 +136,52 @@ public class ProdutoDAO extends Conexao {
 
 	}
 	
-	
-	
+	public List<Produto> findByCategoria(Categoria categoria) throws Exception {
+
+		String query = "select * from produto where idCategoria = ?";
+
+		abreConexao();
+
+		stmt = con.prepareStatement(query);
+
+		stmt.setInt(1, categoria.getIdCategoria());
+		
+		rs = stmt.executeQuery();
+
+		List<Produto> lista = new ArrayList<Produto>();
+
+		while (rs.next()) {
+
+			Produto produto = new Produto();
+
+			FormataValor format = new FormataValor();
+
+			produto.setIdProduto(rs.getInt("idProduto"));
+			produto.setCodigo(rs.getString("codigo"));
+			produto.setNome(rs.getString("nome"));
+			produto.setImagem(rs.getString("imagem"));
+			produto.setPrecoVenda(rs.getDouble("precoVenda"));
+			produto.setPrecoCusto(rs.getDouble("precoCusto"));
+			produto.setValorVendaFormatado(format.valorFormatado(rs.getDouble("precoVenda")));
+			produto.setValorCustoFormatado(format.valorFormatado(rs.getDouble("precoCusto")));
+			produto.setOrigem(rs.getString("origem"));
+			produto.setDimensoes(rs.getString("dimensoes"));
+			produto.setPeso(rs.getString("peso"));
+			produto.setGarantia(rs.getString("garantia"));
+			produto.setDescricao(rs.getString("descricao"));
+			produto.setCategoria(categoria);
+
+			lista.add(produto);
+
+		}
+
+		stmt.close();
+
+		fechaConexao();
+
+		return lista;
+
+	}
 
 	/*public void update(Produto produto) throws Exception {
 
