@@ -10,7 +10,7 @@
 				
 					<h2 class="center">Dados Cadastrais</h2>
 				
-					<p style="color: red; font-size: 10pt">Erro teste</p>
+					<p style="color: red; font-size: 10pt">${mensagemErro}</p>
 					
 					<div class="form-group">
 						<label for="inputCPF">Nome</label> 
