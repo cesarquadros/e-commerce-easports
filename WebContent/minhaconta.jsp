@@ -42,11 +42,8 @@
 					<h4>MEUS DADOS</h4>
 					<hr />
 					<ul>
-						<li><a href="#">Dados pessoais</a></li>
-						<li><a href="#" id="btnEnd">Endereço</a>
-							<p>${cliente.endereco.logradouro},
-								nº${cliente.endereco.numero} - ${cliente.endereco.bairro} -
-								${cliente.endereco.cidade} ${cliente.endereco.estado}</p></li>
+						<li><a href="#" id="btnDadosPessoais">Dados pessoais ${mensagem}</a></li>
+						<li><a href="#" id="btnEnd">Endereço</a></li>
 						<li><a href="#">Alterar senha</a></li>
 					</ul>
 					<br />
@@ -57,9 +54,8 @@
 					<h4>Pagamento</h4>
 					<hr />
 					<ul>
-						<li><a href="#" id="btnCard">Editar Cartão</a></li>
-						<li><a href="#" id="btnCardInsert">Inserir Cartão</a></li>
-						<li>${cliente.cartao.numeroX}</li>
+						<li ng-if="${cliente.cartao.numeroX}"><a href="#" id="btnCard">Editar Cartão</a> - ${cliente.cartao.numeroX}</li>
+						<li ng-if="'${cliente.cartao.numeroX}' == ''"><a href="#" id="btnCardInsert">Inserir Cartão</a></li>
 					</ul>
 					<br />
 				</div>
@@ -68,7 +64,7 @@
 	</div>
 
 	<!-- -------------------------------------------------------------------------- MODAL ENDEREÇO ------------------------------------------------------->
-	<div id="myModal" class="modal fade" role="dialog">
+	<div id="modalEndereco" class="modal fade" role="dialog">
 		<div class="modal-dialog">
 
 			<!-- Modal content-->
@@ -88,7 +84,7 @@
 	</div>
 	<!-- ------------------------------------------------------------------------------  MODAL EDITAR CARTAO ------------------------------------------------------->
 
-	<div id="myModal2" class="modal fade" role="dialog">
+	<div id="modalAlterarCartao" class="modal fade" role="dialog">
 		<div class="modal-dialog">
 			<!-- Modal content-->
 			<div class="modal-content">
@@ -107,16 +103,15 @@
 			</div>
 		</div>
 	</div>
-</div>
-<!-- ------------------------------------------------------------------------------  MODAL INSERIR CARTAO ------------------------------------------------------->
 
-<div id="myModal3" class="modal fade" role="dialog">
+<!-- ------------------------------------------------------------------------------  MODAL INSERIR CARTAO ------------------------------------------------------->
+<div id="modalCadastroCartao" class="modal fade" role="dialog">
 	<div class="modal-dialog">
 		<!-- Modal content-->
 		<div class="modal-content">
 			<div class="modal-header">
 				<button type="button" class="close" data-dismiss="modal">&times;</button>
-				<h2 class="modal-title center">Alterar Cartão</h2>
+				<h2 class="modal-title center">Cadastro Cartão</h2>
 			</div>
 			<div class="modal-body">
 				<div class="jumbotron">
@@ -129,11 +124,31 @@
 		</div>
 	</div>
 </div>
-
+<!-- ------------------------------------------------------------------------------  MODAL ALTERAR DADOS PESSOAIS ------------------------------------------------------->
+<div id="modalDadosPessoais" class="modal fade" role="dialog">
+	<div class="modal-dialog">
+		<!-- Modal content-->
+		<div class="modal-content">
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal">&times;</button>
+				<h2 class="modal-title center">Cadastro Cartão</h2>
+			</div>
+			<div class="modal-body">
+				<div class="jumbotron">
+					<form name="formulario" method="post"
+						action="/e-commerce-easports/ClienteServlet?acao=update&page=minhaconta">
+						<jsp:include page="formcliente.jsp"></jsp:include>
+					</form>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+</div>
 <script>
 	$(document).ready(function() {
 		$("#btnEnd").click(function() {
-			$("#myModal").modal();
+			$("#modalEndereco").modal();
 		});
 	});
 </script>
@@ -141,14 +156,21 @@
 <script>
 	$(document).ready(function() {
 		$("#btnCard").click(function() {
-			$("#myModal2").modal();
+			$("#modalAlterarCartao").modal();
 		});
 	});
 </script>
 <script>
 	$(document).ready(function() {
 		$("#btnCardInsert").click(function() {
-			$("#myModal3").modal();
+			$("#modalCadastroCartao").modal();
+		});
+	});
+</script>
+<script>
+	$(document).ready(function() {
+		$("#btnDadosPessoais").click(function() {
+			$("#modalDadosPessoais").modal();
 		});
 	});
 </script>

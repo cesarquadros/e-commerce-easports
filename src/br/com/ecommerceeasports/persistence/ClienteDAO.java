@@ -219,5 +219,28 @@ public class ClienteDAO extends Conexao{
 		stmt.close();
 		fechaConexao();
 		
-	}	
+	}
+	
+	public void update(final Cliente cliente) throws Exception {
+
+		final String query = "update cliente set email=?, nome=?, sexo=?, cpf=?, datanascimento=?, telefone=?";
+
+		abreConexao();
+
+		stmt = con.prepareStatement(query);
+
+		stmt.setString(1, cliente.getEmail());
+		stmt.setString(2, cliente.getNome());
+		stmt.setString(3, cliente.getSexo());
+		stmt.setString(4, cliente.getCpf());
+		stmt.setString(5, ConverteData.dateToString(cliente.getDataNascimento()));
+		stmt.setString(6, cliente.getTelefone());
+
+		stmt.execute();
+
+		stmt.close();
+
+		fechaConexao();
+
+	}
 }

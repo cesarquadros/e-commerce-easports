@@ -86,7 +86,7 @@ public class ControlePessoa extends HttpServlet {
 					EnderecoDAO enderecoDAO = new EnderecoDAO();
 
 					Cliente cliente = new Cliente();
-					
+
 					final Integer idEndereco = enderecoDAO.insertReturnID(endereco);
 
 					cliente.setEmail(request.getParameter("email"));
@@ -105,12 +105,12 @@ public class ControlePessoa extends HttpServlet {
 					request.setAttribute("retorno", cliente.getNome());
 					request.getRequestDispatcher("login.jsp").forward(request, response);
 				}
-				
-				else{
-					
+
+				else {
+
 					request.setAttribute("mensagemErro", "Cliente já cadatrado.");
 					request.getRequestDispatcher("cadastro.jsp").forward(request, response);
-					
+
 				}
 
 			} catch (Exception e) {
@@ -225,6 +225,64 @@ public class ControlePessoa extends HttpServlet {
 				cliente = (Cliente) session.getAttribute("usuarioLogado");
 				request.setAttribute("cliente", cliente);
 				request.getRequestDispatcher("minhaconta.jsp").forward(request, response);
+			}
+		} else if (acao.equals("update")) {
+
+			try {
+				Cliente clienteCpf = new Cliente();
+				Cliente clienteEmail = new Cliente();
+
+				String cpf = request.getParameter("cpf");
+				String email = request.getParameter("email");
+
+				ClienteDAO clienteDAO = new ClienteDAO();
+
+				clienteCpf = clienteDAO.findByCpf(cpf);
+
+				clienteEmail = clienteDAO.findByEmail(email);
+
+				if (clienteCpf != null && clienteEmail != null) {
+					
+					Cliente cliente = new Cliente();
+					ClienteDAO clienteDAO2 = new ClienteDAO();
+										
+					cliente.setEmail(request.getParameter("email"));
+					cliente.setNome(request.getParameter("nome"));
+					cliente.setCpf(request.getParameter("cpf"));
+					cliente.setDataNascimento(ConverteData.stringToDate(request.getParameter("datanasc")));
+					cliente.setTelefone(request.getParameter("telefone"));
+					cliente.setSexo(request.getParameter("sexo"));
+					clienteDAO.update(cliente);
+					
+					session.setAttribute("usuarioLogado", cliente);
+					request.setAttribute("usuarioLogado", cliente);
+
+					CarrinhoDAO carrinhoDAO = new CarrinhoDAO();
+					ArrayList<ItemCarrinho> carrinho = carrinhoDAO.itensPorCliente(cliente.getIdCliente());
+
+					cliente.setListaItens(carrinho);
+
+					ItemCarrinho itemCarrinho = new ItemCarrinho();
+
+					FormataValor formataValor = new FormataValor();
+
+					Double valorTotal = itemCarrinho.getValorTotal(carrinho);
+
+					String valorTotalFormatado = formataValor.valorFormatado(valorTotal);
+					ArrayList<CountCarrinho> carrinhoCount = carrinhoDAO.countByBliente(cliente.getIdCliente());
+
+					request.setAttribute("cliente", cliente);
+					request.setAttribute("valorTotal", valorTotalFormatado);
+					request.setAttribute("quantidade", carrinho.size());
+					request.setAttribute("carrinhocount", carrinhoCount);
+					request.getRequestDispatcher(page + ".jsp").forward(request, response);
+					
+				} else {
+					request.setAttribute("mensagemErro", "Cliente já cadatrado.");
+					request.getRequestDispatcher("minhaconta.jsp").forward(request, response);
+				}
+			} catch (Exception e) {
+				
 			}
 		}
 	}
