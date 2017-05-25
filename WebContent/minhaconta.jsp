@@ -42,7 +42,8 @@
 					<h4>MEUS DADOS</h4>
 					<hr />
 					<ul>
-						<li><a href="#" id="btnDadosPessoais">Dados pessoais ${mensagem}</a></li>
+						<li><a href="#" id="btnDadosPessoais">Dados pessoais
+								${mensagem}</a></li>
 						<li><a href="#" id="btnEnd">Endereço</a></li>
 						<li><a href="#">Alterar senha</a></li>
 					</ul>
@@ -54,8 +55,10 @@
 					<h4>Pagamento</h4>
 					<hr />
 					<ul>
-						<li ng-if="${cliente.cartao.numeroX}"><a href="#" id="btnCard">Editar Cartão</a> - ${cliente.cartao.numeroX}</li>
-						<li ng-if="'${cliente.cartao.numeroX}' == ''"><a href="#" id="btnCardInsert">Inserir Cartão</a></li>
+						<li ng-if="${cliente.cartao.numeroX}"><a href="#"
+							id="btnCard">Editar Cartão</a> - ${cliente.cartao.numeroX}</li>
+						<li ng-if="'${cliente.cartao.numeroX}' == ''"><a href="#"
+							id="btnCardInsert">Inserir Cartão</a></li>
 					</ul>
 					<br />
 				</div>
@@ -73,12 +76,12 @@
 					<button type="button" class="close" data-dismiss="modal">&times;</button>
 					<h2 class="modal-title center">Alterar endereço</h2>
 				</div>
-					<div class="jumbotron">
-						<form name="formulario" method="post"
-							action="/e-commerce-easports/ClienteServlet?acao=updateendereco&page=minhaconta">
-							<jsp:include page="formendereco.jsp"></jsp:include>
-						</form>
-					</div>
+				<div class="jumbotron">
+					<form name="formulario" method="post"
+						action="/e-commerce-easports/ClienteServlet?acao=updateendereco&page=minhaconta">
+						<jsp:include page="formendereco.jsp"></jsp:include>
+					</form>
+				</div>
 			</div>
 		</div>
 	</div>
@@ -104,46 +107,49 @@
 		</div>
 	</div>
 
-<!-- ------------------------------------------------------------------------------  MODAL INSERIR CARTAO ------------------------------------------------------->
-<div id="modalCadastroCartao" class="modal fade" role="dialog">
-	<div class="modal-dialog">
-		<!-- Modal content-->
-		<div class="modal-content">
-			<div class="modal-header">
-				<button type="button" class="close" data-dismiss="modal">&times;</button>
-				<h2 class="modal-title center">Cadastro Cartão</h2>
-			</div>
-			<div class="modal-body">
-				<div class="jumbotron">
-					<form name="formulario" method="post"
-						action="/e-commerce-easports/CartaoServlet?acao=insert&page=minhaconta">
-						<jsp:include page="formcartaoinsert.jsp"></jsp:include>
-					</form>
+	<!-- ------------------------------------------------------------------------------  MODAL INSERIR CARTAO ------------------------------------------------------->
+	<div id="modalCadastroCartao" class="modal fade" role="dialog">
+		<div class="modal-dialog">
+			<!-- Modal content-->
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal">&times;</button>
+					<h2 class="modal-title center">Cadastro Cartão</h2>
+				</div>
+				<div class="modal-body">
+					<div class="jumbotron">
+						<form name="formulario" method="post"
+							action="/e-commerce-easports/CartaoServlet?acao=insert&page=minhaconta">
+							<jsp:include page="formcartaoinsert.jsp"></jsp:include>
+						</form>
+					</div>
 				</div>
 			</div>
 		</div>
 	</div>
-</div>
-<!-- ------------------------------------------------------------------------------  MODAL ALTERAR DADOS PESSOAIS ------------------------------------------------------->
-<div id="modalDadosPessoais" class="modal fade" role="dialog">
-	<div class="modal-dialog">
-		<!-- Modal content-->
-		<div class="modal-content">
-			<div class="modal-header">
-				<button type="button" class="close" data-dismiss="modal">&times;</button>
-				<h2 class="modal-title center">Cadastro Cartão</h2>
-			</div>
-			<div class="modal-body">
-				<div class="jumbotron">
-					<form name="formulario" method="post"
-						action="/e-commerce-easports/ClienteServlet?acao=update&page=minhaconta">
-						<jsp:include page="formcliente.jsp"></jsp:include>
-					</form>
+	<!-- ------------------------------------------------------------------------------  MODAL ALTERAR DADOS PESSOAIS ------------------------------------------------------->
+	<div id="modalDadosPessoais" class="modal fade" role="dialog">
+		<div class="modal-dialog">
+			<!-- Modal content-->
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal">&times;</button>
+					<h2 class="modal-title center">Cadastro Cartão</h2>
+				</div>
+				<div class="modal-body">
+					<div class="jumbotron">
+						<form name="formulario" method="post"
+							action="/e-commerce-easports/ClienteServlet?acao=update&page=minhaconta">
+							<jsp:include page="formeditarcliente.jsp"></jsp:include>
+							<div class="center">
+								<button type="submit" class="btn btn-success">Salvar edição</button>
+							</div>
+						</form>
+					</div>
 				</div>
 			</div>
 		</div>
 	</div>
-</div>
 </div>
 <script>
 	$(document).ready(function() {

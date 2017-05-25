@@ -12,17 +12,6 @@
 							class="form-control" id="inputEmail" placeholder="E-mail"
 							name="email" required value="${cliente.email}">
 					</div>
-					<div class="form-group">
-						<label for="inputSenha">Senha</label> <input type="password"
-							class="form-control" id="inputSenha" placeholder="Senha"
-							name="senha" required ng-model="senha">
-					</div>
-					<div class="form-group">
-						<label for="inputSenhaC">Confirmar Senha</label> <input
-							type="password" class="form-control" id="inputSenhaC"
-							placeholder="Senha" name="confirmarsenha" ng-model="corfirmSenha" ng-blur="validarSenha()" required>
-							<h6 ng-if="result" style="color: red;">Senhas não conferem. Repita a senha digita acima</h6>
-					</div>
 
 					<div class="form-group">
 						<label for="inputCPF">CPF</label> <input type="text"
