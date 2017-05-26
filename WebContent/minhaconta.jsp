@@ -43,7 +43,7 @@
 					<hr />
 					<ul>
 						<li><a href="#" id="btnDadosPessoais">Dados pessoais
-								${mensagem}</a></li>
+								</a><strong style="color:green;">${mensagem}</strong></li>
 						<li><a href="#" id="btnEnd">Endereço</a></li>
 						<li><a href="#">Alterar senha</a></li>
 					</ul>

@@ -228,7 +228,9 @@ public class ControlePessoa extends HttpServlet {
 			}
 		} else if (acao.equals("update")) {
 
-			try {
+			try {				
+				
+				
 				Cliente clienteCpf = new Cliente();
 				Cliente clienteEmail = new Cliente();
 
@@ -244,7 +246,6 @@ public class ControlePessoa extends HttpServlet {
 				if (clienteCpf != null && clienteEmail != null) {
 					
 					Cliente cliente = new Cliente();
-					ClienteDAO clienteDAO2 = new ClienteDAO();
 										
 					cliente.setEmail(request.getParameter("email"));
 					cliente.setNome(request.getParameter("nome"));
@@ -254,8 +255,11 @@ public class ControlePessoa extends HttpServlet {
 					cliente.setSexo(request.getParameter("sexo"));
 					clienteDAO.update(cliente);
 					
-					session.setAttribute("usuarioLogado", cliente);
-					request.setAttribute("usuarioLogado", cliente);
+					clienteDAO = new ClienteDAO();
+					
+					session = request.getSession();
+					cliente = clienteDAO.findByCpf(request.getParameter("cpf"));
+					
 
 					CarrinhoDAO carrinhoDAO = new CarrinhoDAO();
 					ArrayList<ItemCarrinho> carrinho = carrinhoDAO.itensPorCliente(cliente.getIdCliente());
@@ -270,11 +274,15 @@ public class ControlePessoa extends HttpServlet {
 
 					String valorTotalFormatado = formataValor.valorFormatado(valorTotal);
 					ArrayList<CountCarrinho> carrinhoCount = carrinhoDAO.countByBliente(cliente.getIdCliente());
+					
+					session.setAttribute("usuarioLogado", cliente);
+					request.setAttribute("usuarioLogado", cliente);
 
 					request.setAttribute("cliente", cliente);
 					request.setAttribute("valorTotal", valorTotalFormatado);
 					request.setAttribute("quantidade", carrinho.size());
 					request.setAttribute("carrinhocount", carrinhoCount);
+					request.setAttribute("mensagem", "Editado com sucesso");
 					request.getRequestDispatcher(page + ".jsp").forward(request, response);
 					
 				} else {
@@ -283,6 +291,8 @@ public class ControlePessoa extends HttpServlet {
 				}
 			} catch (Exception e) {
 				
+				System.out.println(e.toString());
+				System.out.println(e.getMessage());
 			}
 		}
 	}

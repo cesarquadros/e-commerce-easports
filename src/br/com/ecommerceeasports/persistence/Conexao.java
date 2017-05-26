@@ -39,11 +39,8 @@ public class Conexao {
 	protected void fechaConexao() throws Exception {
 
 		if (con != null) {
-
 			con.close();
-
 		}
-
 	}
 }
 
