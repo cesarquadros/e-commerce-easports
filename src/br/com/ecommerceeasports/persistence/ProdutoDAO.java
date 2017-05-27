@@ -11,27 +11,30 @@ public class ProdutoDAO extends Conexao {
 	public void insert(Produto produto, int idCategoria) throws Exception {
 
 		String query = "insert into Produto"
-				+ "(codigo, nome, imagem, precoCusto, precoVenda, idCategoria, origem, dimensoes, peso, garantia, descricao)"
+				+ "(codigo, nome, imagem, precoCusto, precoVenda, idCategoria, origem, dimensoes, peso, garantia, descricao, quantidade)"
 				+ "VALUES"
-				+ "(?,?,?,?,?,?,?,?,?,?,?)";
+				+ "(?,?,?,?,?,?,?,?,?,?,?,?)";
 
 		abreConexao();
 
 		stmt = con.prepareStatement(query);
 
-		stmt.setString(1, produto.getCodigo());
-		stmt.setString(2, produto.getNome());
-		stmt.setString(3, produto.getImagem());
-		stmt.setDouble(4, produto.getPrecoCusto());
-		stmt.setDouble(5, produto.getPrecoVenda());
-		stmt.setInt(6, idCategoria);
+		int index = 1;
 		
-		stmt.setString(7, produto.getOrigem());
-		stmt.setString(8, produto.getDimensoes());
-		stmt.setString(9, produto.getPeso());
-		stmt.setString(10, produto.getGarantia());
-		stmt.setString(11, produto.getDescricao());
-
+		stmt.setString(index++, produto.getCodigo());
+		stmt.setString(index++, produto.getNome());
+		stmt.setString(index++, produto.getImagem());
+		stmt.setDouble(index++, produto.getPrecoCusto());
+		stmt.setDouble(index++, produto.getPrecoVenda());
+		stmt.setInt(index++, idCategoria);
+		
+		stmt.setString(index++, produto.getOrigem());
+		stmt.setString(index++, produto.getDimensoes());
+		stmt.setString(index++, produto.getPeso());
+		stmt.setString(index++, produto.getGarantia());
+		stmt.setString(index++, produto.getDescricao());
+		stmt.setInt(index++, produto.getQuantidade());
+		
 		stmt.execute();
 
 		stmt.close();
@@ -43,11 +46,19 @@ public class ProdutoDAO extends Conexao {
 	
 	public List<Produto> listAll() throws Exception {
 
-		String query = "select * from produto order by RAND()";
-
+		StringBuilder hql = new StringBuilder();
+		
+		hql.append(" SELECT * ");
+		hql.append(" FROM ");
+		hql.append("	produto ");
+		hql.append(" WHERE");
+		hql.append(" 	quantidade > 0 ");
+		hql.append(" ORDER BY ");
+		hql.append(" 	newid() ");
+		
 		abreConexao();
 
-		stmt = con.prepareStatement(query);
+		stmt = con.prepareStatement(hql.toString());
 
 		rs = stmt.executeQuery();
 
@@ -76,6 +87,7 @@ public class ProdutoDAO extends Conexao {
 			produto.setPeso(rs.getString("peso"));
 			produto.setGarantia(rs.getString("garantia"));
 			produto.setDescricao(rs.getString("descricao"));
+			produto.setQuantidade(rs.getInt("quantidade"));
 
 			lista.add(produto);
 
@@ -125,6 +137,7 @@ public class ProdutoDAO extends Conexao {
 			produto.setPeso(rs.getString("peso"));
 			produto.setGarantia(rs.getString("garantia"));
 			produto.setDescricao(rs.getString("descricao"));
+			produto.setQuantidade(rs.getInt("quantidade"));
 			
 		}
 
@@ -169,6 +182,8 @@ public class ProdutoDAO extends Conexao {
 			produto.setPeso(rs.getString("peso"));
 			produto.setGarantia(rs.getString("garantia"));
 			produto.setDescricao(rs.getString("descricao"));
+			produto.setQuantidade(rs.getInt("quantidade"));
+			
 			produto.setCategoria(categoria);
 
 			lista.add(produto);

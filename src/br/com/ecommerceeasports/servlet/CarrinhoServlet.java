@@ -83,7 +83,6 @@ public class CarrinhoServlet extends HttpServlet {
 					ArrayList<ItemCarrinho> carrinho = carrinhoDAO.itensPorCliente(cliente.getIdCliente());
 					cliente.setListaItens(carrinho);
 					out.println("OK");
-
 				}
 
 			} catch (Exception e) {				

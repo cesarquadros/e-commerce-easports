@@ -16,6 +16,7 @@ public class Produto {
 	private String peso;
 	private String garantia;
 	private String descricao;
+	private Integer quantidade;
 	
 
 	public Produto() {
@@ -24,7 +25,7 @@ public class Produto {
 
 
 	public Produto(Integer idProduto, String codigo, String nome, String imagem, Double precoCusto, Double precoVenda,
-			Categoria categoria, String origem, String dimensoes, String peso, String garantia, String descricao) {
+			Categoria categoria, String origem, String dimensoes, String peso, String garantia, String descricao, Integer quantidade) {
 		super();
 		this.idProduto = idProduto;
 		this.codigo = codigo;
@@ -38,6 +39,17 @@ public class Produto {
 		this.peso = peso;
 		this.garantia = garantia;
 		this.descricao= descricao;
+		this.quantidade = quantidade;
+	}
+
+
+	public Integer getQuantidade() {
+		return quantidade;
+	}
+
+
+	public void setQuantidade(Integer quantidade) {
+		this.quantidade = quantidade;
 	}
 
 

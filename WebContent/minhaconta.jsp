@@ -18,11 +18,6 @@
 					<h4>Olá ${cliente.nome}</h4>
 				</div>
 			</div>
-			<div class="row">
-				<div class="col-xs-12 col-sm-12 col-md-12">
-					<p>${cliente.email}</p>
-				</div>
-			</div>
 		</div>
 
 		<div class="col-xs-12 col-sm-12 col-md-9">

@@ -30,7 +30,7 @@ public class CarrinhoDAO extends Conexao {
 
 	public ArrayList<ItemCarrinho> itensPorCliente(Integer idCliente) throws Exception {
 
-		String query = "select * from itens_carrinho where idCliente = ? and finalizado = '0'";
+		String query = "select * from itens_carrinho where idCliente = ? and finalizado = 0 and removido = 0";
 
 		abreConexao();
 
@@ -62,14 +62,13 @@ public class CarrinhoDAO extends Conexao {
 
 	public void excluirItem(Integer idItem) throws Exception {
 
-		String query = "update itens_carrinho set finalizado = ? where idItem = ?";
+		String query = "update itens_carrinho set removido = 1 where idItem = ?";
 
 		abreConexao();
 
 		stmt = con.prepareStatement(query);
 
-		stmt.setInt(1, 1);
-		stmt.setInt(2, idItem);
+		stmt.setInt(1, idItem);
 
 		stmt.execute();
 
@@ -81,18 +80,36 @@ public class CarrinhoDAO extends Conexao {
 
 	public ArrayList<CountCarrinho> countByBliente(Integer idCliente) throws Exception {
 
-		String query = "SELECT P.NOME, P.PRECOVENDA,(SELECT  COUNT(*) AS CONT "
-				+ "FROM ITENS_CARRINHO IC WHERE P.IDPRODUTO = IC.IDPRODUTO and IC.FINALIZADO = ? and idCliente = ?) "
-				+ "AS 'QUANTIDADE' FROM PRODUTO P;";
+		StringBuilder hql = new StringBuilder();
+		
+		hql.append(" SELECT ");
+		hql.append("   p.nome, ");
+		hql.append("   p.precovenda, ");
+		hql.append("   p.idProduto, ");
+		hql.append("      (SELECT COUNT(*) as cont ");
+		hql.append("      FROM ");
+		hql.append("         itens_carrinho ic ");
+		hql.append("	  WHERE ");
+		hql.append("         p.idProduto = ic.idProduto ");
+		hql.append("         and IC.FINALIZADO = 0 ");
+		hql.append("         and IC.REMOVIDO = 0 ");
+		hql.append("         and idCliente = ?) ");
+		hql.append("   as quantidade ");
+		hql.append(" FROM ");
+		hql.append("   produto p");
 		
 		abreConexao();
 
-		stmt = con.prepareStatement(query);
-		stmt.setInt(1, 0);
-		stmt.setInt(2, idCliente);
+		stmt = con.prepareStatement(hql.toString());
+		
+		int index = 1;
+		
+		stmt.setInt(index++, idCliente);
+		
 		rs = stmt.executeQuery();
 
 		ArrayList<CountCarrinho> lista = new ArrayList<CountCarrinho>();
+		
 		FormataValor format = new FormataValor();
 
 		while (rs.next()) {
@@ -100,16 +117,21 @@ public class CarrinhoDAO extends Conexao {
 			Integer quantidade = rs.getInt("quantidade");
 			
 			if (quantidade > 0) {
+				
 				CountCarrinho countCarrinho = new CountCarrinho();
+				
+				countCarrinho.setIdProduto(rs.getInt("idProduto"));
 				countCarrinho.setNome(rs.getString("nome"));
 				countCarrinho.setValorFormatado(format.valorFormatado(rs.getDouble("precoVenda")*quantidade));
 				countCarrinho.setQuantidade(rs.getInt("quantidade"));
+				
 				lista.add(countCarrinho);
 			}
 		}
 
 		stmt.close();
 		fechaConexao();
+		
 		return lista;
 	}
 	

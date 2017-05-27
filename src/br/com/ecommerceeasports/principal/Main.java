@@ -1,20 +1,9 @@
 package br.com.ecommerceeasports.principal;
 
-import java.util.Date;
-
 import br.com.ecommerceeasports.entities.Cartao;
-import br.com.ecommerceeasports.entities.Cliente;
 import br.com.ecommerceeasports.entities.Compra;
-import br.com.ecommerceeasports.entities.Endereco;
-import br.com.ecommerceeasports.entities.ItemCarrinho;
-import br.com.ecommerceeasports.entities.Produto;
-import br.com.ecommerceeasports.managedbean.ManagedBeanProduto;
-import br.com.ecommerceeasports.persistence.CarrinhoDAO;
-import br.com.ecommerceeasports.persistence.ClienteDAO;
 import br.com.ecommerceeasports.persistence.CompraDao;
 import br.com.ecommerceeasports.persistence.DAO;
-import br.com.ecommerceeasports.persistence.EnderecoDAO;
-import br.com.ecommerceeasports.persistence.ProdutoDAO;
 import br.com.ecommerceeasports.util.ConverteData;
 
 public class Main {

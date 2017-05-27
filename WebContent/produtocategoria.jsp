@@ -14,11 +14,11 @@
 						<img src="img/${produto.imagem}" class="img-responsive" style="max-width: 50%;">
 						<h5 class="center">${produto.nome}</h5>
 						<h6>${produto.valorVendaFormatado}</h6>
-						<a href="#" class="btn btn-success navbar-btn" ng-click="addCarrinho(produto.idProduto,'adicionar')">
+						<a href="#" class="btn btn-success navbar-btn" ng-click="addCarrinho(${produto.idProduto},'adicionar')">
 						<span class="glyphicon glyphicon-shopping-cart"></span> Adicionar
 						
 						</a>
-						<a href="/e-commerce-easports/ProdutoServlet?acao=findById&id={{produto.idProduto}}" 
+						<a href="/e-commerce-easports/ProdutoServlet?acao=findById&id=${produto.idProduto}" 
 							class="btn btn-default navbar-btn">
 						<span class="glyphicon glyphicon-plus-sign"></span> Detalhes
 						

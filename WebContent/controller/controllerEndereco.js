@@ -6,7 +6,6 @@ app.controller('appCtrl', [ '$scope', '$http', function($scope, $http) {
 	$scope.corfirmSenha;
 	$scope.result = false;
 	
-	
 	$scope.validaCep = function(cep) {
 			
 		$http({
@@ -66,4 +65,5 @@ app.controller('appCtrl', [ '$scope', '$http', function($scope, $http) {
 				return true;
 			}
 		}	
+		
 } ]);
