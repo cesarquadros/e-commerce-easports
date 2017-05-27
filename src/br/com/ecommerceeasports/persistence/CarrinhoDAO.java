@@ -60,15 +60,17 @@ public class CarrinhoDAO extends Conexao {
 		return lista;
 	}
 
-	public void excluirItem(Integer idItem) throws Exception {
+	public void excluirItem(Integer idProduto, Integer idCliente) throws Exception {
 
-		String query = "update itens_carrinho set removido = 1 where idItem = ?";
+		String query = "update itens_carrinho set removido = 1 where idItem = (select min(idItem) "
+				+ "from itens_carrinho where idProduto = ? and removido = 0) and idCliente = ?";
 
 		abreConexao();
 
 		stmt = con.prepareStatement(query);
 
-		stmt.setInt(1, idItem);
+		stmt.setInt(1, idProduto);
+		stmt.setInt(2, idCliente);
 
 		stmt.execute();
 
@@ -119,9 +121,9 @@ public class CarrinhoDAO extends Conexao {
 			if (quantidade > 0) {
 				
 				CountCarrinho countCarrinho = new CountCarrinho();
+				ProdutoDAO produtoDao= new ProdutoDAO();
 				
-				countCarrinho.setIdProduto(rs.getInt("idProduto"));
-				countCarrinho.setNome(rs.getString("nome"));
+				countCarrinho.setProduto(produtoDao.findById(rs.getInt("idProduto")));
 				countCarrinho.setValorFormatado(format.valorFormatado(rs.getDouble("precoVenda")*quantidade));
 				countCarrinho.setQuantidade(rs.getInt("quantidade"));
 				

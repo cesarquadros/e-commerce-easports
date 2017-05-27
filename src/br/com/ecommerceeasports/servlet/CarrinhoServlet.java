@@ -11,6 +11,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import br.com.ecommerceeasports.entities.Cliente;
+import br.com.ecommerceeasports.entities.CountCarrinho;
 import br.com.ecommerceeasports.entities.ItemCarrinho;
 import br.com.ecommerceeasports.entities.Produto;
 import br.com.ecommerceeasports.persistence.CarrinhoDAO;
@@ -67,7 +68,7 @@ public class CarrinhoServlet extends HttpServlet {
 				session = request.getSession();
 
 				Produto produto = produtoDAO.findById(idProduto);
-				Cliente cliente;	
+				Cliente cliente;
 				if (session.getAttribute("usuarioLogado") == null) {
 
 				} else {
@@ -85,45 +86,54 @@ public class CarrinhoServlet extends HttpServlet {
 					out.println("OK");
 				}
 
-			} catch (Exception e) {				
+			} catch (Exception e) {
 				e.printStackTrace();
 				out.println(e.toString());
 			}
-		
+
 		} else if (acao.equals("carrinhobycli")) {
 
 			session = request.getSession();
 
 			Cliente cliente;
-			
+
 			if (session.getAttribute("usuarioLogado") == null) {
-				
+
 			} else {
 				cliente = (Cliente) session.getAttribute("usuarioLogado");
-				
+
 				CarrinhoDAO carrinhoDAO = new CarrinhoDAO();
 
 				try {
 					ArrayList<ItemCarrinho> carrinho = carrinhoDAO.itensPorCliente(cliente.getIdCliente());
 					cliente.setListaItens(carrinho);
-					
+
+					ArrayList<CountCarrinho> carrinhoCount = carrinhoDAO.countByBliente(cliente.getIdCliente());
+
+					session.setAttribute("carrinhocount", carrinhoCount);
+
+					request.setAttribute("carrinhoCount", carrinhoCount);
 					request.setAttribute("cliente", cliente);
-					request.getRequestDispatcher("carrinho.jsp").forward(request, response);	
-					
+					request.getRequestDispatcher("carrinho.jsp").forward(request, response);
+
 				} catch (Exception e) {
 					System.out.println(e.toString());
 				}
-			}	
+			}
 		} else if (acao.equals("excluiritem")) {
 			try {
-			Integer idItem = Integer.parseInt(parametros[0]);
-			CarrinhoDAO carrinhoDAO = new CarrinhoDAO();			
-			
-				carrinhoDAO.excluirItem(idItem);
+				Integer idProduto = Integer.parseInt(parametros[0]);
+				CarrinhoDAO carrinhoDAO = new CarrinhoDAO();
+				session = request.getSession();
+
+				Cliente cliente = (Cliente) session.getAttribute("usuarioLogado");
+
+				carrinhoDAO.excluirItem(idProduto, cliente.getIdCliente());
+				
+				session.setAttribute("usuarioLogado", cliente);
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
-			
 		}
 	}
 }

@@ -2,8 +2,7 @@ package br.com.ecommerceeasports.entities;
 
 public class CountCarrinho {
 	
-	private Integer idProduto;
-	private String nome;
+	Produto produto;
 	private Integer quantidade;
 	private Double valorUnitario;
 	private String valorFormatado;
@@ -11,17 +10,12 @@ public class CountCarrinho {
 	
 	
 	
-	public Integer getIdProduto() {
-		return idProduto;
+	
+	public Produto getProduto() {
+		return produto;
 	}
-	public void setIdProduto(Integer idProduto) {
-		this.idProduto = idProduto;
-	}
-	public String getNome() {
-		return nome;
-	}
-	public void setNome(String nome) {
-		this.nome = nome;
+	public void setProduto(Produto produto) {
+		this.produto = produto;
 	}
 	public Integer getQuantidade() {
 		return quantidade;

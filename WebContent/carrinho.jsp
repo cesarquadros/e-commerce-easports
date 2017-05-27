@@ -61,16 +61,16 @@
 						<th>Estoque</th>
 					</tr>
 				</thead>
-				<c:forEach items="${cliente.listaItens}" var="carrinho">
+				<c:forEach items="${carrinhocount}" var="carrinho">
 					<tbody>
 						<tr>
 							<td>${carrinho.produto.nome}</td>
-							<td><input type="number" style="width:100px;" min="1" max = "${carrinho.produto.quantidade}" value="1"></td>
+							<td>${carrinho.quantidade}</td>
 							<td>${carrinho.produto.valorVendaFormatado}</td>
-							<td>R$</td>
+							<td>${carrinho.valorFormatado}</td>
 							<td>${carrinho.produto.quantidade}</td>
 							<td><a class="btn btn-danger navbar-btn"
-								ng-click="excluirItem(${carrinho.idItem},'excluiritem')">Excluir</a></td>
+								ng-click="excluirItem(${carrinho.produto.idProduto},'excluiritem')">Excluir</a></td>
 						</tr>
 					</tbody>
 				</c:forEach>
