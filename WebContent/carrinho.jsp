@@ -70,7 +70,13 @@
 							<td>${carrinho.valorFormatado}</td>
 							<td>${carrinho.produto.quantidade}</td>
 							<td><a class="btn btn-danger navbar-btn"
-								ng-click="excluirItem(${carrinho.produto.idProduto},'excluiritem')">Excluir</a></td>
+								ng-click="excluirItem(${carrinho.produto.idProduto},'excluiritem')"><span
+									class="glyphicon glyphicon-minus-sign"></span></a></td>
+							<td><a href="#" class="btn btn-success navbar-btn"
+								ng-click="addCarrinho(${carrinho.produto.idProduto},'adicionar', ${carrinho.quantidade}, ${carrinho.produto.quantidade})">
+									<span class="glyphicon glyphicon-plus-sign"></span>
+							</a></td>
+
 						</tr>
 					</tbody>
 				</c:forEach>
