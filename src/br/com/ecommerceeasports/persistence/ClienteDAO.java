@@ -114,7 +114,7 @@ public class ClienteDAO extends Conexao{
 
 		fechaConexao();
 
-		return cliente;
+		return null;
 
 	}
 
@@ -159,7 +159,7 @@ public class ClienteDAO extends Conexao{
 
 		fechaConexao();
 
-		return cliente;
+		return null;
 
 	}
 	

@@ -65,11 +65,10 @@ public class ControlePessoa extends HttpServlet {
 				String email = request.getParameter("email");
 
 				ClienteDAO clienteDAO = new ClienteDAO();
-
-				clienteCpf = clienteDAO.findByCpf(cpf);
 				clienteEmail = clienteDAO.findByEmail(email);
-
-				if (clienteCpf != null && clienteEmail != null) {
+				clienteCpf = clienteDAO.findByCpf(cpf);
+				
+				if (clienteCpf == null && clienteEmail == null) {
 
 					endereco.setLogradouro(request.getParameter("logradouro"));
 					endereco.setNumero(Integer.parseInt(request.getParameter("numero")));
@@ -104,12 +103,11 @@ public class ControlePessoa extends HttpServlet {
 					request.setAttribute("mensagem", "Cadastro efetuado com sucesso!");
 					request.setAttribute("retorno", cliente.getNome());
 					request.getRequestDispatcher("login.jsp").forward(request, response);
-				}
 
-				else {
+				} else {
 
 					request.setAttribute("mensagemErro", "Cliente já cadatrado.");
-					request.getRequestDispatcher("cadastro.jsp").forward(request, response);
+					request.getRequestDispatcher("cadastrocliente.jsp").forward(request, response);
 
 				}
 
@@ -228,9 +226,8 @@ public class ControlePessoa extends HttpServlet {
 			}
 		} else if (acao.equals("update")) {
 
-			try {				
-				
-				
+			try {
+
 				Cliente clienteCpf = new Cliente();
 				Cliente clienteEmail = new Cliente();
 
@@ -244,9 +241,9 @@ public class ControlePessoa extends HttpServlet {
 				clienteEmail = clienteDAO.findByEmail(email);
 
 				if (clienteCpf != null && clienteEmail != null) {
-					
+
 					Cliente cliente = new Cliente();
-										
+
 					cliente.setEmail(request.getParameter("email"));
 					cliente.setNome(request.getParameter("nome"));
 					cliente.setCpf(request.getParameter("cpf"));
@@ -254,12 +251,11 @@ public class ControlePessoa extends HttpServlet {
 					cliente.setTelefone(request.getParameter("telefone"));
 					cliente.setSexo(request.getParameter("sexo"));
 					clienteDAO.update(cliente);
-					
+
 					clienteDAO = new ClienteDAO();
-					
+
 					session = request.getSession();
 					cliente = clienteDAO.findByCpf(request.getParameter("cpf"));
-					
 
 					CarrinhoDAO carrinhoDAO = new CarrinhoDAO();
 					ArrayList<ItemCarrinho> carrinho = carrinhoDAO.itensPorCliente(cliente.getIdCliente());
@@ -274,7 +270,7 @@ public class ControlePessoa extends HttpServlet {
 
 					String valorTotalFormatado = formataValor.valorFormatado(valorTotal);
 					ArrayList<CountCarrinho> carrinhoCount = carrinhoDAO.countByBliente(cliente.getIdCliente());
-					
+
 					session.setAttribute("usuarioLogado", cliente);
 					request.setAttribute("usuarioLogado", cliente);
 
@@ -284,13 +280,13 @@ public class ControlePessoa extends HttpServlet {
 					request.setAttribute("carrinhocount", carrinhoCount);
 					request.setAttribute("mensagem", "Editado com sucesso");
 					request.getRequestDispatcher(page + ".jsp").forward(request, response);
-					
+
 				} else {
 					request.setAttribute("mensagemErro", "Cliente já cadatrado.");
 					request.getRequestDispatcher("minhaconta.jsp").forward(request, response);
 				}
 			} catch (Exception e) {
-				
+
 				System.out.println(e.toString());
 				System.out.println(e.getMessage());
 			}

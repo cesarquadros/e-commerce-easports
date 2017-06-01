@@ -10,7 +10,7 @@
 					<div class="form-group">
 						<label for="inputEmail">E-mail</label> <input type="email"
 							class="form-control" id="inputEmail" placeholder="E-mail"
-							name="email" required value="${cliente.email}">
+							name="email" required value="${cliente.email}" ng-model="cEmail" ng-blur="validaEmail(cEmail)">
 					</div>
 					<div class="form-group">
 						<label for="inputSenha">Senha</label> <input type="password"
@@ -27,7 +27,7 @@
 					<div class="form-group">
 						<label for="inputCPF">CPF</label> <input type="text"
 							class="form-control" id="inputCPF" placeholder="000.000.000-00"
-							name="cpf" required value="${cliente.cpf}">
+							name="cpf" required value="${cliente.cpf}" ng-model="cCpf" ng-blur="validaCpf(cCpf)">
 					</div>
 					<div class="form-group">
 						<label for="inputDtNasc">Data de Nascimento</label> <input

@@ -7,21 +7,56 @@ app.controller('appCtrl', [ '$scope', '$http', function($scope, $http) {
 
 	$scope.validaCep = function(cep) {
 
-		$http({
-			method : 'post',
-			url : 'EnderecoServlet',
-			data : cep
-		}).then(function(retorno) {
-			$scope.array = (retorno.data.endereco);
+		if (cep != '') {
+			$http({
+				method : 'post',
+				url : 'EnderecoServlet',
+				data : cep
+			}).then(function(retorno) {
+				$scope.array = (retorno.data.endereco);
 
-			if ($scope.array == null) {
+				if ($scope.array == null) {
 
-				alert('OPS! CEP Nao encontrado');
-			}
+					alert('OPS! CEP Nao encontrado');
+				}
 
-			// alert($scope.array.logradouro);
-		});
+				// alert($scope.array.logradouro);
+			});
+		}
 	}
+
+	$scope.validaCpf = function(cpf) {
+
+		if (cpf != '') {
+			$http({
+				method : 'post',
+				url : 'ValidaCpf',
+				data : cpf
+			}).then(function(retorno) {
+				if (retorno.data != "") {
+					alert('OPS! CPF ja cadastrado para outro cliente');
+					$scope.cCpf = '';
+				}
+			});
+		}
+	}
+
+	$scope.validaEmail = function(email) {
+
+		if (email != '') {
+			$http({
+				method : 'post',
+				url : 'ValidaEmail',
+				data : email
+			}).then(function(retorno) {
+				if (retorno.data != "") {
+					alert('OPS! Email ja cadastrado para outro cliente');
+					$scope.cEmail = '';
+				}
+			});
+		}
+	}
+
 	$scope.validarSenha = function() {
 
 		$scope.result = angular.equals($scope.senha, $scope.corfirmSenha);
@@ -66,8 +101,8 @@ app.controller('appCtrl', [ '$scope', '$http', function($scope, $http) {
 	}
 
 	$scope.addCarrinho = function(idProduto, acao, qtdSolicitada, qtdEstoque) {
-		
-		if(qtdSolicitada+1 > qtdEstoque ){
+
+		if (qtdSolicitada + 1 > qtdEstoque) {
 			alert('OPS! Quantidade indisponivel');
 		} else {
 			$http({
