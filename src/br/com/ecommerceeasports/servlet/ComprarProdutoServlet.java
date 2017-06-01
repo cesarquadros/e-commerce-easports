@@ -130,6 +130,14 @@ public class ComprarProdutoServlet extends HttpServlet {
 						CarrinhoDAO carrinhoDAO = new CarrinhoDAO();
 						carrinhoDAO.finalizarItem(listItem.get(i).getIdItem(), idCompra);
 					}
+					
+					ArrayList<CountCarrinho> carrinhoCount = (ArrayList<CountCarrinho>) session.getAttribute("carrinhocount");
+					
+					ProdutoDAO produtoDAO = new ProdutoDAO();
+					for (int i = 0; i < carrinhoCount.size(); i++) {
+						produtoDAO.updateQtd(carrinhoCount.get(i).getProduto(), carrinhoCount.get(i).getQuantidade());
+						
+					}
 
 					compraDao = new CompraDao();
 

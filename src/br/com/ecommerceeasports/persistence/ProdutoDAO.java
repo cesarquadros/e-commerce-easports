@@ -198,6 +198,28 @@ public class ProdutoDAO extends Conexao {
 
 	}
 
+	public void updateQtd(Produto produto, int quantidade) throws Exception {
+
+		String query = "update produto set quantidade = ? where idProduto = ?";
+
+		abreConexao();
+
+		stmt = con.prepareStatement(query);
+
+		int contador = 1;
+		
+		stmt.setDouble(contador++, produto.getQuantidade() - quantidade);
+		stmt.setDouble(contador++, produto.getIdProduto());
+
+		stmt.execute();
+
+		stmt.close();
+
+		fechaConexao();
+
+	}
+
+	
 	/*public void update(Produto produto) throws Exception {
 
 		String query = "update produto set valor_venda = ?, valor_custo = ?, quantidade = ? where id_produto = ?";

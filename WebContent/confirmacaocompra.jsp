@@ -48,7 +48,7 @@
 					<c:forEach items="${carrinhocount}" var="carrinho">
 						<tbody style="font-size: 12px;">
 							<tr>
-								<td>${carrinho.nome}</td>
+								<td>${carrinho.produto.nome}</td>
 								<td>${carrinho.quantidade}</td>
 								<td>${carrinho.valorFormatado}</td>
 							</tr>
