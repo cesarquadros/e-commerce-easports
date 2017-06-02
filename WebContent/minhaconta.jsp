@@ -1,5 +1,6 @@
 
 <jsp:include page="cabecalho3.jsp"></jsp:include>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <br />
 <br />
 <br />
@@ -15,7 +16,7 @@
 			</div>
 			<div class="row">
 				<div class="col-xs-12 col-sm-12 col-md-12">
-					<h4>Olá ${cliente.nome}</h4>
+					<h4>Olá ${sessionScope.cliente.nome}</h4>
 				</div>
 			</div>
 		</div>
@@ -26,7 +27,9 @@
 					<h4>MEUS PEDIDOS</h4>
 					<hr />
 					<ul>
-						<li><a href="/e-commerce-easports/ClienteServlet?acao=comprasbycliente">Relatorio de compras</a></li>
+						<li><a
+							href="/e-commerce-easports/ClienteServlet?acao=comprasbycliente">Relatorio
+								de compras</a></li>
 					</ul>
 
 					<br />
@@ -37,8 +40,7 @@
 					<h4>MEUS DADOS</h4>
 					<hr />
 					<ul>
-						<li><a href="#" id="btnDadosPessoais">Dados pessoais
-								</a><strong style="color:green;">${mensagem}</strong></li>
+						<li><a href="#" id="btnDadosPessoais">Dados pessoais </a></li>
 						<li><a href="#" id="btnEnd">Endereço</a></li>
 						<li><a href="#">Alterar senha</a></li>
 					</ul>
@@ -137,7 +139,8 @@
 							action="/e-commerce-easports/ClienteServlet?acao=update&page=minhaconta">
 							<jsp:include page="formeditarcliente.jsp"></jsp:include>
 							<div class="center">
-								<button type="submit" class="btn btn-success">Salvar edição</button>
+								<button type="submit" class="btn btn-success">Salvar
+									edição</button>
 							</div>
 						</form>
 					</div>
@@ -146,6 +149,35 @@
 		</div>
 	</div>
 </div>
+<!-- ------------------------------------------------------------------------------  MODAL MENSAGEM ------------------------------------------------------->
+
+<div id="modalMsg" class="modal fade" role="dialog">
+	<div class="modal-dialog">
+
+		<!-- Modal content-->
+		<div class="modal-content center">
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal">&times;</button>
+				<h4 class="modal-title">${titulo}</h4>
+			</div>
+			<div class="modal-body">
+				<h2>${mensagem}</h2>
+				<h3>${retorno}</h3>
+			</div>
+			<div class="modal-footer">
+				<button type="button" class="btn btn-default" data-dismiss="modal">Fechar</button>
+			</div>
+		</div>
+	</div>
+</div>
+
+<c:if test="${modal=='1'}">
+	<script>
+		$(document).ready(function() {
+			$('#modalMsg').modal('show');
+		});
+	</script>
+</c:if>
 <script>
 	$(document).ready(function() {
 		$("#btnEnd").click(function() {
@@ -175,3 +207,6 @@
 		});
 	});
 </script>
+<c:remove scope="session" var="cliente" />
+<c:remove scope="session" var="modal" />
+<c:remove scope="session" var="mensagem" />

@@ -11,12 +11,13 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import br.com.ecommerceeasports.entities.Cliente;
+import br.com.ecommerceeasports.entities.Produto;
 import br.com.ecommerceeasports.persistence.ClienteDAO;
-
-@WebServlet("/ValidaCpf")
-public class ValidaCpf extends HttpServlet {
+import br.com.ecommerceeasports.persistence.ProdutoDAO;
+@WebServlet("/ValidaProduto")
+public class ValidaProduto extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-    public ValidaCpf() {
+    public ValidaProduto() {
         super();
     }
 
@@ -37,7 +38,7 @@ public class ValidaCpf extends HttpServlet {
 	}
 	
 	protected void execute(HttpServletRequest request, HttpServletResponse response) throws Exception{
-			
+		
 		response.setContentType("text/plain");
 
 		StringBuilder sb = new StringBuilder();
@@ -48,14 +49,13 @@ public class ValidaCpf extends HttpServlet {
 			sb.append(str);
 		}
 		String opcao = sb.toString();
-		String cpf = opcao = opcao.replace("[", "").replace("]", "").replace("\"", "");
 		
-		ClienteDAO clienteDAO = new ClienteDAO();
-		Cliente clienteCpf = clienteDAO.findByCpf(cpf);
+		ProdutoDAO produtoDAO = new ProdutoDAO();
+		Produto produto = produtoDAO.findByCodProduto(opcao);
 		
 		PrintWriter out = response.getWriter();
 		
-		if(clienteCpf != null){
+		if(produto.getCodigo() != null){
 			out.println("ERRO");
 		}
 	}

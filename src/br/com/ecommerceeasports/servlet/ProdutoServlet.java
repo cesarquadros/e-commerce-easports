@@ -10,6 +10,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import javax.servlet.http.Part;
 import br.com.ecommerceeasports.entities.Produto;
 import br.com.ecommerceeasports.persistence.ProdutoDAO;
@@ -37,6 +38,7 @@ public class ProdutoServlet extends HttpServlet {
 			throws ServletException, IOException {
 
 		String acao = request.getParameter("acao");
+		HttpSession session;
 
 		if (acao.equals("cadastrar")) {
 
@@ -49,6 +51,7 @@ public class ProdutoServlet extends HttpServlet {
 				produto.setNome(request.getParameter("nome"));
 				produto.setPrecoCusto(Double.parseDouble(request.getParameter("precocusto").replaceAll(",", ".")));
 				produto.setPrecoVenda(Double.parseDouble(request.getParameter("precovenda").replaceAll(",", ".")));
+				produto.setQuantidade(Integer.parseInt(request.getParameter("quantidade")));
 				Integer codCategoria = Integer.parseInt(request.getParameter("categoria"));
 				
 				produto.setOrigem(request.getParameter("origem"));
@@ -88,22 +91,22 @@ public class ProdutoServlet extends HttpServlet {
 
 				produtoDao.insert(produto, codCategoria);
 
-				request.setAttribute("titulo", "Cadastro de Produtos");
-				request.setAttribute("mensagem","Produto " + produto.getNome().toUpperCase() + " cadastrado com sucesso");
-				request.setAttribute("imagem", produto.getImagem());
-				request.setAttribute("modal", 1);
+				session = request.getSession();
+				session.setAttribute("titulo", "Cadastro de Produtos");
+				session.setAttribute("mensagem","Produto " + produto.getNome().toUpperCase() + " cadastrado com sucesso");
+				//session.setAttribute("imagem", produto.getImagem());
+				session.setAttribute("modal", 1);
 
-				request.getRequestDispatcher("cadastroproduto.jsp").forward(request, response);
+				response.sendRedirect("cadastroproduto.jsp");
 			} catch (Exception e) {
-				
-				request.setAttribute("titulo", "Cadastro de Produtos");
-				request.setAttribute("mensagem","OPS! Ocorreu o erro:");
-				request.setAttribute("erro", e.toString());
-				request.setAttribute("modal", 1);
+				session = request.getSession();
+				session.setAttribute("titulo", "Cadastro de Produtos");
+				session.setAttribute("mensagem","OPS! Ocorreu o erro:");
+				session.setAttribute("erro", e.toString());
+				session.setAttribute("modal", 1);
 				
 				request.getRequestDispatcher("cadastroproduto.jsp").forward(request, response);
-
-				e.printStackTrace();
+				response.sendRedirect("cadastroproduto.jsp");
 			}
 		} else if (acao.equals("findById")) {
 

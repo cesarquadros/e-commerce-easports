@@ -24,7 +24,6 @@ import br.com.ecommerceeasports.util.ConverteData;
 @WebServlet("/ClienteServlet")
 public class ControlePessoa extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-	public static HttpSession session;
 
 	public ControlePessoa() {
 		super();
@@ -43,6 +42,7 @@ public class ControlePessoa extends HttpServlet {
 	protected void execute(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 
+		HttpSession session;
 		response.setContentType("text/plain");
 		String acao = request.getParameter("acao");
 		String page = request.getParameter("page");
@@ -67,8 +67,7 @@ public class ControlePessoa extends HttpServlet {
 				ClienteDAO clienteDAO = new ClienteDAO();
 				clienteEmail = clienteDAO.findByEmail(email);
 				clienteCpf = clienteDAO.findByCpf(cpf);
-				
-				if (clienteCpf == null && clienteEmail == null) {
+
 
 					endereco.setLogradouro(request.getParameter("logradouro"));
 					endereco.setNumero(Integer.parseInt(request.getParameter("numero")));
@@ -103,13 +102,6 @@ public class ControlePessoa extends HttpServlet {
 					request.setAttribute("mensagem", "Cadastro efetuado com sucesso!");
 					request.setAttribute("retorno", cliente.getNome());
 					request.getRequestDispatcher("login.jsp").forward(request, response);
-
-				} else {
-
-					request.setAttribute("mensagemErro", "Cliente já cadatrado.");
-					request.getRequestDispatcher("cadastrocliente.jsp").forward(request, response);
-
-				}
 
 			} catch (Exception e) {
 				request.setAttribute("modal", "1");
@@ -151,7 +143,7 @@ public class ControlePessoa extends HttpServlet {
 
 		} else if (acao.equals("logout")) {
 
-			final HttpSession session = request.getSession();
+			session = request.getSession();
 			session.invalidate();
 			response.sendRedirect("/e-commerce-easports/index.jsp");
 
@@ -202,11 +194,17 @@ public class ControlePessoa extends HttpServlet {
 					String valorTotalFormatado = formataValor.valorFormatado(valorTotal);
 					ArrayList<CountCarrinho> carrinhoCount = carrinhoDAO.countByBliente(cliente.getIdCliente());
 
-					request.setAttribute("cliente", cliente);
-					request.setAttribute("valorTotal", valorTotalFormatado);
-					request.setAttribute("quantidade", carrinho.size());
-					request.setAttribute("carrinhocount", carrinhoCount);
-					request.getRequestDispatcher(page + ".jsp").forward(request, response);
+					session.setAttribute("cliente", cliente);
+					session.setAttribute("valorTotal", valorTotalFormatado);
+					session.setAttribute("quantidade", carrinho.size());
+					session.setAttribute("carrinhocount", carrinhoCount);
+
+					if (page.equals("minhaconta")) {
+						session.setAttribute("mensagem", "Editado com sucesso");
+						session.setAttribute("modal", "1");
+					}
+					response.sendRedirect(page + ".jsp");
+
 				}
 			} catch (Exception e) {
 				e.printStackTrace();
@@ -220,70 +218,66 @@ public class ControlePessoa extends HttpServlet {
 			if (session.getAttribute("usuarioLogado") == null) {
 				request.getRequestDispatcher("login.jsp").forward(request, response);
 			} else {
-				cliente = (Cliente) session.getAttribute("usuarioLogado");
-				request.setAttribute("cliente", cliente);
-				request.getRequestDispatcher("minhaconta.jsp").forward(request, response);
+				try {
+					cliente = (Cliente) session.getAttribute("usuarioLogado");
+					ClienteDAO clienteDAO = new ClienteDAO();
+					cliente = clienteDAO.findByCpf(cliente.getCpf());
+					session.setAttribute("cliente", cliente);
+					response.sendRedirect("minhaconta.jsp");
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
 			}
 		} else if (acao.equals("update")) {
 
 			try {
 
-				Cliente clienteCpf = new Cliente();
-				Cliente clienteEmail = new Cliente();
-
-				String cpf = request.getParameter("cpf");
-				String email = request.getParameter("email");
-
 				ClienteDAO clienteDAO = new ClienteDAO();
+				Cliente cliente = new Cliente();
+				session = request.getSession();
+				cliente = (Cliente) session.getAttribute("usuarioLogado");
 
-				clienteCpf = clienteDAO.findByCpf(cpf);
+				/*
+				 * cliente.setEmail(request.getParameter("email"));
+				 * cliente.setNome(request.getParameter("nome"));
+				 * cliente.setCpf(request.getParameter("cpf"));
+				 * cliente.setDataNascimento(ConverteData.stringToDate(request.
+				 * getParameter("datanasc")));
+				 * cliente.setSexo(request.getParameter("sexo"));
+				 */
+				cliente.setTelefone(request.getParameter("telefone"));
+				clienteDAO.update(cliente);
 
-				clienteEmail = clienteDAO.findByEmail(email);
+				clienteDAO = new ClienteDAO();
 
-					Cliente cliente = new Cliente();
+				cliente = clienteDAO.findByCpf(cliente.getCpf());
 
-					cliente.setEmail(request.getParameter("email"));
-					cliente.setNome(request.getParameter("nome"));
-					cliente.setCpf(request.getParameter("cpf"));
-					cliente.setDataNascimento(ConverteData.stringToDate(request.getParameter("datanasc")));
-					cliente.setTelefone(request.getParameter("telefone"));
-					cliente.setSexo(request.getParameter("sexo"));
-					clienteDAO.update(cliente);
+				CarrinhoDAO carrinhoDAO = new CarrinhoDAO();
+				ArrayList<ItemCarrinho> carrinho = carrinhoDAO.itensPorCliente(cliente.getIdCliente());
 
-					clienteDAO = new ClienteDAO();
+				cliente.setListaItens(carrinho);
 
-					session = request.getSession();
-					cliente = clienteDAO.findByCpf(request.getParameter("cpf"));
+				ItemCarrinho itemCarrinho = new ItemCarrinho();
 
-					CarrinhoDAO carrinhoDAO = new CarrinhoDAO();
-					ArrayList<ItemCarrinho> carrinho = carrinhoDAO.itensPorCliente(cliente.getIdCliente());
+				FormataValor formataValor = new FormataValor();
 
-					cliente.setListaItens(carrinho);
+				Double valorTotal = itemCarrinho.getValorTotal(carrinho);
 
-					ItemCarrinho itemCarrinho = new ItemCarrinho();
+				String valorTotalFormatado = formataValor.valorFormatado(valorTotal);
+				ArrayList<CountCarrinho> carrinhoCount = carrinhoDAO.countByBliente(cliente.getIdCliente());
 
-					FormataValor formataValor = new FormataValor();
+				session.setAttribute("usuarioLogado", cliente);
 
-					Double valorTotal = itemCarrinho.getValorTotal(carrinho);
-
-					String valorTotalFormatado = formataValor.valorFormatado(valorTotal);
-					ArrayList<CountCarrinho> carrinhoCount = carrinhoDAO.countByBliente(cliente.getIdCliente());
-
-					session.setAttribute("usuarioLogado", cliente);
-					request.setAttribute("usuarioLogado", cliente);
-
-					request.setAttribute("cliente", cliente);
-					request.setAttribute("valorTotal", valorTotalFormatado);
-					request.setAttribute("quantidade", carrinho.size());
-					request.setAttribute("carrinhocount", carrinhoCount);
-					request.setAttribute("mensagem", "Editado com sucesso");
-					request.getRequestDispatcher(page + ".jsp").forward(request, response);
+				session.setAttribute("cliente", cliente);
+				session.setAttribute("mensagem", "Editado com sucesso");
+				session.setAttribute("modal", "1");
+				response.sendRedirect(page + ".jsp");
 			} catch (Exception e) {
-
+				e.printStackTrace();
 				System.out.println(e.toString());
 				System.out.println(e.getMessage());
 			}
-		} else if (acao.equals("comprasbycliente")){
+		} else if (acao.equals("comprasbycliente")) {
 			session = request.getSession();
 
 			Cliente cliente;
@@ -291,7 +285,7 @@ public class ControlePessoa extends HttpServlet {
 			if (session.getAttribute("usuarioLogado") == null) {
 				request.getRequestDispatcher("login.jsp").forward(request, response);
 			} else {
-				
+
 				request.getRequestDispatcher("relatoriocompracliente.jsp").forward(request, response);
 			}
 		}

@@ -118,8 +118,8 @@ public class ComprarProdutoServlet extends HttpServlet {
 					int idCompra = 0;
 					
 					if(formaPagamento.equals("boleto")){
-						idCompra = compraDao.compraBoleto(compra);	
 						compra.setTipoPagamento("BOLETO");
+						idCompra = compraDao.compraBoleto(compra);	
 					} else {
 						compra.setTipoPagamento("CARTÃO");
 						idCompra = compraDao.compraCartao(compra, cliente.getCartao().getIdCartao());

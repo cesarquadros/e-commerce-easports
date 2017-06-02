@@ -219,7 +219,53 @@ public class ProdutoDAO extends Conexao {
 
 	}
 
-	
+	public Produto findByCodProduto(String codProduto) throws Exception {
+
+		String query = "select * from produto where codigo = ?";
+
+		abreConexao();
+
+		stmt = con.prepareStatement(query);
+
+		stmt.setString(1, codProduto);
+
+		rs = stmt.executeQuery();
+
+		Produto produto = new Produto();
+		FormataValor format = new FormataValor();
+
+		while (rs.next()) {
+
+			produto = new Produto();
+
+			CategoriaDAO categoriaDao = new CategoriaDAO();
+			
+			produto.setIdProduto(rs.getInt("idProduto"));
+			produto.setCodigo(rs.getString("codigo"));
+			produto.setNome(rs.getString("nome"));
+			produto.setImagem(rs.getString("imagem"));
+			produto.setCategoria(categoriaDao.findById(rs.getInt("idCategoria")));
+			produto.setPrecoVenda(rs.getDouble("precoVenda"));
+			produto.setPrecoCusto(rs.getDouble("precoCusto"));
+			produto.setValorVendaFormatado(format.valorFormatado(rs.getDouble("precoVenda")));
+			produto.setValorCustoFormatado(format.valorFormatado(rs.getDouble("precoCusto")));
+			
+			produto.setOrigem(rs.getString("origem"));
+			produto.setDimensoes(rs.getString("dimensoes"));
+			produto.setPeso(rs.getString("peso"));
+			produto.setGarantia(rs.getString("garantia"));
+			produto.setDescricao(rs.getString("descricao"));
+			produto.setQuantidade(rs.getInt("quantidade"));
+			
+		}
+
+		stmt.close();
+		rs.close();
+		fechaConexao();
+
+		return produto;
+
+	}
 	/*public void update(Produto produto) throws Exception {
 
 		String query = "update produto set valor_venda = ?, valor_custo = ?, quantidade = ? where id_produto = ?";

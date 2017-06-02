@@ -3,7 +3,7 @@
 		<jsp:useBean class="br.com.ecommerceeasports.managedbean.ManagedBeanCategoria" id="mbCategoria"></jsp:useBean>
 	<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 	
-        <div class="container">
+        <div class="container" class="container" ng-app="app" ng-controller="appCtrl">
             <div class="row">
                 <div class="col-xs-0 col-sm-0 col-md-3">                    
                 </div>
@@ -16,7 +16,7 @@
                             <hr />
                             <div class="form-group">
                                 <label for="inputCodProd">Código do Produto</label>
-                                <input type="text" class="form-control" placeholder="Código" name="codigo" required/>
+                                <input type="text" class="form-control" placeholder="Código" name="codigo" required ng-model="cProduto" ng-blur="validaProduto(cProduto)"/>
                             </div>
                             <div class="form-group">
                                 <label for="inputNomeProd">Nome</label>
@@ -29,6 +29,11 @@
                             <div class="form-group">
                                 <label for="inputPrecoVendProd">Preço de Venda</label>
                                 <input type="text" class="form-control"  placeholder="R$0,00" name="precovenda" required/>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="inputqtd">Quantidade</label>
+                                <input type="number" class="form-control"  placeholder="5" name="quantidade" required/>
                             </div>
                           
                           <div class="form-group">
@@ -53,7 +58,7 @@
                         	<h2 class="center" >Informações adicionais</h2>
                         	<hr />
                         	 <div class="form-group">
-							<label>Categoria:
+							<label>Origem:
 								<select required="required" name="origem" class="form-control">
 									<option value="">- Selecione uma Opção -</option>
 										<option value="Nacional"> Nacional </option>
@@ -95,13 +100,13 @@
 			<div class="modal-content center">
 				<div class="modal-header">
 					<button type="button" class="close" data-dismiss="modal">&times;</button>
-					<h4 class="modal-title">${titulo}</h4>
+					<h4 class="modal-title">${sessionScope.titulo}</h4>
 				</div>
 				<div class="modal-body">
 					
-					<h4>${mensagem}</h4>
-					<h5>${erro }</h5>
-					<h5><img src="/img/${imagem}.jpg" class="img-responsive"></h5>
+					<h4>${sessionScope.mensagem}</h4>
+					<h5>${sessionScope.erro }</h5>
+					<!-- <h5><img src="/img/${imagem}.jpg" class="img-responsive"></h5>-->
 					
 				</div>
 				<div class="modal-footer">
@@ -117,5 +122,8 @@
 			});
 		</script>
 	</c:if>
-
+<c:remove scope="session" var="mensagem" />
+<c:remove scope="session" var="modal" />
+<c:remove scope="session" var="titulo" />
+<c:remove scope="session" var="erro" />
 <jsp:include page="rodape.jsp"></jsp:include>

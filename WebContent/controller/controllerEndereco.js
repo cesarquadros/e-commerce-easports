@@ -7,7 +7,7 @@ app.controller('appCtrl', [ '$scope', '$http', function($scope, $http) {
 
 	$scope.validaCep = function(cep) {
 
-		if (cep != '') {
+		if (cep) {
 			$http({
 				method : 'post',
 				url : 'EnderecoServlet',
@@ -19,7 +19,7 @@ app.controller('appCtrl', [ '$scope', '$http', function($scope, $http) {
 
 					alert('OPS! CEP Nao encontrado');
 				}
-
+				
 				// alert($scope.array.logradouro);
 			});
 		}
@@ -27,7 +27,7 @@ app.controller('appCtrl', [ '$scope', '$http', function($scope, $http) {
 
 	$scope.validaCpf = function(cpf) {
 
-		if (cpf != '') {
+		if (cpf) {
 			$http({
 				method : 'post',
 				url : 'ValidaCpf',
@@ -52,6 +52,22 @@ app.controller('appCtrl', [ '$scope', '$http', function($scope, $http) {
 				if (retorno.data != "") {
 					alert('OPS! Email ja cadastrado para outro cliente');
 					$scope.cEmail = '';
+				}
+			});
+		}
+	}
+	
+	$scope.validaProduto = function(produto) {
+
+		if (produto != '') {
+			$http({
+				method : 'post',
+				url : 'ValidaProduto',
+				data : produto
+			}).then(function(retorno) {
+				if (retorno.data != "") {
+					alert('Codigo de produto ja cadastrado');
+					$scope.cProduto = '';
 				}
 			});
 		}
