@@ -29,7 +29,6 @@ public class ItemCarrinho {
 	public void setProduto(Produto produto) {
 		this.produto = produto;
 	}
-	
 		
 	public Integer getIdCompra() {
 		return idCompra;
@@ -56,6 +55,5 @@ public class ItemCarrinho {
 		}		
 		return this.valorTotal;
 	}
-	
 
 }

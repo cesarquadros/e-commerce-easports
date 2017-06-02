@@ -156,4 +156,36 @@ public class CarrinhoDAO extends Conexao {
 		fechaConexao();
 
 	}
+	
+	public ArrayList<ItemCarrinho> itensByCompra(Integer idCompra) throws Exception {
+
+		String query = "select * from itens_carrinho where idCompra = ?";
+
+		abreConexao();
+
+		stmt = con.prepareStatement(query);
+		stmt.setInt(1, idCompra);
+		rs = stmt.executeQuery();
+
+		ArrayList<ItemCarrinho> lista = new ArrayList<ItemCarrinho>();
+		FormataValor format = new FormataValor();
+
+		while (rs.next()) {
+
+			ProdutoDAO produtoDao = new ProdutoDAO();
+
+			ItemCarrinho itemCarrinho = new ItemCarrinho();
+
+			itemCarrinho.setIdItem((rs.getInt("idItem")));
+			itemCarrinho.setProduto(produtoDao.findById(rs.getInt("idProduto")));
+
+			lista.add(itemCarrinho);
+		}
+
+		stmt.close();
+
+		fechaConexao();
+
+		return lista;
+	}
 }

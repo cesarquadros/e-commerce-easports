@@ -60,5 +60,11 @@ public class ConverteData {
 	    Date dataDate = sd.parse(data);
 	    return dataDate;
 	}
-
+	
+	public static String getNumProtocolo() throws ParseException {        
+	    SimpleDateFormat sd = new SimpleDateFormat("ddMMyyyyHHmmss");
+	    Date dataAtual = new Date();
+	    String data = sd.format(dataAtual);
+	    return data;
+	}
 }

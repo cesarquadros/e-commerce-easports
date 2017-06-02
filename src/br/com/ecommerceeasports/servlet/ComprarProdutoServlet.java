@@ -111,17 +111,17 @@ public class ComprarProdutoServlet extends HttpServlet {
 					String formaPagamento = request.getParameter("formapagamento");
 
 					compra.setDataCompra(ConverteData.getDataAtual());
-
 					compra.setParcelas(Integer.parseInt(request.getParameter("parcelas")));
-					compra.setTipoPagamento(formaPagamento);
-
+					compra.setNumProtocolo(ConverteData.getNumProtocolo());
 					CompraDao compraDao = new CompraDao();
 					
 					int idCompra = 0;
 					
 					if(formaPagamento.equals("boleto")){
 						idCompra = compraDao.compraBoleto(compra);	
+						compra.setTipoPagamento("BOLETO");
 					} else {
+						compra.setTipoPagamento("CARTÃO");
 						idCompra = compraDao.compraCartao(compra, cliente.getCartao().getIdCartao());
 					}					
 
@@ -148,12 +148,12 @@ public class ComprarProdutoServlet extends HttpServlet {
 					cliente = clienteDAO.findById(cliente.getIdCliente());
 
 					session.setAttribute("usuarioLogado", cliente);
-					request.setAttribute("usuarioLogado", cliente);
+					session.setAttribute("usuarioLogado", cliente);
 					
-					request.setAttribute("carrinhocount", session.getAttribute("carrinhocount"));
-					request.setAttribute("cliente", cliente);
-					request.getRequestDispatcher("confirmacaocompra.jsp").forward(request, response);
-
+					session.setAttribute("protocolo", compra.getNumProtocolo());
+					session.setAttribute("carrinhocount", session.getAttribute("carrinhocount"));
+					session.setAttribute("cliente", cliente);
+					response.sendRedirect("confirmacaocompra.jsp");
 				} catch (Exception e) {
 					e.printStackTrace();
 				}

@@ -12,7 +12,7 @@
 					<th>Forma de Pagamento</th>
 					<th>Parcelas</th>
 					<th>Data/Hora</th>
-					
+					<th>Produtos</th>
 				</tr>
 			</thead>
 			<c:forEach items="${listacompras}" var="listavenda">
@@ -22,6 +22,7 @@
 						<td>${listavenda.tipoPagamento}</td>
 						<th>${listavenda.parcelas}</th>
 						<td>${listavenda.dataCompraFormata}</td>
+						<td><a href="#">Exibir produtos</a></td>
 					</tr>
 				</tbody>
 			</c:forEach>

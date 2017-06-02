@@ -163,7 +163,7 @@ public class ControlePessoa extends HttpServlet {
 				Cliente cliente;
 
 				if (session.getAttribute("usuarioLogado") == null) {
-
+					request.getRequestDispatcher("login.jsp").forward(request, response);
 				} else {
 
 					cliente = (Cliente) session.getAttribute("usuarioLogado");
@@ -240,8 +240,6 @@ public class ControlePessoa extends HttpServlet {
 
 				clienteEmail = clienteDAO.findByEmail(email);
 
-				if (clienteCpf != null && clienteEmail != null) {
-
 					Cliente cliente = new Cliente();
 
 					cliente.setEmail(request.getParameter("email"));
@@ -280,15 +278,21 @@ public class ControlePessoa extends HttpServlet {
 					request.setAttribute("carrinhocount", carrinhoCount);
 					request.setAttribute("mensagem", "Editado com sucesso");
 					request.getRequestDispatcher(page + ".jsp").forward(request, response);
-
-				} else {
-					request.setAttribute("mensagemErro", "Cliente já cadatrado.");
-					request.getRequestDispatcher("minhaconta.jsp").forward(request, response);
-				}
 			} catch (Exception e) {
 
 				System.out.println(e.toString());
 				System.out.println(e.getMessage());
+			}
+		} else if (acao.equals("comprasbycliente")){
+			session = request.getSession();
+
+			Cliente cliente;
+
+			if (session.getAttribute("usuarioLogado") == null) {
+				request.getRequestDispatcher("login.jsp").forward(request, response);
+			} else {
+				
+				request.getRequestDispatcher("relatoriocompracliente.jsp").forward(request, response);
 			}
 		}
 	}

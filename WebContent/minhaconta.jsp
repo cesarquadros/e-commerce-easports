@@ -26,7 +26,7 @@
 					<h4>MEUS PEDIDOS</h4>
 					<hr />
 					<ul>
-						<li><a href="#">Relatorio de compras</a></li>
+						<li><a href="/e-commerce-easports/ClienteServlet?acao=comprasbycliente">Relatorio de compras</a></li>
 					</ul>
 
 					<br />

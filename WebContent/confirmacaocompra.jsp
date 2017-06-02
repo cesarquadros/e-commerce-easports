@@ -33,6 +33,8 @@
 	<div class="row">
 		<div class="col-xs-12 col-sm-12 col-md-6">
 			<h3>Obrigado por comprar na easports.com.br</h3>
+			<h4>Protocolo: ${sessionScope.protocolo}</h4>
+			<c:remove scope="session" var="protocolo" />
 		</div>
 		
 		<div class="row">
@@ -45,7 +47,7 @@
 							<th>Valor</th>
 						</tr>
 					</thead>
-					<c:forEach items="${carrinhocount}" var="carrinho">
+					<c:forEach items="${sessionScope.carrinhocount}" var="carrinho">
 						<tbody style="font-size: 12px;">
 							<tr>
 								<td>${carrinho.produto.nome}</td>
@@ -58,17 +60,19 @@
 						<tr style="background: #eee;">
 							<td>Total a pagar:</td>
 							<td></td>
-							<td>${valorTotalFormatado}</td>
+							<td>${sessionScope.valorTotalFormatado}</td>
 						</tr>
 					</tbody>
 				</table>
+				 <c:remove scope="session" var="carrinhocount" />
+				 <c:remove scope="session" var="valorTotalFormatado" />
 			</div>
 		</div>		
 	</div>
 	
 	<div class="row">
 		<div class="col-xs-12 col-sm-12 col-md-12">
-			<a  href="/e-commerce-easports/ComprarProdutoServlet?acao=listacompra">Vendas</a>
+			<a  href="index.jsp">Home</a>
 		</div>		
 	</div>
 </div>

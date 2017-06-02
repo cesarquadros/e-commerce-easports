@@ -7,10 +7,6 @@ public class CountCarrinho {
 	private Double valorUnitario;
 	private String valorFormatado;
 	
-	
-	
-	
-	
 	public Produto getProduto() {
 		return produto;
 	}
