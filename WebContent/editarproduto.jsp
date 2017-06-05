@@ -1,22 +1,23 @@
-
-
-<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <jsp:include page="cabecalhobackoffice.jsp"></jsp:include>
 <jsp:include page="menubackoffice.jsp"></jsp:include>
 <jsp:useBean
 	class="br.com.ecommerceeasports.managedbean.ManagedBeanCategoria"
 	id="mbCategoria"></jsp:useBean>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+	<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 
-<script src="./controller/controllerEndereco.js"></script>
-<div class="container" class="container" ng-app="app" ng-controller="appCtrl">
+<div class="container">
 	<div class="row">
-		<div class="col-xs-0 col-sm-0 col-md-3"></div>
+		<div class="col-xs-12 col-sm-12 col-md-4">
+			<img
+				src="img/${produto.imagem}"
+				class="img-responsive" style="max-width: 70%;"/>
+		</div>
+
 		<div class="col-xs-12 col-sm-12 col-md-6">
 			<form name="formulario" method="post" enctype="multipart/form-data"
 				action="/e-commerce-easports/ProdutoServlet">
 
-				<input type="hidden" name="acao" value="cadastrar">
+				<input type="hidden" name="acao" value="editarproduto">
 				<div class="jumbotron">
 					<h2 class="center">Produto</h2>
 					<hr />
@@ -24,30 +25,30 @@
 						<label for="inputCodProd">Código do Produto</label> <input
 							type="text" class="form-control" placeholder="Código"
 							name="codigo" required ng-model="cProduto"
-							ng-blur="validaProduto(cProduto)" />
+							ng-blur="validaProduto(cProduto)" disabled value="${produto.codigo }"/>
 					</div>
 					<div class="form-group">
 						<label for="inputNomeProd">Nome</label> <input type="text"
-							class="form-control" placeholder="Nome" name="nome" required />
+							class="form-control" placeholder="Nome" name="nome" required value="${produto.nome }"/>
 					</div>
 					<div class="form-group">
 						<label for="inputPrecoCustProd">Preço de Custo</label> <input
 							type="text" class="form-control" placeholder="R$0,00"
-							name="precocusto" required />
+							name="precocusto" required value="${produto.precoCusto}"/>
 					</div>
 					<div class="form-group">
 						<label for="inputPrecoVendProd">Preço de Venda</label> <input
 							type="text" class="form-control" placeholder="R$0,00"
-							name="precovenda" required />
+							name="precovenda" required value="${produto.precoVenda}"/>
 					</div>
 
 					<div class="form-group">
 						<label for="inputqtd">Quantidade</label> <input type="number"
-							class="form-control" placeholder="5" name="quantidade" required />
+							class="form-control" placeholder="5" name="quantidade" required value="${produto.quantidade}"/>
 					</div>
 
 					<div class="form-group">
-						<label>Categoria: <select required="required"
+						<label>Categoria: ${produto.categoria.nome}<select required="required"
 							name="categoria" class="form-control">
 								<option value="">- Selecione uma Opção -</option>
 								<c:forEach items="${mbCategoria.listagemCategorias}" var="c">
@@ -59,16 +60,15 @@
 
 					<div class="form-group">
 						<label for="exampleInputFile">Inserir Foto</label> <input
-							type="file" id="inputFotoProd" name="img" required>
+							type="file" id="inputFotoProd" name="img">
 					</div>
-
 				</div>
 
 				<div class="jumbotron">
 					<h2 class="center">Informações adicionais</h2>
 					<hr />
 					<div class="form-group">
-						<label>Origem: <select required="required" name="origem"
+						<label>Origem: ${produto.origem}<select required="required" name="origem"
 							class="form-control">
 								<option value="">- Selecione uma Opção -</option>
 								<option value="Nacional">Nacional</option>
@@ -80,26 +80,26 @@
 					<div class="form-group">
 						<label for="inputCodProd">Dimensões</label> <input type="text"
 							class="form-control" placeholder="EX: 29x44x14 (LxAxP) cm"
-							name="dimensoes" />
+							name="dimensoes" value="${produto.dimensoes}"/>
 					</div>
 
 					<div class="form-group">
 						<label for="inputCodProd">Peso</label> <input type="text"
-							class="form-control" placeholder="EX: 200g / 3kg" name="peso" />
+							class="form-control" placeholder="EX: 200g / 3kg" name="peso" value="${produto.peso}"/>
 					</div>
 
 					<div class="form-group">
 						<label for="inputCodProd">Garantia</label> <input type="text"
-							class="form-control" placeholder="EX: 12 meses" name="garantia" />
+							class="form-control" placeholder="EX: 12 meses" name="garantia" value="${produto.garantia}"/>
 					</div>
 
 					<div class="form-group">
 						<label for="inputCodProd">Descrição</label> <input type="text"
 							class="form-control" placeholder="Descrições do produto"
-							name="descricao" />
+							name="descricao" value="${produto.descricao}"/>
 					</div>
 					<div class="center">
-						<button type="submit" class="btn btn-default">Cadastrar</button>
+						<button type="submit" class="btn btn-default">Alterar</button>
 					</div>
 				</div>
 			</form>
@@ -107,38 +107,3 @@
 	</div>
 </div>
 
-<div id="myModal" class="modal fade" role="dialog">
-	<div class="modal-dialog">
-
-		<!-- Modal content-->
-		<div class="modal-content center">
-			<div class="modal-header">
-				<button type="button" class="close" data-dismiss="modal">&times;</button>
-				<h4 class="modal-title">${sessionScope.titulo}</h4>
-			</div>
-			<div class="modal-body">
-
-				<h4>${sessionScope.mensagem}</h4>
-				<h5>${sessionScope.erro }</h5>
-				<!-- <h5><img src="/img/${imagem}.jpg" class="img-responsive"></h5>-->
-
-			</div>
-			<div class="modal-footer">
-				<button type="button" class="btn btn-default center"
-					data-dismiss="modal">Fechar</button>
-			</div>
-		</div>
-	</div>
-</div>
-<c:if test="${modal=='1'}">
-	<script>
-		$(document).ready(function() {
-			$('#myModal').modal('show');
-		});
-	</script>
-</c:if>
-<c:remove scope="session" var="mensagem" />
-<c:remove scope="session" var="modal" />
-<c:remove scope="session" var="titulo" />
-<c:remove scope="session" var="erro" />
-<jsp:include page="rodape.jsp"></jsp:include>

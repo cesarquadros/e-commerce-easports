@@ -1,5 +1,6 @@
 
 <jsp:include page="cabecalho3.jsp"></jsp:include>
+<jsp:include page="menu.jsp"></jsp:include>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <br />
 <br />

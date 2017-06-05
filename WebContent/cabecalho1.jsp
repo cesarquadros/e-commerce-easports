@@ -23,8 +23,8 @@
 <link rel="stylesheet" href="./css/bootstrap-social.less" />
 <link rel="stylesheet" href="./css/bootstrap-social.scss" />
 <link rel="stylesheet" href="./css/estiloHome.css" />
-<!-- <script src="./js/jquery-3.1.1.min.js"></script> -->
-<script src="./js/bootstrap.min.js"></script>
+<!--<script src="./js/jquery-3.1.1.min.js"></script>
+<script src="./js/bootstrap.min.js"></script> -->
 <script src="./js/bootstrap.js"></script>
 
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
@@ -41,7 +41,6 @@
 </head>
 
 <body ng-app="app" ng-controller="appCtrl">
-
 	<div class="container-fluid" id="banner1">
 		<div class="row">
 			<div class="col-xs-4 col-sm-4 col-md-2">
@@ -75,32 +74,6 @@
 							</span> Carrinho <span style="color: green;">(${fnc:length(usuarioLogado.listaItens)}) </span>
 						</a>
 					</li>	
-				</ul>
-			</div>
-		</div>
-	</div>
-
-	<div class="navbar navbar-default navbar-static-top">
-		<button class="navbar-toggle" data-toggle="collapse"
-			data-target=".navHeaderCollapse">
-			<span class="icon-bar"></span> 
-			<span class="icon-bar"></span> 
-			<span class="icon-bar"></span>
-		</button>
-
-		<div class="collapse navbar-collapse navHeaderCollapse" id="divMenu">
-			<div class="container center">
-				<ul class="nav navbar-nav navbar-left">
-					<li><a href="/e-commerce-easports/CategoriaServlet?categoria=futebol">Futebol</a></li>
-					<li><a href="/e-commerce-easports/CategoriaServlet?categoria=natacao">Natação</a></li>
-					<li><a href="/e-commerce-easports/CategoriaServlet?categoria=surf">Surf</a></li>
-					<li><a href="/e-commerce-easports/CategoriaServlet?categoria=Tenis">Tênis</a></li>
-					<li><a href="/e-commerce-easports/CategoriaServlet?categoria=Volei">Vôlei</a></li>
-					<li><a href="/e-commerce-easports/CategoriaServlet?categoria=Skate">Skate</a></li>
-					<li><a href="/e-commerce-easports/CategoriaServlet?categoria=Basquete">Basquete</a></li>
-					<li><a href="/e-commerce-easports/CategoriaServlet?categoria=Ciclismo">Ciclismo</a></li>
-					<li><a href="/e-commerce-easports/CategoriaServlet?categoria=Rugby">Rugby</a></li>
-					<li><a href="/e-commerce-easports/CategoriaServlet?categoria=Running">Running</a></li>
 				</ul>
 			</div>
 		</div>

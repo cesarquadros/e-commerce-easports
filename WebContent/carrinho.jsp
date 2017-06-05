@@ -1,6 +1,6 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fnc"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-<jsp:include page="cabecalho2.jsp"></jsp:include>
+<jsp:include page="cabecalho3.jsp"></jsp:include>
 <link rel="stylesheet" href="./css/stepbar.css" />
 <script src="./js/increment.js"></script>
 <link rel="stylesheet" href="./css/increment.css" />

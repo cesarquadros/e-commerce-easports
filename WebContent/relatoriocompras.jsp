@@ -1,10 +1,11 @@
-<jsp:include page="cabecalho2.jsp"></jsp:include>
+<jsp:include page="cabecalhobackoffice.jsp"></jsp:include>
+<jsp:include page="menubackoffice.jsp"></jsp:include>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fnc"%>
 <div class="container">
 	<div class="row">
 		<div class="col-xs-12 col-sm-12 col-md-12">
-			<h1>Vendas Realizadas</h1>
+			<h1 class="center">Relatório de Vendas</h1>
 			<br /> <br /> <br />
 
 			<form name="formulario" method="post" action="/e-commerce-easports/RelatorioServlet?acao=relatorioperiodo">

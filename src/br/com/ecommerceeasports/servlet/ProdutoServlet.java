@@ -53,7 +53,7 @@ public class ProdutoServlet extends HttpServlet {
 				produto.setPrecoVenda(Double.parseDouble(request.getParameter("precovenda").replaceAll(",", ".")));
 				produto.setQuantidade(Integer.parseInt(request.getParameter("quantidade")));
 				Integer codCategoria = Integer.parseInt(request.getParameter("categoria"));
-				
+
 				produto.setOrigem(request.getParameter("origem"));
 				produto.setDimensoes(request.getParameter("dimensoes"));
 				produto.setPeso(request.getParameter("peso"));
@@ -93,18 +93,19 @@ public class ProdutoServlet extends HttpServlet {
 
 				session = request.getSession();
 				session.setAttribute("titulo", "Cadastro de Produtos");
-				session.setAttribute("mensagem","Produto " + produto.getNome().toUpperCase() + " cadastrado com sucesso");
-				//session.setAttribute("imagem", produto.getImagem());
+				session.setAttribute("mensagem",
+						"Produto " + produto.getNome().toUpperCase() + " cadastrado com sucesso");
+				// session.setAttribute("imagem", produto.getImagem());
 				session.setAttribute("modal", 1);
 
 				response.sendRedirect("cadastroproduto.jsp");
 			} catch (Exception e) {
 				session = request.getSession();
 				session.setAttribute("titulo", "Cadastro de Produtos");
-				session.setAttribute("mensagem","OPS! Ocorreu o erro:");
+				session.setAttribute("mensagem", "OPS! Ocorreu o erro:");
 				session.setAttribute("erro", e.toString());
 				session.setAttribute("modal", 1);
-				
+
 				request.getRequestDispatcher("cadastroproduto.jsp").forward(request, response);
 				response.sendRedirect("cadastroproduto.jsp");
 			}
@@ -119,6 +120,20 @@ public class ProdutoServlet extends HttpServlet {
 
 				request.setAttribute("produto", produto);
 				request.getRequestDispatcher("detalheproduto.jsp").forward(request, response);
+
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		} else if (acao.equals("paginaeditar")) {
+
+			Produto produto;
+			ProdutoDAO p = new ProdutoDAO();
+			Integer idProduto = Integer.parseInt(request.getParameter("id"));
+
+			try {
+				produto = p.findById(idProduto);
+				request.setAttribute("produto", produto);
+				request.getRequestDispatcher("editarproduto.jsp").forward(request, response);
 
 			} catch (Exception e) {
 				e.printStackTrace();
