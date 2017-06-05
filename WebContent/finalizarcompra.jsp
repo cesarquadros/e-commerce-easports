@@ -147,7 +147,7 @@
 					</form>
 				</div>
 			</div>
-
+<!--
 			<div class="col-xs-12 col-sm-12 col-md-4">
 				<div class="">
 					<h4>Pagamento boleto</h4>
@@ -170,10 +170,10 @@
 						</tr>
 					</tbody>
 				</table>
-				<a
+				 <a
 					href="/e-commerce-easports/ComprarProdutoServlet?acao=comprar&formapagamento=boleto&parcelas=1"
 					type="button" class="btn btn-primary navbar-btn"> Finalizar
-					compra com boleto </a>
+					compra com boleto </a> -->
 			</div>
 			</form>
 		</div>

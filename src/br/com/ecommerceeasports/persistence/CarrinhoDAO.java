@@ -62,13 +62,13 @@ public class CarrinhoDAO extends Conexao {
 
 	public void excluirItem(Integer idProduto, Integer idCliente) throws Exception {
 
-		String query = "update itens_carrinho set removido = 1 where idItem = (select min(idItem) "
-				+ "from itens_carrinho where idProduto = ? and removido = 0) and idCliente = ?";
+		String query = "update itens_carrinho set removido = 1 where idItem = (select min(idItem)"
+				+ "from itens_carrinho where idProduto = ? and removido = 0 and idCliente = ?)";
 
 		abreConexao();
 
 		stmt = con.prepareStatement(query);
-
+		
 		stmt.setInt(1, idProduto);
 		stmt.setInt(2, idCliente);
 

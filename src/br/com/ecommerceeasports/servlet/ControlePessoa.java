@@ -269,7 +269,7 @@ public class ControlePessoa extends HttpServlet {
 				session.setAttribute("usuarioLogado", cliente);
 
 				session.setAttribute("cliente", cliente);
-				session.setAttribute("mensagem", "Editado com sucesso");
+				session.setAttribute("mensagem", "Dados alterados com sucesso");
 				session.setAttribute("modal", "1");
 				response.sendRedirect(page + ".jsp");
 			} catch (Exception e) {

@@ -24,7 +24,7 @@
 						</div>
 					</div>
 					<div class="col-xs-12 col-sm-3 col-md-3">
-						<button type="submit" class="btn btn-primary">Pesquisar</button>
+						<button type="submit" class="btn btn-primary">Gerar Relatório</button>
 					</div>
 				</div>
 			</form>

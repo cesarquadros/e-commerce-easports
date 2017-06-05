@@ -18,19 +18,14 @@ app.controller('appCtrl', [ '$scope', '$http', function($scope, $http) {
 	}
 
 	$scope.addCarrinho = function(idProduto,acao) {
+		$scope.ok = 'OK';
 		$http({
 			method : 'post',
 			url : 'CarrinhoServlet',
 			data : [idProduto, acao]
 		}).then(function(retorno) {
-			
-			if(retorno.data){
 				alert('Adicionado ao carrinho');
 				setTimeout('location.reload();', 1);
-			} else {
-				alert('OPS! Ocorreu um erro');
-			}
-			
 		});		
 	}
 	$scope.verificarLogin = function(usuario) {

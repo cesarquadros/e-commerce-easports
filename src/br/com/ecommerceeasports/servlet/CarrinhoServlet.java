@@ -70,7 +70,7 @@ public class CarrinhoServlet extends HttpServlet {
 				Produto produto = produtoDAO.findById(idProduto);
 				Cliente cliente;
 				if (session.getAttribute("usuarioLogado") == null) {
-
+					out.println("ERRO");
 				} else {
 					cliente = (Cliente) session.getAttribute("usuarioLogado");
 
@@ -98,7 +98,11 @@ public class CarrinhoServlet extends HttpServlet {
 			Cliente cliente;
 
 			if (session.getAttribute("usuarioLogado") == null) {
-
+				try {
+					request.getRequestDispatcher("login.jsp").forward(request, response);
+				} catch (ServletException e) {
+					e.printStackTrace();
+				}
 			} else {
 				cliente = (Cliente) session.getAttribute("usuarioLogado");
 
