@@ -14,6 +14,7 @@ import javax.servlet.http.HttpSession;
 import javax.servlet.http.Part;
 import br.com.ecommerceeasports.entities.Produto;
 import br.com.ecommerceeasports.persistence.ProdutoDAO;
+import br.com.ecommerceeasports.util.FormataValor;
 
 @WebServlet("/ProdutoServlet")
 @MultipartConfig
@@ -93,9 +94,7 @@ public class ProdutoServlet extends HttpServlet {
 
 				session = request.getSession();
 				session.setAttribute("titulo", "Cadastro de Produtos");
-				session.setAttribute("mensagem",
-						"Produto " + produto.getNome().toUpperCase() + " cadastrado com sucesso");
-				// session.setAttribute("imagem", produto.getImagem());
+				session.setAttribute("mensagem","Produto " + produto.getNome().toUpperCase() + " cadastrado com sucesso");
 				session.setAttribute("modal", 1);
 
 				response.sendRedirect("cadastroproduto.jsp");
@@ -106,7 +105,6 @@ public class ProdutoServlet extends HttpServlet {
 				session.setAttribute("erro", e.toString());
 				session.setAttribute("modal", 1);
 
-				request.getRequestDispatcher("cadastroproduto.jsp").forward(request, response);
 				response.sendRedirect("cadastroproduto.jsp");
 			}
 		} else if (acao.equals("findById")) {
@@ -131,11 +129,60 @@ public class ProdutoServlet extends HttpServlet {
 			Integer idProduto = Integer.parseInt(request.getParameter("id"));
 
 			try {
+				FormataValor format = new FormataValor();
 				produto = p.findById(idProduto);
+				produto.setValorCustoFormatado(format.valorCasaDecimal(produto.getPrecoCusto()));
+				produto.setValorVendaFormatado(format.valorCasaDecimal(produto.getPrecoVenda()));
+				
 				request.setAttribute("produto", produto);
 				request.getRequestDispatcher("editarproduto.jsp").forward(request, response);
 
 			} catch (Exception e) {
+				session = request.getSession();
+				session.setAttribute("titulo", "Editar Produtos");
+				session.setAttribute("mensagem", "OPS! Ocorreu o erro:");
+				session.setAttribute("erro", e.toString());
+				session.setAttribute("modal", 1);
+
+				response.sendRedirect("indexbackoffice.jsp");
+				e.printStackTrace();
+			}
+		} else if (acao.equals("editarproduto")) {
+			try {
+				Produto produto = new Produto();
+
+				produto.setIdProduto(Integer.parseInt(request.getParameter("idProduto")));
+				produto.setNome(request.getParameter("nome"));
+				produto.setPrecoCusto(Double.parseDouble(request.getParameter("precocusto").replaceAll(",", ".")));
+				produto.setPrecoVenda(Double.parseDouble(request.getParameter("precovenda").replaceAll(",", ".")));
+				produto.setQuantidade(Integer.parseInt(request.getParameter("quantidade")));
+				Integer idCategoria = Integer.parseInt(request.getParameter("categoria"));
+
+				produto.setOrigem(request.getParameter("origem"));
+				produto.setDimensoes(request.getParameter("dimensoes"));
+				produto.setPeso(request.getParameter("peso"));
+				produto.setGarantia(request.getParameter("garantia"));
+				produto.setDescricao(request.getParameter("descricao"));
+
+				ProdutoDAO produtoDAO = new ProdutoDAO();
+
+				produtoDAO.update(produto, idCategoria);
+				
+				session = request.getSession();
+				session.setAttribute("titulo", "Editar Produtos");
+				session.setAttribute("mensagem",produto.getNome().toUpperCase() + " \n alterada com sucesso");
+				session.setAttribute("modal", 1);
+
+				response.sendRedirect("indexbackoffice.jsp");
+				
+			} catch (Exception e) {
+				session = request.getSession();
+				session.setAttribute("titulo", "Editar Produtos");
+				session.setAttribute("mensagem", "OPS! Ocorreu o erro:");
+				session.setAttribute("erro", e.toString());
+				session.setAttribute("modal", 1);
+
+				response.sendRedirect("indexbackoffice.jsp");
 				e.printStackTrace();
 			}
 		}

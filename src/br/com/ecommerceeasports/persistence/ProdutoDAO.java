@@ -43,7 +43,6 @@ public class ProdutoDAO extends Conexao {
 
 	}
 	
-	
 	public List<Produto> listAll() throws Exception {
 
 		StringBuilder hql = new StringBuilder();
@@ -266,19 +265,32 @@ public class ProdutoDAO extends Conexao {
 		return produto;
 
 	}
-	/*public void update(Produto produto) throws Exception {
+	
+	
+	public void update(Produto produto, Integer idCategoria) throws Exception {
 
-		String query = "update produto set valor_venda = ?, valor_custo = ?, quantidade = ? where id_produto = ?";
+		String query = "update produto set nome =?, precoCusto =?, precoVenda =?, idCategoria =?,origem =?,dimensoes=?, peso =?,"
+				+ "garantia=?, descricao=?,quantidade=? where idProduto = ?";
 
 		abreConexao();
 
 		stmt = con.prepareStatement(query);
 
-		int contador = 1;
+		int index = 1;
 		
-		stmt.setDouble(contador++, produto.getPrecoVenda());
-		stmt.setDouble(contador++, produto.getPrecoCusto());
-		stmt.setInt(contador++, produto.getIdProduto());
+		stmt.setString(index++, produto.getNome());
+		//stmt.setString(index++, produto.getImagem());
+		stmt.setDouble(index++, produto.getPrecoCusto());
+		stmt.setDouble(index++, produto.getPrecoVenda());
+		stmt.setInt(index++, idCategoria);
+		
+		stmt.setString(index++, produto.getOrigem());
+		stmt.setString(index++, produto.getDimensoes());
+		stmt.setString(index++, produto.getPeso());
+		stmt.setString(index++, produto.getGarantia());
+		stmt.setString(index++, produto.getDescricao());
+		stmt.setInt(index++, produto.getQuantidade());
+		stmt.setInt(index++, produto.getIdProduto());
 
 		stmt.execute();
 
@@ -287,7 +299,8 @@ public class ProdutoDAO extends Conexao {
 		fechaConexao();
 
 	}
-
+	
+	/*
 	public void delete(Integer id_produto) throws Exception {
 
 		String query = "delete from produto where id_produto = ?";

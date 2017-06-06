@@ -1,6 +1,7 @@
 <jsp:include page="cabecalhobackoffice.jsp"></jsp:include>
 <jsp:include page="menubackoffice.jsp"></jsp:include>
 <script src="./controller/controllerProduto.js"></script>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 
 <div class="container" ng-app="app" ng-controller="appCtrl" ng-init="listAll()">
 	<div class="row">
@@ -28,3 +29,37 @@
 		</div>
 	</div>
 </div>
+
+<div id="myModal" class="modal fade" role="dialog">
+	<div class="modal-dialog">
+
+		<!-- Modal content-->
+		<div class="modal-content center">
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal">&times;</button>
+				<h4 class="modal-title">${sessionScope.titulo}</h4>
+			</div>
+			<div class="modal-body">
+				<h4>${sessionScope.mensagem}</h4>
+				<h5>${sessionScope.erro }</h5>
+				<!-- <h5><img src="/img/${imagem}.jpg" class="img-responsive"></h5>-->
+
+			</div>
+			<div class="modal-footer">
+				<button type="button" class="btn btn-default center"
+					data-dismiss="modal">Fechar</button>
+			</div>
+		</div>
+	</div>
+</div>
+<c:if test="${modal=='1'}">
+	<script>
+		$(document).ready(function() {
+			$('#myModal').modal('show');
+		});
+	</script>
+</c:if>
+<c:remove scope="session" var="mensagem" />
+<c:remove scope="session" var="modal" />
+<c:remove scope="session" var="titulo" />
+<c:remove scope="session" var="erro" />

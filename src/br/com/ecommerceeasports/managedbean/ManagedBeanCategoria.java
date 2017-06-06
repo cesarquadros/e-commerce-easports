@@ -18,8 +18,6 @@ public class ManagedBeanCategoria {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-
 		return listagemCategorias;
 	}
-
 }
