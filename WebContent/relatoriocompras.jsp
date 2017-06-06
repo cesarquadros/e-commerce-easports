@@ -8,14 +8,15 @@
 			<h1 class="center">Relatório de Vendas</h1>
 			<br /> <br /> <br />
 
-			<form name="formulario" method="post" action="/e-commerce-easports/RelatorioServlet?acao=relatorioperiodo">
+			<form name="formulario" method="post"
+				action="/e-commerce-easports/RelatorioServlet?acao=relatorioperiodo">
 				<div class="row">
-				<div class="col-xs-12 col-sm-3 col-md-3">
-					<div class="form-group">
-						<label for="inputInicio">Data inicio</label> <input type="date"
-							class="form-control" id="inputDtNasc" placeholder="dd/mm/aaaa"
-							name="datainicio" required>
-					</div>
+					<div class="col-xs-12 col-sm-3 col-md-3">
+						<div class="form-group">
+							<label for="inputInicio">Data inicio</label> <input type="date"
+								class="form-control" id="inputDtNasc" placeholder="dd/mm/aaaa"
+								name="datainicio" required>
+						</div>
 					</div>
 					<div class="col-xs-12 col-sm-3 col-md-3">
 						<div class="form-group">
@@ -25,7 +26,8 @@
 						</div>
 					</div>
 					<div class="col-xs-12 col-sm-3 col-md-3">
-						<button type="submit" class="btn btn-primary">Gerar Relatório</button>
+						<button type="submit" class="btn btn-primary">Gerar
+							Relatório</button>
 					</div>
 				</div>
 			</form>
@@ -49,9 +51,39 @@
 							<th>${listavenda.parcelas}</th>
 							<th>${listavenda.valorTotalFormatado}</th>
 							<td>${listavenda.dataCompraFormata}</td>
-							<td>${fnc:length(listavenda.listaItens)}</td>
+							<td>
+								<button type="button" class="btn btn-default navbar-btn"
+									id="${listavenda.numProtocolo}">${fnc:length(listavenda.listaItens)}
+									Produtos</button>
+							</td>
 						</tr>
 					</tbody>
+					<div id="${listavenda.idCompra}" class="modal fade" role="dialog">
+						<div class="modal-dialog">
+							<!-- Modal content-->
+							<div class="modal-content">
+								<div class="modal-header">
+									<button type="button" class="close" data-dismiss="modal">&times;</button>
+									<h3 class="modal-title center">Lista de Itens</h3>
+									<h5 class="modal-title center">Protocolo: ${listavenda.numProtocolo}</h5>
+								</div>
+								<div class="modal-body">
+										<c:forEach items="${listavenda.listaItens}" var="listaproduto">
+										<p class="center">${listaproduto.produto.nome} - <strong>${listaproduto.produto.valorVendaFormatado}</strong></p>
+									</c:forEach>
+								</div>
+							</div>
+						</div>
+					</div>
+
+					<script>
+						$(document).ready(function() {
+							$("#${listavenda.numProtocolo}").click(function() {
+								$("#${listavenda.idCompra}").modal();
+							});
+						});
+					</script>
+
 				</c:forEach>
 				<c:remove scope="session" var="listacompras" />
 			</table>

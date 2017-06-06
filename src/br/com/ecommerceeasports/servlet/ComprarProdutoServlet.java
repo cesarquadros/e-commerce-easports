@@ -112,7 +112,7 @@ public class ComprarProdutoServlet extends HttpServlet {
 
 					compra.setDataCompra(ConverteData.getDataAtual());
 					compra.setParcelas(Integer.parseInt(request.getParameter("parcelas")));
-					compra.setNumProtocolo(ConverteData.getNumProtocolo());
+					compra.setNumProtocolo(ConverteData.getNumProtocolo()+ cliente.getIdCliente());
 					CompraDao compraDao = new CompraDao();
 					
 					int idCompra = 0;

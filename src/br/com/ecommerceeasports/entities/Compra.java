@@ -18,7 +18,6 @@ public class Compra {
 	private String valorTotalFormatado;
 	private ArrayList<ItemCarrinho> listaItens;
 	
-	
 	public Integer getIdCompra() {
 		return idCompra;
 	}

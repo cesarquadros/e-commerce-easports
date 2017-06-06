@@ -94,7 +94,7 @@
 	</div>
 	<div class="row" ng-if="${fnc:length(cliente.listaItens)} < 1">
 		<h1>Seu Carrinho esta vazio</h1>
-		<a href="index.jsp">Voltar pra home</a>
+		<a href="index.jsp">Voltar para home</a>
 	</div>
 </div>
 <jsp:include page="rodape.jsp"></jsp:include>
