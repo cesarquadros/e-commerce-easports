@@ -1,14 +1,16 @@
-
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.11/jquery.mask.js" type="text/javascript"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.11/jquery.mask.min.js" type="text/javascript"></script>
+<script src="./js/mask.js"></script>
 		<div class="form-group">
 			<label for="inputCEP" class="">CEP</label> <input type="text"
-				class="form-control" id="inputCep" placeholder="00000-000" 
+				class="form-control cep" id="inputCep" placeholder="00000-000" 
 				name="cep" required ng-model="cCep" ng-blur="validaCep(cCep,'')" />
 		</div>
 		<div class="form-group">
 			<label for="inputLogradouro">Logradouro</label> <input type="text"
 				class="form-control" id="inputLogradouro"
 				placeholder="Ex.: Rua: xxxxx" name="logradouro"
-				value="{{array.logradouro}}" value=" ${cliente.endereco.logradouro}" required>
+				value="{{array.logradouro}}" value="${cliente.endereco.logradouro}" required>
 		</div>
 		<div class="form-group">
 			<label for="inputNumero">Número</label> <input type="number"

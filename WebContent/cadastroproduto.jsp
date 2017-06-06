@@ -1,4 +1,7 @@
-
+<script src="./js/jquery.js" type="text/javascript"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.11/jquery.mask.js" type="text/javascript"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.11/jquery.mask.min.js" type="text/javascript"></script>
+<script src="./js/mask.js"></script>
 
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <jsp:include page="cabecalhobackoffice.jsp"></jsp:include>
@@ -32,12 +35,12 @@
 					</div>
 					<div class="form-group">
 						<label for="inputPrecoCustProd">Preço de Custo</label> <input
-							type="text" class="form-control" placeholder="R$0,00"
+							type="text" class="form-control money" placeholder="R$0,00"
 							name="precocusto" required />
 					</div>
 					<div class="form-group">
 						<label for="inputPrecoVendProd">Preço de Venda</label> <input
-							type="text" class="form-control" placeholder="R$0,00"
+							type="text" class="form-control money" placeholder="R$0,00"
 							name="precovenda" required />
 					</div>
 

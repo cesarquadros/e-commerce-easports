@@ -58,50 +58,41 @@ public class ControlePessoa extends HttpServlet {
 
 				final Endereco endereco = new Endereco();
 
-				Cliente clienteCpf = new Cliente();
-				Cliente clienteEmail = new Cliente();
-
-				String cpf = request.getParameter("cpf");
-				String email = request.getParameter("email");
-
 				ClienteDAO clienteDAO = new ClienteDAO();
-				clienteEmail = clienteDAO.findByEmail(email);
-				clienteCpf = clienteDAO.findByCpf(cpf);
 
+				endereco.setLogradouro(request.getParameter("logradouro"));
+				endereco.setNumero(Integer.parseInt(request.getParameter("numero")));
+				endereco.setCep(request.getParameter("cep").replace("-", "").replace(".", ""));
+				endereco.setBairro(request.getParameter("bairro"));
+				endereco.setCidade(request.getParameter("cidade"));
+				endereco.setEstado(request.getParameter("estado"));
+				endereco.setComplemento(request.getParameter("complemento"));
 
-					endereco.setLogradouro(request.getParameter("logradouro"));
-					endereco.setNumero(Integer.parseInt(request.getParameter("numero")));
-					endereco.setCep(request.getParameter("cep"));
-					endereco.setBairro(request.getParameter("bairro"));
-					endereco.setCidade(request.getParameter("cidade"));
-					endereco.setEstado(request.getParameter("estado"));
-					endereco.setComplemento(request.getParameter("complemento"));
+				System.out.println(request.getParameter("logradouro"));
+				// Instanciando a classe responsáel por gravar, alterar e
+				// excluir Endereços no banco
 
-					System.out.println(request.getParameter("logradouro"));
-					// Instanciando a classe responsáel por gravar, alterar e
-					// excluir Endereços no banco
+				EnderecoDAO enderecoDAO = new EnderecoDAO();
 
-					EnderecoDAO enderecoDAO = new EnderecoDAO();
+				Cliente cliente = new Cliente();
 
-					Cliente cliente = new Cliente();
+				final Integer idEndereco = enderecoDAO.insertReturnID(endereco);
 
-					final Integer idEndereco = enderecoDAO.insertReturnID(endereco);
+				cliente.setEmail(request.getParameter("email"));
+				cliente.setSenha(Criptografia.criptografar(request.getParameter("senha")));
+				cliente.setNome(request.getParameter("nome"));
+				cliente.setCpf(request.getParameter("cpf").replace("-", "").replace(".", ""));
+				cliente.setDataNascimento(ConverteData.stringToDate(request.getParameter("datanasc")));
+				cliente.setTelefone(request.getParameter("telefone").replace("(", "").replace(")", "").replace("-", ""));
+				cliente.setSexo(request.getParameter("sexo"));
 
-					cliente.setEmail(request.getParameter("email"));
-					cliente.setSenha(Criptografia.criptografar(request.getParameter("senha")));
-					cliente.setNome(request.getParameter("nome"));
-					cliente.setCpf(request.getParameter("cpf"));
-					cliente.setDataNascimento(ConverteData.stringToDate(request.getParameter("datanasc")));
-					cliente.setTelefone(request.getParameter("telefone"));
-					cliente.setSexo(request.getParameter("sexo"));
+				clienteDAO.insert(cliente, idEndereco);
 
-					clienteDAO.insert(cliente, idEndereco);
-
-					request.setAttribute("modal", "1");
-					request.setAttribute("titulo", "BEM VINDO!");
-					request.setAttribute("mensagem", "Cadastro efetuado com sucesso!");
-					request.setAttribute("retorno", cliente.getNome());
-					request.getRequestDispatcher("login.jsp").forward(request, response);
+				request.setAttribute("modal", "1");
+				request.setAttribute("titulo", "BEM VINDO!");
+				request.setAttribute("mensagem", "Cadastro efetuado com sucesso!");
+				request.setAttribute("retorno", cliente.getNome());
+				request.getRequestDispatcher("login.jsp").forward(request, response);
 
 			} catch (Exception e) {
 				request.setAttribute("modal", "1");
@@ -165,7 +156,7 @@ public class ControlePessoa extends HttpServlet {
 					final Endereco endereco = new Endereco();
 					endereco.setLogradouro(request.getParameter("logradouro"));
 					endereco.setNumero(Integer.parseInt(request.getParameter("numero")));
-					endereco.setCep(request.getParameter("cep"));
+					endereco.setCep(request.getParameter("cep").replace("-", "").replace(".", ""));
 					endereco.setBairro(request.getParameter("bairro"));
 					endereco.setCidade(request.getParameter("cidade"));
 					endereco.setEstado(request.getParameter("estado"));
@@ -200,7 +191,7 @@ public class ControlePessoa extends HttpServlet {
 					session.setAttribute("carrinhocount", carrinhoCount);
 
 					if (page.equals("minhaconta")) {
-						session.setAttribute("mensagem", "Editado com sucesso");
+						session.setAttribute("mensagem", "Dados alterados com sucesso");
 						session.setAttribute("modal", "1");
 					}
 					response.sendRedirect(page + ".jsp");
@@ -245,7 +236,7 @@ public class ControlePessoa extends HttpServlet {
 				 * getParameter("datanasc")));
 				 * cliente.setSexo(request.getParameter("sexo"));
 				 */
-				cliente.setTelefone(request.getParameter("telefone"));
+				cliente.setTelefone(request.getParameter("telefone").replace("(", "").replace(")", "").replace("-", ""));
 				clienteDAO.update(cliente);
 
 				clienteDAO = new ClienteDAO();

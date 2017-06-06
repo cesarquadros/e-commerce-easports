@@ -22,16 +22,19 @@
 <link rel="stylesheet" href="./css/bootstrap-social.less" />
 <link rel="stylesheet" href="./css/bootstrap-social.scss" />
 <link rel="stylesheet" href="./css/estiloHome.css" />
-<!--<script src="./js/jquery-3.1.1.min.js"></script>
-<script src="./js/bootstrap.min.js"></script> -->
+<script src="./js/jquery.js"></script>
+<script src="./js/jquery-3.1.1.min.js"></script> 
 <script src="./js/bootstrap.js"></script>
+<script src="./js/bootstrap.min.js"></script>
+
+
 
 <script src=https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.6.1/angular.min.js></script>
 <script src="./controller/controllerEndereco.js"></script>
 
 <title>EA Sports</title>
 </head>
-<body>
+<body ng-app="app" ng-controller="appCtrl">
 	<div class="container-fluid" id="banner1">
 		<div class="row">
 			<div class="col-xs-5 col-sm-5 col-md-2 center">

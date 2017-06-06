@@ -147,107 +147,79 @@
 					</form>
 				</div>
 			</div>
-<!--
-			<div class="col-xs-12 col-sm-12 col-md-4">
-				<div class="">
-					<h4>Pagamento boleto</h4>
-				</div>
-				<table class="table table-hover" style="border: solid 1px gray;">
-					<thead>
-						<tr style="background: #eee;">
-							<th><img src="./imagens_projeto/boleto.png"></th>
-							<th>Pagamento</th>
-							<th></th>
-							<th>Total</th>
-						</tr>
-					</thead>
-					<tbody style="font-size: 12px;">
-						<tr>
-							<td></td>
-							<td>Á vista</td>
-							<td></td>
-							<td>${valorTotalFormatado}</td>
-						</tr>
-					</tbody>
-				</table>
-				 <a
-					href="/e-commerce-easports/ComprarProdutoServlet?acao=comprar&formapagamento=boleto&parcelas=1"
-					type="button" class="btn btn-primary navbar-btn"> Finalizar
-					compra com boleto </a> -->
-			</div>
-			</form>
 		</div>
 	</div>
-
-
-	<!-- ------------------------------------------------------------------------------  MODAL EDITAR CARTAO ------------------------------------------------------->
-
-	<div id="myModal2" class="modal fade" role="dialog">
-		<div class="modal-dialog">
-			<!-- Modal content-->
-			<div class="modal-content">
-				<div class="modal-header">
-					<button type="button" class="close" data-dismiss="modal">&times;</button>
-					<h2 class="modal-title center">Alterar Cartão</h2>
-				</div>
-				<div class="modal-body">
-					<div class="jumbotron">
-						<form name="formulario" method="post"
-							action="/e-commerce-easports/CartaoServlet?acao=update&page=finalizarcompra">
-							<jsp:include page="formcartaoupdate.jsp"></jsp:include>
-						</form>
-					</div>
-				</div>
-			</div>
-		</div>
-	</div>
-
-	<!-- ------------------------------------------------------------------------------  MODAL INSERIR CARTAO ------------------------------------------------------->
-
-	<div id="myModal3" class="modal fade" role="dialog">
-		<div class="modal-dialog">
-			<!-- Modal content-->
-			<div class="modal-content">
-				<div class="modal-header">
-					<button type="button" class="close" data-dismiss="modal">&times;</button>
-					<h2 class="modal-title center">Alterar Cartão</h2>
-				</div>
-				<div class="modal-body">
-					<div class="jumbotron">
-						<form name="formulario" method="post"
-							action="/e-commerce-easports/CartaoServlet?acao=insert&page=finalizarcompra">
-							<jsp:include page="formcartaoinsert.jsp"></jsp:include>
-						</form>
-					</div>
-				</div>
-			</div>
-		</div>
-	</div>
-
-	<!-- ------------------------------------------------------------------------------MODAL ENDEREÇO ------------------------------------------------------->
-
-	<div id="myModal" class="modal fade" role="dialog">
-		<div class="modal-dialog">
-
-			<!-- Modal content-->
-			<div class="modal-content">
-				<div class="modal-header">
-					<button type="button" class="close" data-dismiss="modal">&times;</button>
-					<h2 class="modal-title center">Alterar endereço</h2>
-				</div>
-				<div class="modal-body">
-					<div class="jumbotron">
-						<form name="formulario" method="post"
-							action="/e-commerce-easports/ClienteServlet?acao=updateendereco&page=finalizarcompra">
-							<jsp:include page="formendereco.jsp"></jsp:include>
-						</form>
-					</div>
-				</div>
-			</div>
-		</div>
-	</div>
-	<!-- ------------------------------------------------------------------------------ FIM MODAL ENDEREÇO ------------------------------------------------------->
 </div>
+
+
+<!-- ------------------------------------------------------------------------------  MODAL EDITAR CARTAO ------------------------------------------------------->
+
+<div id="myModal2" class="modal fade" role="dialog">
+	<div class="modal-dialog">
+		<!-- Modal content-->
+		<div class="modal-content">
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal">&times;</button>
+				<h2 class="modal-title center">Alterar Cartão</h2>
+			</div>
+			<div class="modal-body">
+				<div class="jumbotron">
+					<form name="formulario" method="post"
+						action="/e-commerce-easports/CartaoServlet?acao=update&page=finalizarcompra">
+						<jsp:include page="formcartaoupdate.jsp"></jsp:include>
+					</form>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+
+<!-- ------------------------------------------------------------------------------  MODAL INSERIR CARTAO ------------------------------------------------------->
+
+<div id="myModal3" class="modal fade" role="dialog">
+	<div class="modal-dialog">
+		<!-- Modal content-->
+		<div class="modal-content">
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal">&times;</button>
+				<h2 class="modal-title center">Alterar Cartão</h2>
+			</div>
+			<div class="modal-body">
+				<div class="jumbotron">
+					<form name="formulario" method="post"
+						action="/e-commerce-easports/CartaoServlet?acao=insert&page=finalizarcompra">
+						<jsp:include page="formcartaoinsert.jsp"></jsp:include>
+					</form>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+
+<!-- ------------------------------------------------------------------------------MODAL ENDEREÇO ------------------------------------------------------->
+
+<div id="myModal" class="modal fade" role="dialog">
+	<div class="modal-dialog">
+
+		<!-- Modal content-->
+		<div class="modal-content">
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal">&times;</button>
+				<h2 class="modal-title center">Alterar endereço</h2>
+			</div>
+			<div class="modal-body">
+				<div class="jumbotron">
+					<form name="formulario" method="post"
+						action="/e-commerce-easports/ClienteServlet?acao=updateendereco&page=finalizarcompra">
+						<jsp:include page="formendereco.jsp"></jsp:include>
+					</form>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+<!-- ------------------------------------------------------------------------------ FIM MODAL ENDEREÇO ------------------------------------------------------->
+
 
 <script>
 	$(document).ready(function() {

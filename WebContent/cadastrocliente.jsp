@@ -1,5 +1,8 @@
 
 <jsp:include page="cabecalho2.jsp"></jsp:include>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.11/jquery.mask.js" type="text/javascript"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.11/jquery.mask.min.js" type="text/javascript"></script>
+<script src="./js/mask.js"></script>
 
 <div class="container" ng-app="app" ng-controller="appCtrl">
 	<div class="row">
@@ -15,7 +18,7 @@
 					<h2 class="center">Endereço</h2>
 					<div class="form-group">
 						<label for="inputCEP">CEP</label> 
-						<input type="text" class="form-control" id="inputCep" placeholder="00000-000" name="cep" required ng-model="cCep" ng-blur="validaCep(cCep,'')"/>
+						<input type="text" class="form-control cep" id="inputCep" placeholder="00000-000" name="cep" required ng-model="cCep" ng-blur="validaCep(cCep,'')"/>
 					</div>
 					<div class="form-group">
 						<label for="inputLogradouro">Logradouro</label> <input type="text"
@@ -44,7 +47,7 @@
 					</div>
 					<div class="form-group">
 						<label for="inputEstado">Estado</label> <input type="text"
-							class="form-control" id="inputEstado" placeholder="Estado"
+							class="form-control estado" id="inputEstado" placeholder="Estado"
 							name="estado" value="{{array.estado}}" required>
 					</div>
 					<div class="center">

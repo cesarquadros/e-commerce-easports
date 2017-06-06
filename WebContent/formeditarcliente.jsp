@@ -1,3 +1,6 @@
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.11/jquery.mask.js" type="text/javascript"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.11/jquery.mask.min.js" type="text/javascript"></script>
+<script src="./js/mask.js"></script>				
 					<h2 class="center">Dados Cadastrais</h2>
 				
 					<p style="color: red; font-size: 10pt">${mensagemErro}</p>
@@ -25,7 +28,7 @@
 					</div>
 					<div class="form-group">
 						<label for="inputCPF">Telefone</label> <input type="text"
-							class="form-control" id="inputCPF" placeholder="11 1223-5524"
+							class="form-control telefone" id="inputCPF" placeholder="11 1223-5524"
 							name="telefone" required value="${sessionScope.cliente.telefone}">
 					</div>
 					<div class="form-group">

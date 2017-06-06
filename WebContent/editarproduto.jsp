@@ -5,6 +5,8 @@
 	id="mbCategoria"></jsp:useBean>
 	<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 
+<script src="masks.js" type="text/javascript"></script>
+
 <div class="container">
 	<div class="row">
 		<div class="col-xs-12 col-sm-12 col-md-4">
@@ -23,9 +25,9 @@
 					<hr />
 					<div class="form-group">
 						<label for="inputCodProd">Código do Produto</label> <input
-							type="text" class="form-control" placeholder="Código"
+							type="text" class="form-control cep" placeholder="Código"
 							name="codigo" required ng-model="cProduto"
-							ng-blur="validaProduto(cProduto)" disabled value="${produto.codigo }"/>
+							ng-blur="validaProduto(cProduto)" disabled />
 					</div>
 					<div class="form-group">
 						<label for="inputNomeProd">Nome</label> <input type="text"

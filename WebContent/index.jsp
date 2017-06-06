@@ -1,7 +1,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 
 <jsp:include page="cabecalho1.jsp"></jsp:include>
-
+<jsp:include page="menu.jsp"></jsp:include>
 
 <div class="container" id="carrossel">
 	<div id="carousel-example-generic" class="carousel slide"
@@ -75,8 +75,6 @@
 		</div>
 	</div>
 </div>
-
-
 
 <jsp:include page="rodape.jsp"></jsp:include>
 
