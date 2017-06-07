@@ -25,13 +25,16 @@
 								name="datafim" required>
 						</div>
 					</div>
+				</div>
+				<div class="row">
 					<div class="col-xs-12 col-sm-3 col-md-3">
 						<button type="submit" class="btn btn-primary">Gerar
 							Relatório</button>
 					</div>
 				</div>
 			</form>
-
+			 <br />
+			 <h4>Vendas: ${fnc:length(sessionScope.listacompras)}</h4>
 			<table class="table table-hover">
 				<thead>
 					<tr style="background: #eee;">
@@ -65,11 +68,14 @@
 								<div class="modal-header">
 									<button type="button" class="close" data-dismiss="modal">&times;</button>
 									<h3 class="modal-title center">Lista de Itens</h3>
-									<h5 class="modal-title center">Protocolo: ${listavenda.numProtocolo}</h5>
+									<h5 class="modal-title center">Protocolo:
+										${listavenda.numProtocolo}</h5>
 								</div>
 								<div class="modal-body">
-										<c:forEach items="${listavenda.listaItens}" var="listaproduto">
-										<p class="center">${listaproduto.produto.nome} - <strong>${listaproduto.produto.valorVendaFormatado}</strong></p>
+									<c:forEach items="${listavenda.listaItens}" var="listaproduto">
+										<p class="center">${listaproduto.produto.nome}
+											- <strong>${listaproduto.produto.valorVendaFormatado}</strong>
+										</p>
 									</c:forEach>
 								</div>
 							</div>

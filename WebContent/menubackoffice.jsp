@@ -15,6 +15,7 @@
 					<ul class="dropdown-menu">
 						<li><a href="./indexbackoffice.jsp">Relatório de Produtos</a></li>
 						<li><a href="./relatoriocompras.jsp">Relatório de vendas</a></li>
+						<li><a href="./relatorioporproduto.jsp">Relatório de vendas por produto</a></li>
 						<li><a href="#">Relatório de Clientes</a></li>
 					</ul></li>
 					<li><a href="./cadastroproduto.jsp">Cadastro de Produtos</a></li>

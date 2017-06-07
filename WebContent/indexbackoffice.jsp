@@ -20,6 +20,7 @@
 					style="max-width: 50%;">
 				<hr>
 				<h5>{{produto.nome}}</h5>
+				<h5>Quantidade: {{produto.quantidade}}</h5>
 				<a
 					href="/e-commerce-easports/ProdutoServlet?acao=paginaeditar&id={{produto.idProduto}}"
 					class="btn btn-default navbar-btn center" > <span

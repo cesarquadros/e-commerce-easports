@@ -125,24 +125,7 @@ public class Main {
 		e.update(endereco);
 		*/
 		
-		Cartao cartao = new Cartao();
 		
-		cartao.setNumero("0055002200330044");
-		cartao.setNomeImpresso("Cesar Quadros");
-		cartao.setValidade(ConverteData.stringToDate("2017-19-07"));
-		cartao.setCodigoSeguranca(569);
-		cartao.setIdCartao(1);
-		
-		Compra compra = new Compra();
-		
-		compra.setDataCompra(ConverteData.getDataAtual());
-		compra.setCartao(cartao);
-		compra.setParcelas(5);
-		compra.setTipoPagamento("cartao");
-		
-		CompraDao c = new CompraDao(); 
-		
-		c.compraCartao(compra, 1);
 		
 	}
 

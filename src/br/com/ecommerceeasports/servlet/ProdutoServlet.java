@@ -3,6 +3,7 @@ package br.com.ecommerceeasports.servlet;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
+import java.util.List;
 import java.util.UUID;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.MultipartConfig;
@@ -94,7 +95,8 @@ public class ProdutoServlet extends HttpServlet {
 
 				session = request.getSession();
 				session.setAttribute("titulo", "Cadastro de Produtos");
-				session.setAttribute("mensagem","Produto " + produto.getNome().toUpperCase() + " cadastrado com sucesso");
+				session.setAttribute("mensagem",
+						"Produto " + produto.getNome().toUpperCase() + " cadastrado com sucesso");
 				session.setAttribute("modal", 1);
 
 				response.sendRedirect("cadastroproduto.jsp");
@@ -133,7 +135,7 @@ public class ProdutoServlet extends HttpServlet {
 				produto = p.findById(idProduto);
 				produto.setValorCustoFormatado(format.valorCasaDecimal(produto.getPrecoCusto()));
 				produto.setValorVendaFormatado(format.valorCasaDecimal(produto.getPrecoVenda()));
-				
+
 				request.setAttribute("produto", produto);
 				request.getRequestDispatcher("editarproduto.jsp").forward(request, response);
 
@@ -167,14 +169,14 @@ public class ProdutoServlet extends HttpServlet {
 				ProdutoDAO produtoDAO = new ProdutoDAO();
 
 				produtoDAO.update(produto, idCategoria);
-				
+
 				session = request.getSession();
 				session.setAttribute("titulo", "Editar Produtos");
-				session.setAttribute("mensagem",produto.getNome().toUpperCase() + " \n alterada com sucesso");
+				session.setAttribute("mensagem", produto.getNome().toUpperCase() + " \n alterada com sucesso");
 				session.setAttribute("modal", 1);
 
 				response.sendRedirect("indexbackoffice.jsp");
-				
+
 			} catch (Exception e) {
 				session = request.getSession();
 				session.setAttribute("titulo", "Editar Produtos");
@@ -183,6 +185,22 @@ public class ProdutoServlet extends HttpServlet {
 				session.setAttribute("modal", 1);
 
 				response.sendRedirect("indexbackoffice.jsp");
+				e.printStackTrace();
+			}
+		} else if (acao.equals("findByNome")) {
+
+			Produto produto;
+			ProdutoDAO p = new ProdutoDAO();
+			String nome = request.getParameter("nome");
+
+			try {
+				List<Produto> listaProdutos = p.findByNome(nome);
+
+				request.setAttribute("mensagemCategoria", "Pesquisa: "+nome);
+				request.setAttribute("listaProdutos", listaProdutos);
+				request.getRequestDispatcher("produtocategoria.jsp").forward(request, response);
+
+			} catch (Exception e) {
 				e.printStackTrace();
 			}
 		}

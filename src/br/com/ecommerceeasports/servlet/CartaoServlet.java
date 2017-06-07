@@ -62,7 +62,7 @@ public class CartaoServlet extends HttpServlet {
 
 					cartao.setNumero(request.getParameter("numero"));
 					cartao.setNomeImpresso(request.getParameter("nome"));
-					cartao.setValidade(ConverteData.stringToDate(request.getParameter("data")));
+					cartao.setValidade(request.getParameter("data"));
 					cartao.setCodigoSeguranca(Integer.parseInt(request.getParameter("codigo")));
 
 					CartaoDAO cartaoDAO = new CartaoDAO();
@@ -126,7 +126,7 @@ public class CartaoServlet extends HttpServlet {
 					carrinhoDAO = new CarrinhoDAO();
 					cartao.setNumero(request.getParameter("numero"));
 					cartao.setNomeImpresso(request.getParameter("nome"));
-					cartao.setValidade(ConverteData.stringToDate(request.getParameter("data")));
+					cartao.setValidade(request.getParameter("data"));
 					cartao.setCodigoSeguranca(Integer.parseInt(request.getParameter("codigo")));
 					cartao.setIdCartao(cliente.getCartao().getIdCartao());
 

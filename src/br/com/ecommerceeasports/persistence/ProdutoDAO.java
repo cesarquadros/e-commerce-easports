@@ -50,6 +50,64 @@ public class ProdutoDAO extends Conexao {
 		hql.append(" SELECT * ");
 		hql.append(" FROM ");
 		hql.append("	produto ");
+		//hql.append(" WHERE");
+		//hql.append(" 	quantidade > 0 ");
+		hql.append(" ORDER BY ");
+		hql.append("nome ");
+		hql.append("asc");
+		
+		abreConexao();
+
+		stmt = con.prepareStatement(hql.toString());
+
+		rs = stmt.executeQuery();
+
+		List<Produto> lista = new ArrayList<Produto>();
+
+		while (rs.next()) {
+
+			Produto produto = new Produto();
+
+			CategoriaDAO categoriaDao = new CategoriaDAO();
+			
+			FormataValor format = new FormataValor();
+
+			produto.setIdProduto(rs.getInt("idProduto"));
+			produto.setCodigo(rs.getString("codigo"));
+			produto.setNome(rs.getString("nome"));
+			produto.setImagem(rs.getString("imagem"));
+			produto.setCategoria(categoriaDao.findById(rs.getInt("idCategoria")));
+			produto.setPrecoVenda(rs.getDouble("precoVenda"));
+			produto.setPrecoCusto(rs.getDouble("precoCusto"));
+			produto.setValorVendaFormatado(format.valorFormatado(rs.getDouble("precoVenda")));
+			produto.setValorCustoFormatado(format.valorFormatado(rs.getDouble("precoCusto")));
+			
+			produto.setOrigem(rs.getString("origem"));
+			produto.setDimensoes(rs.getString("dimensoes"));
+			produto.setPeso(rs.getString("peso"));
+			produto.setGarantia(rs.getString("garantia"));
+			produto.setDescricao(rs.getString("descricao"));
+			produto.setQuantidade(rs.getInt("quantidade"));
+
+			lista.add(produto);
+
+		}
+
+		stmt.close();
+
+		fechaConexao();
+
+		return lista;
+
+	}
+	
+	public List<Produto> listAllEstoque() throws Exception {
+
+		StringBuilder hql = new StringBuilder();
+		
+		hql.append(" SELECT TOP 12 * ");
+		hql.append(" FROM ");
+		hql.append("	produto ");
 		hql.append(" WHERE");
 		hql.append(" 	quantidade > 0 ");
 		hql.append(" ORDER BY ");
@@ -143,8 +201,54 @@ public class ProdutoDAO extends Conexao {
 		stmt.close();
 		rs.close();
 		fechaConexao();
-
 		return produto;
+	}
+	public List<Produto> findByNome(String nome) throws Exception {
+
+		String query = "select * from produto where nome like '%" + nome + "%'";
+
+		abreConexao();
+
+		stmt = con.prepareStatement(query);
+
+		//stmt.setString(1, "'%" + nome.toLowerCase() + "%'");
+
+		rs = stmt.executeQuery();
+
+		List<Produto> lista = new ArrayList<Produto>();
+
+		while (rs.next()) {
+			
+			
+			Produto produto = new Produto();
+			CategoriaDAO categoriaDao = new CategoriaDAO();
+			FormataValor format = new FormataValor();
+
+			produto.setIdProduto(rs.getInt("idProduto"));
+			produto.setCodigo(rs.getString("codigo"));
+			produto.setNome(rs.getString("nome"));
+			produto.setImagem(rs.getString("imagem"));
+			produto.setPrecoVenda(rs.getDouble("precoVenda"));
+			produto.setPrecoCusto(rs.getDouble("precoCusto"));
+			produto.setValorVendaFormatado(format.valorFormatado(rs.getDouble("precoVenda")));
+			produto.setValorCustoFormatado(format.valorFormatado(rs.getDouble("precoCusto")));
+			produto.setOrigem(rs.getString("origem"));
+			produto.setDimensoes(rs.getString("dimensoes"));
+			produto.setPeso(rs.getString("peso"));
+			produto.setGarantia(rs.getString("garantia"));
+			produto.setDescricao(rs.getString("descricao"));
+			produto.setQuantidade(rs.getInt("quantidade"));
+			produto.setCategoria(categoriaDao.findById(rs.getInt("idCategoria")));
+
+			lista.add(produto);
+
+		}
+
+		stmt.close();
+		rs.close();
+		fechaConexao();
+
+		return lista;
 
 	}
 	
@@ -265,7 +369,6 @@ public class ProdutoDAO extends Conexao {
 		return produto;
 
 	}
-	
 	
 	public void update(Produto produto, Integer idCategoria) throws Exception {
 

@@ -33,6 +33,7 @@
 	<div class="row">
 		<div class="col-xs-12 col-sm-12 col-md-6">
 			<h3>Obrigado por comprar na easports.com.br</h3>
+			<br /> 
 			<h4>Protocolo: ${sessionScope.protocolo}</h4>
 			<c:remove scope="session" var="protocolo" />
 		</div>

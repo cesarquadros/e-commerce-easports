@@ -1,12 +1,11 @@
 <link rel="stylesheet" type="text/css" href="./css/imageZoom.css" />
-<jsp:include page="cabecalho1.jsp"></jsp:include>
-
+<jsp:include page="cabecalho3.jsp"></jsp:include>
+<hr />
 <div class="container">
 	<div class="row">
 		<div class="col-xs-12 col-sm-12 col-md-6">
-			<img
-				src="img/${produto.imagem}"
-				class="img-responsive" style="max-width: 70%;"/>
+			<img src="img/${produto.imagem}" class="img-responsive"
+				style="max-width: 70%;" />
 		</div>
 
 		<div class="col-xs-12 col-sm-12 col-md-6">
@@ -16,12 +15,17 @@
 				<hr />
 				<div>
 					<h3>${produto.valorVendaFormatado}</h3>
-					<h5>Em até 10x sem juros</h5>
+					<h5>Em até 5x sem juros</h5>
 					<h6>ver mais opções de parcelas</h6>
-					<a href="#" class="btn btn-success navbar-btn" ng-click="addCarrinho(${produto.idProduto},'adicionar')">
-						<span class="glyphicon glyphicon-shopping-cart"></span> Adicionar
-						
+					<a href="#" class="btn btn-success navbar-btn"
+						ng-click="addCarrinho(${produto.idProduto},'adicionar')"> <span
+						class="glyphicon glyphicon-shopping-cart"></span> Adicionar
+
 					</a>
+					<div class="col-xs-12 col-sm-12 col-md-6">
+						<a href="./index.jsp" class="btn btn-default navbar-btn">Escolher
+							+ Produtos</a>
+					</div>
 				</div>
 			</div>
 		</div>
@@ -34,7 +38,7 @@
 
 	<div class="row">
 		<div class=" jumbotron col-xs-12 col-sm-12 col-md-12 col-lg-12">
-			<h3>DESCRIÇÃO</h3>			
+			<h3>DESCRIÇÃO</h3>
 			<h5>${produto.descricao}</h5>
 			<hr />
 			<br />
@@ -51,8 +55,9 @@
 				<div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
 					<ul>
 						<li><strong> Peso do Produto: </strong>${produto.peso}</li>
-						<li><strong> Dimensões Aproximadas: </strong> ${produto.dimensoes}</li>
-						<li><strong> Garantia do Fabricante:  </strong>${produto.garantia}</li>
+						<li><strong> Dimensões Aproximadas: </strong>
+							${produto.dimensoes}</li>
+						<li><strong> Garantia do Fabricante: </strong>${produto.garantia}</li>
 					</ul>
 				</div>
 			</div>

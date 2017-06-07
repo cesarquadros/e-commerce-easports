@@ -33,7 +33,7 @@
 					<div class="form-group">
 						<label for="inputComplemento">Complemento </label> <input
 							type="text" class="form-control" id="inputComplemento"
-							placeholder="Complemento" name="complemento" required>
+							placeholder="Complemento" name="complemento">
 					</div>
 					<div class="form-group">
 						<label for="inputBairro">Bairro</label> <input type="text"

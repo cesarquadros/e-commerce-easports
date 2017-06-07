@@ -10,32 +10,32 @@
 			<label for="inputLogradouro">Logradouro</label> <input type="text"
 				class="form-control" id="inputLogradouro"
 				placeholder="Ex.: Rua: xxxxx" name="logradouro"
-				value="{{array.logradouro}}" value="${cliente.endereco.logradouro}" required>
+				value="{{array.logradouro}}" required>
 		</div>
 		<div class="form-group">
 			<label for="inputNumero">Número</label> <input type="number"
 				class="form-control" id="inputNumero" placeholder="Número"
-				name="numero" value="${cliente.endereco.numero}" required>
+				name="numero" required>
 		</div>
 		<div class="form-group">
 			<label for="inputComplemento">Complemento </label> <input type="text"
 				class="form-control" id="inputComplemento" placeholder="Complemento"
-				name="complemento" value="${cliente.endereco.complemento}">
+				name="complemento">
 		</div>
 		<div class="form-group">
 			<label for="inputBairro">Bairro</label> <input type="text"
 				class="form-control" id="inputBairro" placeholder="Bairro"
-				name="bairro" value="{{array.bairro}}" value=" ${cliente.endereco.bairro}" required>
+				name="bairro" value="{{array.bairro}}" required>
 		</div>
 		<div class="form-group">
 			<label for="inputCidade">Cidade</label> <input type="text"
 				class="form-control" id="inputCidade" placeholder="Cidade"
-				name="cidade" value="{{array.cidade}}" value="${cliente.endereco.cidade}" required>
+				name="cidade" value="{{array.cidade}}" required>
 		</div>
 		<div class="form-group">
 			<label for="inputEstado">Estado</label> <input type="text"
 				class="form-control" id="inputEstado" placeholder="Estado"
-				name="estado" value="{{array.estado}}" value=" ${cliente.endereco.estado}" required>
+				name="estado" value="{{array.estado}}" required>
 		</div>
 		<div class="center">
 			<button type="submit" class="btn btn-primary">Cadastrar</button>

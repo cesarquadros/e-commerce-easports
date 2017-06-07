@@ -94,7 +94,6 @@ public class CompraDao extends Conexao {
 		return list;
 	}
 
-
 	public ArrayList<Compra> relatorioPeriodo(String inicio, String fim) throws Exception {
 
 		String query = "select * from carrinho_compra where dataCompra between ? and ?";

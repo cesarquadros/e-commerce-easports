@@ -8,14 +8,14 @@ public class Cartao {
 	private String numero;
 	private String numeroX;
 	private String nomeImpresso;
-	private Date validade;
+	private String validade;
 	private String validadeFormatada;
 	private Integer codigoSeguranca;
 	
 	public Cartao() {
 	}
 
-	public Cartao(Integer idCartao, String numero, String nomeImpresso, Date validade, Integer codigoSeguranca) {
+	public Cartao(Integer idCartao, String numero, String nomeImpresso, String validade, Integer codigoSeguranca) {
 		super();
 		this.idCartao = idCartao;
 		this.numero = numero;
@@ -48,11 +48,11 @@ public class Cartao {
 		this.nomeImpresso = nomeImpresso;
 	}
 
-	public Date getValidade() {
+	public String getValidade() {
 		return validade;
 	}
 
-	public void setValidade(Date validade) {
+	public void setValidade(String validade) {
 		this.validade = validade;
 	}
 

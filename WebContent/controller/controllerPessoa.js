@@ -60,5 +60,33 @@ app.controller('appCtrl', [ '$scope', '$http', function($scope, $http) {
 			});
 		}
 	}
+	$scope.validarSenha = function() {
+
+		$scope.result = angular.equals($scope.senha, $scope.corfirmSenha);
+
+		if (!$scope.result) {
+			$scope.corfirmSenha = "";
+			$scope.result = true;
+		} else {
+			$scope.result = false;
+		}
+	}
+	$scope.addCarrinho = function(idProduto, acao) {
+		$scope.ok = 'OK';
+		$http({
+			method : 'post',
+			url : 'CarrinhoServlet',
+			data : [ idProduto, acao ]
+		}).then(function(retorno) {
+
+			if (retorno.data.carrinho) {
+				alert('Adicionado ao carrinho');
+				setTimeout('location.reload();', 1);
+			} else {
+				alert('Por favor efetuar o login');
+			}
+
+		});
+	}
 
 } ]);

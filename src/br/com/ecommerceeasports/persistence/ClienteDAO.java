@@ -223,13 +223,32 @@ public class ClienteDAO extends Conexao{
 	
 	public void update(final Cliente cliente) throws Exception {
 
-		final String query = "update cliente set telefone=?";
+		final String query = "update cliente set telefone=? where idCliente = ?";
 
 		abreConexao();
 
 		stmt = con.prepareStatement(query);
 
 		stmt.setString(1, cliente.getTelefone());
+		stmt.setInt(2, cliente.getIdCliente());
+		
+		stmt.execute();
+
+		stmt.close();
+
+		fechaConexao();
+
+	}
+	public void updateSenha(final Cliente cliente) throws Exception {
+
+		final String query = "update cliente set senha=? where idCliente = ?";
+
+		abreConexao();
+
+		stmt = con.prepareStatement(query);
+
+		stmt.setString(1, cliente.getSenha());
+		stmt.setInt(2, cliente.getIdCliente());
 
 		stmt.execute();
 

@@ -1,6 +1,7 @@
 package br.com.ecommerceeasports.persistence;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import br.com.ecommerceeasports.entities.Cliente;
 import br.com.ecommerceeasports.entities.CountCarrinho;
@@ -186,6 +187,57 @@ public class CarrinhoDAO extends Conexao {
 
 		fechaConexao();
 
+		return lista;
+	}
+	
+	public List<CountCarrinho> relatorioVendaPorItens() throws Exception {
+
+		StringBuilder hql = new StringBuilder();
+		
+		hql.append(" SELECT ");
+		hql.append("   p.nome, ");
+		hql.append("   p.precovenda, ");
+		hql.append("   p.idProduto, ");
+		hql.append("      (SELECT COUNT(*) as cont ");
+		hql.append("      FROM ");
+		hql.append("         itens_carrinho ic ");
+		hql.append("	  WHERE ");
+		hql.append("         p.idProduto = ic.idProduto ");
+		hql.append("         and IC.FINALIZADO = 1 ");
+		hql.append("         and IC.REMOVIDO = 0)");
+		hql.append("   as quantidade ");
+		hql.append(" FROM ");
+		hql.append("   produto p order by quantidade desc");
+		
+		abreConexao();
+
+		stmt = con.prepareStatement(hql.toString());
+		
+		rs = stmt.executeQuery();
+
+		ArrayList<CountCarrinho> lista = new ArrayList<CountCarrinho>();
+		
+		FormataValor format = new FormataValor();
+
+		while (rs.next()) {
+			
+			Integer quantidade = rs.getInt("quantidade");
+			
+				
+				CountCarrinho countCarrinho = new CountCarrinho();
+				ProdutoDAO produtoDao= new ProdutoDAO();
+				
+				countCarrinho.setProduto(produtoDao.findById(rs.getInt("idProduto")));
+				countCarrinho.setValorFormatado(format.valorFormatado(rs.getDouble("precoVenda")*quantidade));
+				countCarrinho.setQuantidade(rs.getInt("quantidade"));
+				
+				lista.add(countCarrinho);
+			
+		}
+
+		stmt.close();
+		fechaConexao();
+		
 		return lista;
 	}
 }

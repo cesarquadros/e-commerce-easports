@@ -109,7 +109,7 @@
 							<td></td>
 							<td>${cliente.cartao.numeroX}</td>
 							<td>${cliente.cartao.nomeImpresso}</td>
-							<td>${cliente.cartao.validadeFormatada}</td>
+							<td>${cliente.cartao.validade}</td>
 
 						</tr>
 					</tbody>

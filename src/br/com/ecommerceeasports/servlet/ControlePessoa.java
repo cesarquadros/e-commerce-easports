@@ -83,7 +83,8 @@ public class ControlePessoa extends HttpServlet {
 				cliente.setNome(request.getParameter("nome"));
 				cliente.setCpf(request.getParameter("cpf").replace("-", "").replace(".", ""));
 				cliente.setDataNascimento(ConverteData.stringToDate(request.getParameter("datanasc")));
-				cliente.setTelefone(request.getParameter("telefone").replace("(", "").replace(")", "").replace("-", ""));
+				cliente.setTelefone(
+						request.getParameter("telefone").replace("(", "").replace(")", "").replace("-", ""));
 				cliente.setSexo(request.getParameter("sexo"));
 
 				clienteDAO.insert(cliente, idEndereco);
@@ -236,26 +237,13 @@ public class ControlePessoa extends HttpServlet {
 				 * getParameter("datanasc")));
 				 * cliente.setSexo(request.getParameter("sexo"));
 				 */
-				cliente.setTelefone(request.getParameter("telefone").replace("(", "").replace(")", "").replace("-", ""));
+				cliente.setTelefone(
+						request.getParameter("telefone").replace("(", "").replace(")", "").replace("-", ""));
 				clienteDAO.update(cliente);
 
 				clienteDAO = new ClienteDAO();
 
 				cliente = clienteDAO.findByCpf(cliente.getCpf());
-
-				CarrinhoDAO carrinhoDAO = new CarrinhoDAO();
-				ArrayList<ItemCarrinho> carrinho = carrinhoDAO.itensPorCliente(cliente.getIdCliente());
-
-				cliente.setListaItens(carrinho);
-
-				ItemCarrinho itemCarrinho = new ItemCarrinho();
-
-				FormataValor formataValor = new FormataValor();
-
-				Double valorTotal = itemCarrinho.getValorTotal(carrinho);
-
-				String valorTotalFormatado = formataValor.valorFormatado(valorTotal);
-				ArrayList<CountCarrinho> carrinhoCount = carrinhoDAO.countByBliente(cliente.getIdCliente());
 
 				session.setAttribute("usuarioLogado", cliente);
 
@@ -268,7 +256,7 @@ public class ControlePessoa extends HttpServlet {
 				System.out.println(e.toString());
 				System.out.println(e.getMessage());
 			}
-		} else if (acao.equals("comprasbycliente")) {
+		} else if (acao.equals("updatesenha")) {
 			session = request.getSession();
 
 			Cliente cliente;
@@ -276,8 +264,31 @@ public class ControlePessoa extends HttpServlet {
 			if (session.getAttribute("usuarioLogado") == null) {
 				request.getRequestDispatcher("login.jsp").forward(request, response);
 			} else {
-				
-				request.getRequestDispatcher("relatoriocompracliente.jsp").forward(request, response);
+				try {
+					ClienteDAO clienteDAO = new ClienteDAO();
+					cliente = (Cliente) session.getAttribute("usuarioLogado");
+					
+					cliente.setSenha(Criptografia.criptografar(request.getParameter("senha")));
+
+					clienteDAO.updateSenha(cliente);
+					
+					clienteDAO = new ClienteDAO();
+
+					cliente = clienteDAO.findByCpf(cliente.getCpf());
+
+					session.setAttribute("usuarioLogado", cliente);
+
+					session.setAttribute("cliente", cliente);
+					session.setAttribute("mensagem", "Senha alterada com sucesso");
+					session.setAttribute("modal", "1");
+					response.sendRedirect("minhaconta.jsp");
+				} catch (Exception e) {
+					
+					session.setAttribute("mensagem", "Ops! Ocorreu um erro" + e.toString());
+					session.setAttribute("modal", "1");
+					response.sendRedirect("minhaconta.jsp");
+					e.printStackTrace();
+				}
 			}
 		}
 	}

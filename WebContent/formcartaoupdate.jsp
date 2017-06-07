@@ -5,22 +5,22 @@
 		<div class="form-group">
 			<label for="inputNumCartao">Número</label> <input type="number"
 				class="form-control cartao" id="inputNumCartao" name="numero"
-				placeholder="Número" value="${cliente.cartao.numero}">
+				placeholder="Número" value="${usuarioLogado.cartao.numero}">
 		</div>
 		<div class="form-group">
 			<label for="inputNomeCartao">Nome Impresso</label> <input type="text"
 				class="form-control" id="inputNomeCartao" placeholder="Nome"
-				name="nome" value="${cliente.cartao.nomeImpresso}">
+				name="nome" value="${usuarioLogado.cartao.nomeImpresso}">
 		</div>
 		<div class="form-group">
 			<label for="inputValidCartao">Validade</label> <input type="text"
 				class="form-control validadecartao" id="inputValidCartao" placeholder="01/2020"
-				name="data">
+				name="data" value="${usuarioLogado.cartao.validade}">
 		</div>
 		<div class="form-group">
 			<label for="inputCodSegCart">Código de Segurança</label> <input
 				type="text" class="form-control codseguranca" id="inputCodSegCart"
-				placeholder="Código" name="codigo" value="${cliente.cartao.codigoSeguranca}">
+				placeholder="Código" name="codigo" value="${usuarioLogado.cartao.codigoSeguranca}">
 		</div>
 
 		<div class="center">

@@ -17,7 +17,7 @@
 			</div>
 			<div class="row">
 				<div class="col-xs-12 col-sm-12 col-md-12">
-					<h4>Olá ${sessionScope.cliente.nome}</h4>
+					<h4>Olá ${usuarioLogado.nome}</h4>
 				</div>
 			</div>
 		</div>
@@ -28,11 +28,9 @@
 					<h4>MEUS PEDIDOS</h4>
 					<hr />
 					<ul>
-						<li><a
-							href="./relatoriocompracliente.jsp">Relatorio
-								de compras</a></li>
+						<li><a href="./relatoriocompracliente.jsp">Relatorio de
+								compras</a></li>
 					</ul>
-
 					<br />
 				</div>
 			</div>
@@ -43,7 +41,7 @@
 					<ul>
 						<li><a href="#" id="btnDadosPessoais">Dados pessoais </a></li>
 						<li><a href="#" id="btnEnd">Endereço</a></li>
-						<li><a href="#">Alterar senha</a></li>
+						<li><a href="#" id="btnEditarSenha">Alterar senha</a></li>
 					</ul>
 					<br />
 				</div>
@@ -53,10 +51,10 @@
 					<h4>Pagamento</h4>
 					<hr />
 					<ul>
-						<li ng-if="${cliente.cartao.numeroX}"><a href="#"
-							id="btnCard">Editar Cartão</a> - ${cliente.cartao.numeroX}</li>
-						<li ng-if="'${cliente.cartao.numeroX}' == ''"><a href="#"
-							id="btnCardInsert">Inserir Cartão</a></li>
+						<li ng-if="${usuarioLogado.cartao.numeroX}"><a href="#"
+							id="btnCard">Editar Cartão</a> - ${usuarioLogado.cartao.numeroX}</li>
+						<li ng-if="'${usuarioLogado.cartao.numeroX}' == ''"><a
+							href="#" id="btnCardInsert">Inserir Cartão</a></li>
 					</ul>
 					<br />
 				</div>
@@ -151,7 +149,6 @@
 	</div>
 </div>
 <!-- ------------------------------------------------------------------------------  MODAL MENSAGEM ------------------------------------------------------->
-
 <div id="modalMsg" class="modal fade" role="dialog">
 	<div class="modal-dialog">
 
@@ -172,6 +169,45 @@
 	</div>
 </div>
 
+<!-- ------------------------------------------------------------------------------  MODAL EDITAR SENHA ------------------------------------------------------->
+<div id="modalEditarSenha" class="modal fade" role="dialog">
+	<div class="modal-dialog">
+		<!-- Modal content-->
+		<div class="modal-content">
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal">&times;</button>
+				<h2 class="modal-title center">Alterar Senha</h2>
+			</div>
+			<div class="modal-body">
+				<div class="jumbotron">
+					<form name="formulario" method="post"
+						action="/e-commerce-easports/ClienteServlet?acao=updatesenha&page=minhaconta">
+
+
+						<div class="form-group">
+							<label for="inputSenha">Nova Senha</label> <input type="password"
+								class="form-control" id="inputSenha" placeholder="Senha"
+								name="senha" required ng-model="senha">
+						</div>
+						<div class="form-group">
+							<label for="inputSenhaC">Confirmar Senha</label> <input
+								type="password" class="form-control" id="inputSenhaC"
+								placeholder="Senha" name="confirmarsenha"
+								ng-model="corfirmSenha" ng-blur="validarSenha()" required>
+							<h6 ng-if="result" style="color: red;" class="center">Senhas não conferem.</h6>
+						</div>
+
+						<div class="center">
+							<button type="submit" class="btn btn-success">Salvar nova senha</button>
+						</div>
+					</form>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+
+
 <c:if test="${modal=='1'}">
 	<script>
 		$(document).ready(function() {
@@ -179,6 +215,15 @@
 		});
 	</script>
 </c:if>
+
+<script>
+	$(document).ready(function() {
+		$("#btnEditarSenha").click(function() {
+			$("#modalEditarSenha").modal();
+		});
+	});
+</script>
+
 <script>
 	$(document).ready(function() {
 		$("#btnEnd").click(function() {
@@ -208,6 +253,5 @@
 		});
 	});
 </script>
-<c:remove scope="session" var="cliente" />
 <c:remove scope="session" var="modal" />
 <c:remove scope="session" var="mensagem" />

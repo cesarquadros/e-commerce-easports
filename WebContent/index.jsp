@@ -50,7 +50,7 @@
 	</div>
 </div>
 
-<div class="container center" ng-init="listAll()">
+<div class="container center" ng-init="listAllestoque()">
 	<div class="row">
 
 		<div class="col-xs-12 col-sm-6 col-md-3"
@@ -66,10 +66,9 @@
 					class="glyphicon glyphicon-shopping-cart"></span> Adicionar
 
 				</a> <a
-					href="/e-commerce-easports/ProdutoServlet?acao=findById&id={{produto.idProduto}}"
+					href="/e-commerce-easports/ProdutoServlet?acao=findById&nome={{produto.idProduto}}"
 					class="btn btn-default navbar-btn"> <span
 					class="glyphicon glyphicon-plus-sign"></span> Detalhes
-
 				</a>
 			</div>
 		</div>

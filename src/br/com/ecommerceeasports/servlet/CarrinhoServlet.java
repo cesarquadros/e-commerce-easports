@@ -10,6 +10,9 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+
+import com.fasterxml.jackson.databind.ObjectMapper;
+
 import br.com.ecommerceeasports.entities.Cliente;
 import br.com.ecommerceeasports.entities.CountCarrinho;
 import br.com.ecommerceeasports.entities.ItemCarrinho;
@@ -69,8 +72,15 @@ public class CarrinhoServlet extends HttpServlet {
 
 				Produto produto = produtoDAO.findById(idProduto);
 				Cliente cliente;
+				ArrayList<ItemCarrinho> carrinho = null;
 				if (session.getAttribute("usuarioLogado") == null) {
-					out.println("ERRO");
+					out = response.getWriter();
+					ObjectMapper mapper = new ObjectMapper();
+					
+					String json = mapper.writerWithDefaultPrettyPrinter().writeValueAsString(carrinho);
+					json = "{\"carrinho\":"+json+"}";
+					
+					out.println(json);
 				} else {
 					cliente = (Cliente) session.getAttribute("usuarioLogado");
 
@@ -81,9 +91,16 @@ public class CarrinhoServlet extends HttpServlet {
 					CarrinhoDAO carrinhoDAO = new CarrinhoDAO();
 					carrinhoDAO.insert(itemCarrinho);
 					carrinhoDAO = new CarrinhoDAO();
-					ArrayList<ItemCarrinho> carrinho = carrinhoDAO.itensPorCliente(cliente.getIdCliente());
+					carrinho = carrinhoDAO.itensPorCliente(cliente.getIdCliente());
 					cliente.setListaItens(carrinho);
-					out.println("OK");
+					
+					out = response.getWriter();
+					ObjectMapper mapper = new ObjectMapper();
+					
+					String json = mapper.writerWithDefaultPrettyPrinter().writeValueAsString(carrinho);
+					json = "{\"carrinho\":"+json+"}";
+					
+					out.println(json);
 				}
 
 			} catch (Exception e) {
