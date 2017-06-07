@@ -42,7 +42,7 @@ public class ControlePessoa extends HttpServlet {
 	protected void execute(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 
-		HttpSession session;
+		HttpSession session = null;
 		response.setContentType("text/plain");
 		String acao = request.getParameter("acao");
 		String page = request.getParameter("page");
@@ -123,7 +123,6 @@ public class ControlePessoa extends HttpServlet {
 
 				} else {
 					request.setAttribute("mensagem", "Usuário ou senha inválidos");
-					// throw new Exception("Acesso negado, tente novamente.");
 				}
 			} catch (Exception e) {
 				System.out.println(e.toString());
@@ -199,7 +198,8 @@ public class ControlePessoa extends HttpServlet {
 
 				}
 			} catch (Exception e) {
-				e.printStackTrace();
+				request.setAttribute("erro666", e.toString());
+				request.getRequestDispatcher("paginaerro.jsp").forward(request, response);
 			}
 		} else if (acao.equals("minhaconta")) {
 
@@ -217,7 +217,8 @@ public class ControlePessoa extends HttpServlet {
 					session.setAttribute("cliente", cliente);
 					response.sendRedirect("minhaconta.jsp");
 				} catch (Exception e) {
-					e.printStackTrace();
+					request.setAttribute("erro666", e.toString());
+					request.getRequestDispatcher("paginaerro.jsp").forward(request, response);
 				}
 			}
 		} else if (acao.equals("update")) {
@@ -252,9 +253,10 @@ public class ControlePessoa extends HttpServlet {
 				session.setAttribute("modal", "1");
 				response.sendRedirect(page + ".jsp");
 			} catch (Exception e) {
+				session.setAttribute("mensagem", "Ops! Ocorreu um erro" + e.toString());
+				session.setAttribute("modal", "1");
+				response.sendRedirect("minhaconta.jsp");
 				e.printStackTrace();
-				System.out.println(e.toString());
-				System.out.println(e.getMessage());
 			}
 		} else if (acao.equals("updatesenha")) {
 			session = request.getSession();

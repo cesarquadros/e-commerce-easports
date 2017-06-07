@@ -105,7 +105,8 @@ public class CartaoServlet extends HttpServlet {
 					
 				}
 			} catch (Exception e) {
-				e.printStackTrace();
+				request.setAttribute("erro666", e.toString());
+				request.getRequestDispatcher("paginaerro.jsp").forward(request, response);
 			}
 		} else if (acao.equals("update")) {
 			try {
@@ -154,7 +155,8 @@ public class CartaoServlet extends HttpServlet {
 				}
 
 			} catch (Exception e) {
-				e.printStackTrace();
+				request.setAttribute("erro666", e.toString());
+				request.getRequestDispatcher("paginaerro.jsp").forward(request, response);
 			}
 		}
 	}

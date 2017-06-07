@@ -40,7 +40,7 @@ public class CarrinhoServlet extends HttpServlet {
 		execute(request, response);
 	}
 
-	protected void execute(HttpServletRequest request, HttpServletResponse response) throws IOException {
+	protected void execute(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
 
 		response.setContentType("text/plain");
 
@@ -104,8 +104,8 @@ public class CarrinhoServlet extends HttpServlet {
 				}
 
 			} catch (Exception e) {
-				e.printStackTrace();
-				out.println(e.toString());
+				request.setAttribute("erro666", e.toString());
+				request.getRequestDispatcher("paginaerro.jsp").forward(request, response);
 			}
 
 		} else if (acao.equals("carrinhobycli")) {
@@ -138,7 +138,8 @@ public class CarrinhoServlet extends HttpServlet {
 					request.getRequestDispatcher("carrinho.jsp").forward(request, response);
 
 				} catch (Exception e) {
-					System.out.println(e.toString());
+					request.setAttribute("erro666", e.toString());
+					request.getRequestDispatcher("paginaerro.jsp").forward(request, response);
 				}
 			}
 		} else if (acao.equals("excluiritem")) {
@@ -153,7 +154,8 @@ public class CarrinhoServlet extends HttpServlet {
 				
 				session.setAttribute("usuarioLogado", cliente);
 			} catch (Exception e) {
-				e.printStackTrace();
+				request.setAttribute("erro666", e.toString());
+				request.getRequestDispatcher("paginaerro.jsp").forward(request, response);
 			}
 		}
 	}

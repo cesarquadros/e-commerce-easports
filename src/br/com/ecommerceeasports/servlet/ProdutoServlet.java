@@ -122,7 +122,8 @@ public class ProdutoServlet extends HttpServlet {
 				request.getRequestDispatcher("detalheproduto.jsp").forward(request, response);
 
 			} catch (Exception e) {
-				e.printStackTrace();
+				request.setAttribute("erro666", e.toString());
+				request.getRequestDispatcher("paginaerro.jsp").forward(request, response);
 			}
 		} else if (acao.equals("paginaeditar")) {
 
@@ -201,7 +202,8 @@ public class ProdutoServlet extends HttpServlet {
 				request.getRequestDispatcher("produtocategoria.jsp").forward(request, response);
 
 			} catch (Exception e) {
-				e.printStackTrace();
+				request.setAttribute("erro666", e.toString());
+				request.getRequestDispatcher("paginaerro.jsp").forward(request, response);
 			}
 		}
 	}

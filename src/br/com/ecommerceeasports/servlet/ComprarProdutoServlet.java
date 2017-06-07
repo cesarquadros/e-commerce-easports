@@ -89,7 +89,8 @@ public class ComprarProdutoServlet extends HttpServlet {
 					request.getRequestDispatcher("finalizarcompra.jsp").forward(request, response);
 
 				} catch (Exception e) {
-					e.printStackTrace();
+					request.setAttribute("erro666", e.toString());
+					request.getRequestDispatcher("paginaerro.jsp").forward(request, response);
 				}
 			}
 		} else if (acao.equals("comprar")) {
@@ -155,7 +156,8 @@ public class ComprarProdutoServlet extends HttpServlet {
 					session.setAttribute("cliente", cliente);
 					response.sendRedirect("confirmacaocompra.jsp");
 				} catch (Exception e) {
-					e.printStackTrace();
+					request.setAttribute("erro666", e.toString());
+					request.getRequestDispatcher("paginaerro.jsp").forward(request, response);
 				}
 			}
 		} else if (acao.equals("listacompra")) {
@@ -175,7 +177,8 @@ public class ComprarProdutoServlet extends HttpServlet {
 					request.setAttribute("listacompras", listaCompras);
 					request.getRequestDispatcher("comprasfinalizadas.jsp").forward(request, response);
 				} catch (Exception e) {
-					e.printStackTrace();
+					request.setAttribute("erro666", e.toString());
+					request.getRequestDispatcher("paginaerro.jsp").forward(request, response);
 				}
 
 			}

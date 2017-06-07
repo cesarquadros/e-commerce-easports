@@ -52,7 +52,8 @@ public class RelatorioServlet extends HttpServlet {
 				response.sendRedirect("relatoriocompras.jsp");
 
 			} catch (Exception e) {
-				e.printStackTrace();
+				request.setAttribute("erro666", e.toString());
+				request.getRequestDispatcher("paginaerro.jsp").forward(request, response);
 			}
 		} else if (acao.equals("relatorioperiodobycliente")) {
 			session = request.getSession();
@@ -75,7 +76,8 @@ public class RelatorioServlet extends HttpServlet {
 					session.setAttribute("listacompras", relatorioPeriodo);
 					response.sendRedirect("relatoriocompracliente.jsp");
 				} catch (Exception e) {
-					e.printStackTrace();
+					request.setAttribute("erro666", e.toString());
+					request.getRequestDispatcher("paginaerro.jsp").forward(request, response);
 				}
 			}
 		}

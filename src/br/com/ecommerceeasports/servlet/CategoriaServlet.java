@@ -32,7 +32,7 @@ public class CategoriaServlet extends HttpServlet {
 		execute(request, response);
 	}
 
-	private void execute(HttpServletRequest request, HttpServletResponse response) {
+	private void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
 		try {
 			
@@ -52,7 +52,8 @@ public class CategoriaServlet extends HttpServlet {
 			request.getRequestDispatcher("produtocategoria.jsp").forward(request, response);
 			
 		} catch (Exception e) {
-			e.printStackTrace();
+			request.setAttribute("erro666", e.toString());
+			request.getRequestDispatcher("paginaerro.jsp").forward(request, response);
 		}
 		
 	}
