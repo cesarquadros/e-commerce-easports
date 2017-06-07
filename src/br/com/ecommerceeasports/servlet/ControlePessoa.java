@@ -276,7 +276,7 @@ public class ControlePessoa extends HttpServlet {
 			if (session.getAttribute("usuarioLogado") == null) {
 				request.getRequestDispatcher("login.jsp").forward(request, response);
 			} else {
-
+				
 				request.getRequestDispatcher("relatoriocompracliente.jsp").forward(request, response);
 			}
 		}

@@ -29,7 +29,7 @@
 					<hr />
 					<ul>
 						<li><a
-							href="/e-commerce-easports/ClienteServlet?acao=comprasbycliente">Relatorio
+							href="./relatoriocompracliente.jsp">Relatorio
 								de compras</a></li>
 					</ul>
 

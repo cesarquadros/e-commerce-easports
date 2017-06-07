@@ -10,6 +10,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import br.com.ecommerceeasports.entities.Cliente;
 import br.com.ecommerceeasports.entities.Compra;
 import br.com.ecommerceeasports.persistence.CompraDao;
 
@@ -31,11 +32,12 @@ public class RelatorioServlet extends HttpServlet {
 		execute(request, response);
 	}
 
-	protected void execute(HttpServletRequest request, HttpServletResponse response) {
+	protected void execute(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
 
 		String acao = request.getParameter("acao");
-		
-		HttpSession session =  request.getSession();
+
+		HttpSession session = request.getSession();
 
 		if (acao.equals("relatorioperiodo")) {
 			try {
@@ -45,12 +47,36 @@ public class RelatorioServlet extends HttpServlet {
 				CompraDao compraDao = new CompraDao();
 
 				ArrayList<Compra> relatorioPeriodo = compraDao.relatorioPeriodo(dataInicio, dataFim);
-				
+
 				session.setAttribute("listacompras", relatorioPeriodo);
 				response.sendRedirect("relatoriocompras.jsp");
-				
+
 			} catch (Exception e) {
 				e.printStackTrace();
+			}
+		} else if (acao.equals("relatorioperiodobycliente")) {
+			session = request.getSession();
+
+			Cliente cliente;
+
+			if (session.getAttribute("usuarioLogado") == null) {
+				request.getRequestDispatcher("login.jsp").forward(request, response);
+			} else {
+				try {
+					cliente = (Cliente) session.getAttribute("usuarioLogado");
+
+					String dataInicio = request.getParameter("datainicio");
+					String dataFim = request.getParameter("datafim");
+
+					CompraDao compraDao = new CompraDao();
+
+					ArrayList<Compra> relatorioPeriodo = compraDao.relatorioPeriodoByCliente(dataInicio, dataFim, cliente.getIdCliente());
+					
+					session.setAttribute("listacompras", relatorioPeriodo);
+					response.sendRedirect("relatoriocompracliente.jsp");
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
 			}
 		}
 	}
