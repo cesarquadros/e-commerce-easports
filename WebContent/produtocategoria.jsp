@@ -7,6 +7,7 @@
 
 
 <div class="container">
+	<a href="index.jsp">Voltar para home</a><h4></h4>
 	<h4>${mensagemCategoria}</h4>
 	<br />
 	<div class="row">
