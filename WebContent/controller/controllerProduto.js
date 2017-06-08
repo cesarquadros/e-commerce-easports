@@ -27,6 +27,19 @@ app.controller('appCtrl', [ '$scope', '$http', function($scope, $http) {
 
 		});
 	}
+	
+	$scope.listAllClientes = function() {
+		$http({
+			method : 'post',
+			url : 'CarregarClientesServlet',
+			data : {
+				produto : $scope.texto
+			}
+		}).then(function(retorno) {
+			$scope.array = (retorno.data.clientes);
+
+		});
+	}
 
 	$scope.addCarrinho = function(idProduto, acao) {
 		$scope.ok = 'OK';

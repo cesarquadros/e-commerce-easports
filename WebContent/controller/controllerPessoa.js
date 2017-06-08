@@ -88,5 +88,19 @@ app.controller('appCtrl', [ '$scope', '$http', function($scope, $http) {
 
 		});
 	}
+	$scope.excluirItem = function(idItem, acao) {
+		$http({
+			method : 'post',
+			url : 'CarrinhoServlet',
+			data : [ idItem, acao ]
+		}).then(function(retorno) {
+			if (retorno.data) {
+				alert('Removido do carrinho');
+				setTimeout('location.reload();', 1);
+			} else {
+				alert('OPS! Ocorreu um erro');
+			}
+		});
+	}
 
 } ]);

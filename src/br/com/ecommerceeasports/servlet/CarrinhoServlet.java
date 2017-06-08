@@ -151,8 +151,15 @@ public class CarrinhoServlet extends HttpServlet {
 				Cliente cliente = (Cliente) session.getAttribute("usuarioLogado");
 
 				carrinhoDAO.excluirItem(idProduto, cliente.getIdCliente());
-				
 				session.setAttribute("usuarioLogado", cliente);
+				
+				out = response.getWriter();
+				ObjectMapper mapper = new ObjectMapper();
+				
+				String json = mapper.writerWithDefaultPrettyPrinter().writeValueAsString(cliente);
+				json = "{\"carrinho\":"+json+"}";
+				
+				out.println(json);
 			} catch (Exception e) {
 				request.setAttribute("erro666", e.toString());
 				request.getRequestDispatcher("paginaerro.jsp").forward(request, response);

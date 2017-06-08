@@ -1,5 +1,8 @@
 package br.com.ecommerceeasports.persistence;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import br.com.ecommerceeasports.entities.Cliente;
 import br.com.ecommerceeasports.util.ConverteData;
 
@@ -205,6 +208,48 @@ public class ClienteDAO extends Conexao{
 
 	}
 	
+	public List<Cliente> listAll() throws Exception {
+
+		final String query = "select * from cliente order by nome asc";
+
+		abreConexao();
+
+		stmt = con.prepareStatement(query);
+
+		rs = stmt.executeQuery();
+
+		final ArrayList<Cliente> list = new ArrayList<>();
+
+		while (rs.next()) {
+
+			final Cliente cliente = new Cliente();
+			
+			final EnderecoDAO enderecoDAO = new EnderecoDAO();
+			final CartaoDAO cartaoDAO = new CartaoDAO();
+			final CarrinhoDAO carrinhoDAO = new CarrinhoDAO();
+
+			cliente.setIdCliente(rs.getInt("idCliente"));
+			cliente.setEmail(rs.getString("email"));
+			cliente.setNome(rs.getString("nome"));
+			cliente.setSenha(rs.getString("senha"));
+			cliente.setSexo(rs.getString("sexo"));			
+			
+			cliente.setTelefone(rs.getString("telefone"));
+			cliente.setCpf(rs.getString("cpf"));
+			cliente.setDataNascimento(ConverteData.stringToDate(rs.getString("dataNascimento")));
+			cliente.setDataNascFormatada(rs.getString("dataNascimento"));
+			cliente.setEndereco(enderecoDAO.findById(rs.getInt("idEndereco")));
+			cliente.setCartao(cartaoDAO.findById(rs.getInt("idCartao")));
+			cliente.setListaItens(carrinhoDAO.itensPorCliente(rs.getInt("idCliente")));
+			list.add(cliente);
+
+		}
+		stmt.close();
+		fechaConexao();
+		return list;
+
+	}
+	
 	public void updateCartao(int idCliente, int idCartao) throws Exception{
 		
 		String query = "update Cliente set idCartao = ? where idCliente = ?";
@@ -239,6 +284,7 @@ public class ClienteDAO extends Conexao{
 		fechaConexao();
 
 	}
+	
 	public void updateSenha(final Cliente cliente) throws Exception {
 
 		final String query = "update cliente set senha=? where idCliente = ?";

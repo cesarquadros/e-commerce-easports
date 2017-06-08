@@ -30,7 +30,6 @@
 							<td>${c.quantidade}</td>
 							<td>${c.produto.valorVendaFormatado}</td>
 							<td>${c.valorFormatado}</td>
-
 						</tr>
 					</tbody>
 				</c:forEach>

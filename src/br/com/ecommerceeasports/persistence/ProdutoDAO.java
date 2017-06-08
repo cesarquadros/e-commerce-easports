@@ -402,6 +402,32 @@ public class ProdutoDAO extends Conexao {
 		fechaConexao();
 
 	}
+	public void updateImg(Produto produto) throws Exception {
+
+		String query = "update produto set imagem =? where idProduto = ?";
+
+		abreConexao();
+
+		stmt = con.prepareStatement(query);
+
+		int index = 1;
+		
+		stmt.setString(index++, produto.getImagem());
+		stmt.setInt(index++, produto.getIdProduto());
+
+		stmt.execute();
+
+		stmt.close();
+
+		fechaConexao();
+
+	}
+	
+	
+	
+	
+	
+	
 	
 	/*
 	public void delete(Integer id_produto) throws Exception {

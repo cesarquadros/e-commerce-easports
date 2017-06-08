@@ -24,6 +24,7 @@ import br.com.ecommerceeasports.util.ConverteData;
 @WebServlet("/ClienteServlet")
 public class ControlePessoa extends HttpServlet {
 	private static final long serialVersionUID = 1L;
+	
 
 	public ControlePessoa() {
 		super();
@@ -88,18 +89,20 @@ public class ControlePessoa extends HttpServlet {
 				cliente.setSexo(request.getParameter("sexo"));
 
 				clienteDAO.insert(cliente, idEndereco);
+				
+				session = request.getSession();
 
-				request.setAttribute("modal", "1");
-				request.setAttribute("titulo", "BEM VINDO!");
-				request.setAttribute("mensagem", "Cadastro efetuado com sucesso!");
-				request.setAttribute("retorno", cliente.getNome());
-				request.getRequestDispatcher("login.jsp").forward(request, response);
+				session.setAttribute("modal", "1");
+				session.setAttribute("titulo", "BEM VINDO!");
+				session.setAttribute("mensagem", "Cadastro efetuado com sucesso!");
+				session.setAttribute("retorno", cliente.getNome());
+				response.sendRedirect("login.jsp");
 
 			} catch (Exception e) {
-				request.setAttribute("modal", "1");
-				request.setAttribute("titulo", "OPS! Ocorreu um erro");
-				request.setAttribute("mensagem", e.toString());
-				request.getRequestDispatcher("login.jsp").forward(request, response);
+				session.setAttribute("modal", "1");
+				session.setAttribute("titulo", "OPS! Ocorreu um erro");
+				session.setAttribute("mensagem", e.toString());
+				response.sendRedirect("login.jsp");
 				e.printStackTrace();
 			}
 
@@ -190,10 +193,8 @@ public class ControlePessoa extends HttpServlet {
 					session.setAttribute("quantidade", carrinho.size());
 					session.setAttribute("carrinhocount", carrinhoCount);
 
-					if (page.equals("minhaconta")) {
-						session.setAttribute("mensagem", "Dados alterados com sucesso");
-						session.setAttribute("modal", "1");
-					}
+					session.setAttribute("mensagem", "Dados alterados com sucesso");
+					session.setAttribute("modal", "1");
 					response.sendRedirect(page + ".jsp");
 
 				}
@@ -269,11 +270,11 @@ public class ControlePessoa extends HttpServlet {
 				try {
 					ClienteDAO clienteDAO = new ClienteDAO();
 					cliente = (Cliente) session.getAttribute("usuarioLogado");
-					
+
 					cliente.setSenha(Criptografia.criptografar(request.getParameter("senha")));
 
 					clienteDAO.updateSenha(cliente);
-					
+
 					clienteDAO = new ClienteDAO();
 
 					cliente = clienteDAO.findByCpf(cliente.getCpf());
@@ -285,12 +286,33 @@ public class ControlePessoa extends HttpServlet {
 					session.setAttribute("modal", "1");
 					response.sendRedirect("minhaconta.jsp");
 				} catch (Exception e) {
-					
+
 					session.setAttribute("mensagem", "Ops! Ocorreu um erro" + e.toString());
 					session.setAttribute("modal", "1");
 					response.sendRedirect("minhaconta.jsp");
 					e.printStackTrace();
 				}
+			}
+		} else if (acao.equals("updatesenhabackoffice")) {
+			try {
+				ClienteDAO clienteDAO = new ClienteDAO();
+				Cliente cliente = new Cliente();
+				cliente = clienteDAO.findByCpf(request.getParameter("cpf"));
+
+				cliente.setSenha(Criptografia.criptografar("123mudar"));
+
+				clienteDAO.updateSenha(cliente);
+
+				session = request.getSession();
+				session.setAttribute("mensagem", "Senha resetada");
+				session.setAttribute("modal", "1");
+				response.sendRedirect("relatorioclientes.jsp");
+			} catch (Exception e) {
+
+				session.setAttribute("mensagem", "Ops! Ocorreu um erro" + e.toString());
+				session.setAttribute("modal", "1");
+				response.sendRedirect("relatorioclientes.jsp");
+				e.printStackTrace();
 			}
 		}
 	}

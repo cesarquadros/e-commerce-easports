@@ -218,7 +218,34 @@
 	</div>
 </div>
 <!-- ------------------------------------------------------------------------------ FIM MODAL ENDEREÇO ------------------------------------------------------->
+<!-- ------------------------------------------------------------------------------  MODAL MENSAGEM ------------------------------------------------------->
+<div id="modalMsg" class="modal fade" role="dialog">
+	<div class="modal-dialog">
 
+		<!-- Modal content-->
+		<div class="modal-content center">
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal">&times;</button>
+				<h4 class="modal-title">${titulo}</h4>
+			</div>
+			<div class="modal-body">
+				<h2>${mensagem}</h2>
+				<h3>${retorno}</h3>
+			</div>
+			<div class="modal-footer">
+				<button type="button" class="btn btn-default" data-dismiss="modal">Fechar</button>
+			</div>
+		</div>
+	</div>
+</div>
+
+<c:if test="${modal=='1'}">
+	<script>
+		$(document).ready(function() {
+			$('#modalMsg').modal('show');
+		});
+	</script>
+</c:if>
 
 <script>
 	$(document).ready(function() {
@@ -244,4 +271,6 @@
 <br />
 <br />
 <br />
+<c:remove scope="session" var="modal" />
+<c:remove scope="session" var="mensagem" />
 <jsp:include page="rodape.jsp"></jsp:include>

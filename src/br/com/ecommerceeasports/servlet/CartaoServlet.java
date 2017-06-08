@@ -116,7 +116,7 @@ public class CartaoServlet extends HttpServlet {
 				Cliente cliente;
 
 				if (session.getAttribute("usuarioLogado") == null) {
-
+					request.getRequestDispatcher("login.jsp").forward(request, response);
 				} else {
 
 					Cartao cartao = new Cartao();
@@ -151,6 +151,8 @@ public class CartaoServlet extends HttpServlet {
 					request.setAttribute("valorTotal", valorTotal);
 					request.setAttribute("quantidade", carrinho.size());
 					request.setAttribute("carrinhocount", carrinhoCount);
+					session.setAttribute("mensagem", "Dados alterados com sucesso");
+					session.setAttribute("modal", "1");
 					request.getRequestDispatcher(page+".jsp").forward(request, response);
 				}
 

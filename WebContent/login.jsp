@@ -48,12 +48,12 @@ pageEncoding="ISO-8859-1"%>
 			<div class="modal-content center">
 				<div class="modal-header">
 					<button type="button" class="close" data-dismiss="modal">&times;</button>
-					<h4 class="modal-title">${titulo}</h4>
+					<h4 class="modal-title">${sessionScope.titulo}</h4>
 				</div>
 				<div class="modal-body">
 					
-					<h2>${mensagem}</h2>
-					<h3>${retorno}</h3>
+					<h2>${sessionScope.mensagem}</h2>
+					<h3>${sessionScope.retorno}</h3>
 					
 				</div>
 				<div class="modal-footer">
@@ -69,6 +69,10 @@ pageEncoding="ISO-8859-1"%>
 			});
 		</script>
 	</c:if>
-
 </div>
+<c:remove scope="session" var="mensagem" />
+<c:remove scope="session" var="modal" />
+<c:remove scope="session" var="titulo" />
+<c:remove scope="session" var="retorno" />
+
 <jsp:include page="rodape.jsp"></jsp:include>

@@ -5,7 +5,7 @@
 
 <div class="container" ng-app="app" ng-controller="appCtrl" ng-init="listAll()">
 	<div class="row">
-		<h1 class="center">Relatório de Produtos</h1>
+		<h1 class="center">Produtos</h1>
 		<div class="col-xs-12 col-sm-12 col-md-6" id="buscarDoBanner">
 			<input class="form-control input-lg" type="text" placeholder="Buscar"
 				id="pesquisaprod" ng-model="pesquisaprod">
