@@ -56,18 +56,18 @@
 					class="img-responsive" /> </a>
 			</div>
 
-				<div class="col-xs-5 col-sm-5 col-md-4" id="buscarDoBanner">
-					<input class="form-control input-lg" type="text"
-						placeholder="Buscar" id="pesquisaprod" ng-model="pesquisaprod">
+			<div class="col-xs-5 col-sm-5 col-md-4" id="buscarDoBanner">
+				<input class="form-control input-lg" type="text"
+					placeholder="Buscar" id="pesquisaprod" ng-model="pesquisaprod">
 
-				</div>
-				<div class="col-xs-5 col-sm-5 col-md-2" id="buscarDoBanner">
-					<a
-						href="/e-commerce-easports/ProdutoServlet?acao=findByNome&nome={{pesquisaprod}}"
-						class="btn btn-default navbar-btn"> <span
-						class="glyphicon glyphicon-search"></span> Buscar
-					</a>
-				</div>
+			</div>
+			<div class="col-xs-5 col-sm-5 col-md-2" id="buscarDoBanner">
+				<a
+					href="/e-commerce-easports/ProdutoServlet?acao=findByNome&nome={{pesquisaprod}}"
+					class="btn btn-default navbar-btn"> <span
+					class="glyphicon glyphicon-search"></span> Buscar
+				</a>
+			</div>
 
 			<div class="col-xs-4 col-sm-4 col-md-4">
 				<ul class="nav navbar-nav navbar-right">

@@ -3,7 +3,7 @@
 <script src="./js/mask.js"></script>
 
 		<div class="form-group">
-			<label for="inputNumCartao">Número</label> <input type="number"
+			<label for="inputNumCartao">Número</label> <input 
 				class="form-control cartao" id="inputNumCartao" name="numero"
 				placeholder="Número" value="${usuarioLogado.cartao.numero}">
 		</div>

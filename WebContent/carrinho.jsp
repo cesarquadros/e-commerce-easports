@@ -50,37 +50,39 @@
 
 		<br /> <br /> <br /> <br />
 
-		<div class="col-xs-12 col-sm-12 col-md-12">
-			<table class="table table-hover">
-				<thead>
-					<tr>
-						<th>Produto</th>
-						<th>Quant.</th>
-						<th>Valor Unitário</th>
-						<th>Valor Total</th>
-						<th>Estoque</th>
-					</tr>
-				</thead>
-				<c:forEach items="${carrinhocount}" var="carrinho">
-					<tbody>
+		<div class="table-responsive">
+			<div class="col-xs-12 col-sm-12 col-md-12">
+				<table class="table table-hover">
+					<thead>
 						<tr>
-							<td>${carrinho.produto.nome}</td>
-							<td>${carrinho.quantidade}</td>
-							<td>${carrinho.produto.valorVendaFormatado}</td>
-							<td>${carrinho.valorFormatado}</td>
-							<td>${carrinho.produto.quantidade}</td>
-							<td><a class="btn btn-danger navbar-btn"
-								ng-click="excluirItem(${carrinho.produto.idProduto},'excluiritem')"><span
-									class="glyphicon glyphicon-minus-sign"></span></a></td>
-							<td><a href="#" class="btn btn-success navbar-btn"
-								ng-click="addCarrinho(${carrinho.produto.idProduto},'adicionar', ${carrinho.quantidade}, ${carrinho.produto.quantidade})">
-									<span class="glyphicon glyphicon-plus-sign"></span>
-							</a></td>
-
+							<th>Produto</th>
+							<th>Quant.</th>
+							<th>Valor Unitário</th>
+							<th>Valor Total</th>
+							<th>Estoque</th>
 						</tr>
-					</tbody>
-				</c:forEach>
-			</table>
+					</thead>
+					<c:forEach items="${carrinhocount}" var="carrinho">
+						<tbody>
+							<tr>
+								<td>${carrinho.produto.nome}</td>
+								<td>${carrinho.quantidade}</td>
+								<td>${carrinho.produto.valorVendaFormatado}</td>
+								<td>${carrinho.valorFormatado}</td>
+								<td>${carrinho.produto.quantidade}</td>
+								<td><a class="btn btn-danger navbar-btn"
+									ng-click="excluirItem(${carrinho.produto.idProduto},'excluiritem')"><span
+										class="glyphicon glyphicon-minus-sign"></span></a></td>
+								<td><a href="#" class="btn btn-success navbar-btn"
+									ng-click="addCarrinho(${carrinho.produto.idProduto},'adicionar', ${carrinho.quantidade}, ${carrinho.produto.quantidade})">
+										<span class="glyphicon glyphicon-plus-sign"></span>
+								</a></td>
+
+							</tr>
+						</tbody>
+					</c:forEach>
+				</table>
+			</div>
 		</div>
 		<div class="col-xs-12 col-sm-12 col-md-6">
 			<a href="./index.jsp" class="btn btn-default navbar-btn">Escolher

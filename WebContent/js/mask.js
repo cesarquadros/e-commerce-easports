@@ -6,5 +6,5 @@ jQuery(function($){
    $(".cartao").mask("9999999999999999");
    $(".codseguranca").mask("999");
    $(".validadecartao").mask("99/9999");
-   $('.money').mask('999.999.999,99', {reverse: true});
+   $('.money').mask('999999999,99', {reverse: true});
 });

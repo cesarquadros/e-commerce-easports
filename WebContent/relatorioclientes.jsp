@@ -7,41 +7,39 @@
 <div class="container" ng-app="app" ng-controller="appCtrl"
 	ng-init="listAllClientes()">
 	<div class="row">
-			<div class="col-xs-12 col-sm-12 col-md-6" id="buscarDoBanner">
+		<h1 class="center">Produtos</h1>
+		<div class="col-xs-12 col-sm-12 col-md-6" id="buscarDoBanner">
 			<input class="form-control input-lg" type="text" placeholder="Buscar"
 				id="pesquisacli" ng-model="pesquisacli">
 		</div>
-		<div class="col-xs-12 col-sm-12 col-md-12">
-			<h1 class="center">Relatório de Clientes</h1>
-			<br /> <br />
-			<table class="table table-hover">
-				<thead>
-					<tr style="background: #eee;">
-						<th>ID</th>
-						<th>Nome</th>
-						<th>Email</th>
-						<th>Telefone</th>
-						<th>CPF</th>
-						<th></th>
-					</tr>
-				</thead>
-				<tbody>
-					<tr ng-repeat="clientes in array | filter:pesquisacli">
-						<td>{{clientes.idCliente}}</td>
-						<td>{{clientes.nome}}</td>
-						<td>{{clientes.email}}</td>
-						<td>{{clientes.telefone}}</td>
-						<td>{{clientes.cpf}}</td>
-						<td>
-							<a type="button" class="btn btn-default navbar-btn" 
-							href="/e-commerce-easports/ClienteServlet?acao=updatesenhabackoffice&cpf={{clientes.cpf}}"
-								id="btnResetSenha">Resetar senha</a>
-						</td>
-					</tr>
-				</tbody>
-			</table>
-		</div>
 	</div>
+	<br />
+	<div class="row">
+	<table class="table table-hover">
+		<thead>
+			<tr style="background: #eee;">
+				<th>ID</th>
+				<th>Nome</th>
+				<th>Email</th>
+				<th>Telefone</th>
+				<th>CPF</th>
+				<th></th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr ng-repeat="clientes in array | filter:pesquisacli">
+				<td>{{clientes.idCliente}}</td>
+				<td>{{clientes.nome}}</td>
+				<td>{{clientes.email}}</td>
+				<td>{{clientes.telefone}}</td>
+				<td>{{clientes.cpf}}</td>
+				<td><a type="button" class="btn btn-default navbar-btn"
+					href="/e-commerce-easports/ClienteServlet?acao=updatesenhabackoffice&cpf={{clientes.cpf}}"
+					id="btnResetSenha">Resetar senha</a></td>
+			</tr>
+		</tbody>
+	</table>
+</div>
 </div>
 
 <!-- ------------------------------------------------------------------------------  MODAL MENSAGEM ------------------------------------------------------->

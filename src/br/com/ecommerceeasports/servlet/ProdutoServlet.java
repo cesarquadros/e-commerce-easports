@@ -73,9 +73,8 @@ public class ProdutoServlet extends HttpServlet {
 
 				// definir o local onde o arquivo será salvo
 
-				String pasta = System.getProperty("user.home") + "\\git\\e-commerce-easports\\WebContent\\img";
-				// String pasta = System.getProperty("user.dir") +
-				// "\\tomcat\\webapps\\easports\\img";
+				//String pasta = System.getProperty("user.home") + "\\git\\e-commerce-easports\\WebContent\\img";
+				String pasta = System.getProperty("user.dir") +"\\tomcat\\webapps\\e-commerce-easports\\img";
 
 				FileOutputStream stream = new FileOutputStream(pasta + "/" + produto.getImagem());
 
@@ -228,9 +227,8 @@ public class ProdutoServlet extends HttpServlet {
 
 				// definir o local onde o arquivo será salvo
 
-				String pasta = System.getProperty("user.home") + "\\git\\e-commerce-easports\\WebContent\\img";
-				// String pasta = System.getProperty("user.dir") +
-				// "\\tomcat\\webapps\\easports\\img";
+				//String pasta = System.getProperty("user.home") + "\\git\\e-commerce-easports\\WebContent\\img";
+				String pasta = System.getProperty("user.dir") +"\\tomcat\\webapps\\e-commerce-easports\\img";
 
 				FileOutputStream stream = new FileOutputStream(pasta + "/" + produto.getImagem());
 
@@ -244,11 +242,14 @@ public class ProdutoServlet extends HttpServlet {
 
 				stream.close();
 				// -------------------------------------------------------------------------------------------------------------------------------------------------------------------
-
+				FormataValor format = new FormataValor();
 				produtoDao.updateImg(produto);
-				produtoDao.findById(Integer.parseInt(request.getParameter("idProduto")));
+				produto = produtoDao.findById(Integer.parseInt(request.getParameter("idProduto")));
+				produto.setValorCustoFormatado(format.valorCasaDecimal(produto.getPrecoCusto()));
+				produto.setValorVendaFormatado(format.valorCasaDecimal(produto.getPrecoVenda()));
 				
 				session = request.getSession();
+				session.setAttribute("produto", produto);
 				session.setAttribute("titulo", "Editar Produto");
 				session.setAttribute("mensagem","Imagem alterada");
 				session.setAttribute("modal", 1);

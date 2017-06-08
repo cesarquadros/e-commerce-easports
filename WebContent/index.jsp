@@ -3,7 +3,7 @@
 <jsp:include page="cabecalho1.jsp"></jsp:include>
 <jsp:include page="menu.jsp"></jsp:include>
 
-<div class="container" id="carrossel">
+<div class="container-fluid" id="carrossel">
 	<div id="carousel-example-generic" class="carousel slide"
 		data-ride="carousel">
 		<!-- Indicators -->
@@ -66,7 +66,7 @@
 					class="glyphicon glyphicon-shopping-cart"></span> Adicionar
 
 				</a> <a
-					href="/e-commerce-easports/ProdutoServlet?acao=findById&nome={{produto.idProduto}}"
+					href="/e-commerce-easports/ProdutoServlet?acao=findById&id={{produto.idProduto}}"
 					class="btn btn-default navbar-btn"> <span
 					class="glyphicon glyphicon-plus-sign"></span> Detalhes
 				</a>

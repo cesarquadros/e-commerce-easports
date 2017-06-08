@@ -8,7 +8,7 @@
 <div class="container">
 	<div class="row">
 		<div class="col-xs-12 col-sm-12 col-md-12">
-			<h1 class="center">Relatório de Vendas</h1>
+			<h1 class="center">Relatório de compras</h1>
 			<br /> <br /> <br />
 
 			<form name="formulario" method="post"
@@ -37,7 +37,8 @@
 				</div>
 			</form>
 			<br />
-			<table class="table table-hover">
+			<div class="table-responsive">
+			<table class="table">
 				<thead>
 					<tr style="background: #eee;">
 						<th>Codigo venda</th>
@@ -95,6 +96,7 @@
 				</c:forEach>
 				<c:remove scope="session" var="listacompras" />
 			</table>
+			</div>
 		</div>
 	</div>
 </div>

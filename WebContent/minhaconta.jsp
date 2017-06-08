@@ -40,7 +40,11 @@
 					<hr />
 					<ul>
 						<li><a href="#" id="btnDadosPessoais">Dados pessoais </a></li>
-						<li><a href="#" id="btnEnd">Endereço</a></li>
+						<li><a href="#" id="btnEnd">Endereço</a> - 
+							${sessionScope.cliente.endereco.logradouro}, ${sessionScope.cliente.endereco.numero} 
+							${sessionScope.cliente.endereco.complemento} - ${sessionScope.cliente.endereco.bairro} - 
+							${sessionScope.cliente.endereco.cep} - ${sessionScope.cliente.endereco.cidade}-${sessionScope.cliente.endereco.estado}
+						</li>
 						<li><a href="#" id="btnEditarSenha">Alterar senha</a></li>
 					</ul>
 					<br />
